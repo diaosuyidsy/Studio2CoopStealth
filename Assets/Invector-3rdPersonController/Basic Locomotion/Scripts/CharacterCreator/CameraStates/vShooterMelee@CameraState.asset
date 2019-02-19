@@ -17,12 +17,12 @@ MonoBehaviour:
   - Name: Default
     forward: -1
     right: -0.36
-    defaultDistance: 2.48
+    defaultDistance: 2.53
     maxDistance: 12
     minDistance: 0.6
-    height: 2.08
-    smooth: 1
-    smoothDamp: 1
+    height: 1.9
+    smooth: 10
+    smoothDamp: 4
     xMouseSensitivity: 2
     yMouseSensitivity: 3
     yMinLimit: -60
@@ -32,7 +32,7 @@ MonoBehaviour:
     rotationOffSet: {x: -2, y: 0, z: 0}
     cullingHeight: 1.8
     cullingMinDist: 0.01
-    fov: 60
+    fov: 69
     useZoom: 0
     fixedAngle: {x: 360, y: 78}
     lookPoints:
@@ -66,23 +66,23 @@ MonoBehaviour:
     cameraMode: 0
   - Name: Aiming
     forward: -1
-    right: 0.61
-    defaultDistance: 0.79
+    right: -0.3
+    defaultDistance: 1.8
     maxDistance: 1.5
     minDistance: 0.25
-    height: 1.6
+    height: 2
     smooth: 10
-    smoothDamp: 0
-    xMouseSensitivity: 1.902439
+    smoothDamp: 2
+    xMouseSensitivity: 1
     yMouseSensitivity: 1
     yMinLimit: -50
-    yMaxLimit: 70
+    yMaxLimit: 45
     xMinLimit: -360
     xMaxLimit: 360
-    rotationOffSet: {x: 0, y: 0, z: 0}
+    rotationOffSet: {x: -1, y: 0, z: 0}
     cullingHeight: 1.5
     cullingMinDist: 0.1
-    fov: 35
+    fov: 60
     useZoom: 0
     fixedAngle: {x: 0, y: 0}
     lookPoints: []

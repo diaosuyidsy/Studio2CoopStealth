@@ -6,14 +6,14 @@ namespace Invector.vCamera
 {
     public class vThirdPersonCamera : MonoBehaviour
     {
-        private static vThirdPersonCamera _instance;
-        public static vThirdPersonCamera instance
+        //private static vThirdPersonCamera _instance;
+        /*public vThirdPersonCamera instance
         {
             get
             {
                 if (_instance == null)
                 {
-                    _instance = GameObject.FindObjectOfType<vThirdPersonCamera>();
+                    _instance = this;
 
                     //Tell unity not to destroy this object when loading a new scene!
                     //DontDestroyOnLoad(_instance.gameObject);
@@ -21,7 +21,7 @@ namespace Invector.vCamera
 
                 return _instance;
             }
-        }
+        }*/
 
         #region inspector properties    
         public Transform target;
