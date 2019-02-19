@@ -16,17 +16,17 @@ MonoBehaviour:
   tpCameraStates:
   - Name: Default
     forward: -1
-    right: 0.25
-    defaultDistance: 2
+    right: 0.36
+    defaultDistance: 2.48
     maxDistance: 8
     minDistance: 0.6
-    height: 1.5
+    height: 1.2
     smooth: 10
     smoothDamp: 4
     xMouseSensitivity: 3
     yMouseSensitivity: 3
-    yMinLimit: -39.999996
-    yMaxLimit: 80
+    yMinLimit: -59.999996
+    yMaxLimit: 75.83333
     xMinLimit: -360
     xMaxLimit: 360
     rotationOffSet: {x: 8, y: 0, z: 0}
@@ -66,7 +66,7 @@ MonoBehaviour:
     cameraMode: 0
   - Name: Aiming
     forward: -1
-    right: 0.26
+    right: 0.32
     defaultDistance: 1.5
     maxDistance: 1.5
     minDistance: 0.25

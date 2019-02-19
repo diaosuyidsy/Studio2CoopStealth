@@ -209,9 +209,9 @@ namespace Invector.vCharacterController
         /// <returns></returns>
         protected List<Transform> GetPossibleTargets()
         {
-            if (vCamera.vThirdPersonCamera.instance != null && vCamera.vThirdPersonCamera.instance.target != null)
+            /*if (vCamera.vThirdPersonCamera.instance != null && vCamera.vThirdPersonCamera.instance.target != null)
                 watcher = vCamera.vThirdPersonCamera.instance.target;
-            else
+            else*/
                 watcher = transform;
             var listPrimary = new List<Transform>();
             var targets = Physics.SphereCastAll(watcher.position, range, watcher.forward, .01f);

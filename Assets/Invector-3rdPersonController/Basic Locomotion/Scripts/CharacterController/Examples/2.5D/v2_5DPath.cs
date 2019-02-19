@@ -126,12 +126,12 @@ namespace Invector.vCharacterController.v2_5D
                     else if (Vector3.Distance(pB, position) > distanceB + 0.1f) reference.right = -dirA;
                 }
 
-                if (autoUpdateCameraAngle && vCamera.vThirdPersonCamera.instance)
+                /*if (autoUpdateCameraAngle && vCamera.vThirdPersonCamera.instance)
                 {
                     var rot = Quaternion.LookRotation(reference.forward, Vector3.up);
                     var angle = rot.eulerAngles.NormalizeAngle().y;
                     vCamera.vThirdPersonCamera.instance.lerpState.fixedAngle.x = angle;
-                }
+                }*/
                 var localPosition = reference.InverseTransformPoint(pos);
                 localPosition.z = 0;
 
