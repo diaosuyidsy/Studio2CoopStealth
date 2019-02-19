@@ -16,6 +16,7 @@ public class PlayerController_SS : MonoBehaviour
 	private Vector3 _moveVector;
 	private bool _jump;
 	private bool _specialAction;
+	private bool _stealthKill;
 	#endregion
 
 	private void Awake()
@@ -39,16 +40,27 @@ public class PlayerController_SS : MonoBehaviour
 		_moveVector.z = _player.GetAxis("Move Vertical") * MoveSpeed;
 		_jump = _player.GetButtonDown("Jump");
 		_specialAction = _player.GetButtonDown("Special Usage");
+		_stealthKill = _player.GetButtonDoublePressDown("Stealth Kill");
 	}
 
 	private void _processMovement()
 	{
 		_rb.velocity = _moveVector;
+		//transform.eulerAngles = new Vector3(transform.eulerAngles.x, Mathf.Atan2(_moveVector.x, _moveVector.z * -1f) * Mathf.Rad2Deg, transform.eulerAngles.z);
 	}
 
 	private void _processAction()
 	{
 		if (_jump) _rb.AddForce(new Vector3(0f, JumpForce, 0f), ForceMode.Impulse);
 		if (_specialAction) EventManager.TriggerEvent("TimeSwitch");
+		if (_stealthKill)
+		{
+			RaycastHit hit;
+			if (Physics.SphereCast(transform.position, 0.5f, transform.forward, out hit, 1f))
+			{
+				if (hit.collider.CompareTag("Enemy"))
+					hit.collider.gameObject.SetActive(false);
+			}
+		}
 	}
 }
