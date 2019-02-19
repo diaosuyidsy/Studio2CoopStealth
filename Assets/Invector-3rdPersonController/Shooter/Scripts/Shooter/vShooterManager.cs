@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Invector.vCamera;
+
 namespace Invector.vShooter
 {
     using vItemManager;
@@ -25,6 +27,8 @@ namespace Invector.vShooter
         public float blockAimOffsetX = 0.35f;
 
         [vEditorToolbar("Aim")]
+        [Header("- Camera")]
+        public vThirdPersonCamera tpCamera;   
         [Header("- Float Values")]
         [Tooltip("min distance to aim")]
         public float minDistanceToAim = 1;
@@ -90,9 +94,7 @@ namespace Invector.vShooter
         [HideInInspector]
         public OnReloadWeapon onReloadWeapon;
         [HideInInspector]
-        public vAmmoDisplay ammoDisplayR, ammoDisplayL;
-        [HideInInspector]
-        public vCamera.vThirdPersonCamera tpCamera;
+        public vAmmoDisplay ammoDisplayR, ammoDisplayL;    
         [HideInInspector]
         public bool showCheckAimGizmos;
 
@@ -109,7 +111,7 @@ namespace Invector.vShooter
         {
             animator = GetComponent<Animator>();
             if (applyRecoilToCamera)
-                tpCamera = FindObjectOfType<vCamera.vThirdPersonCamera>();
+                //tpCamera = FindObjectOfType<vCamera.vThirdPersonCamera>();
             
             ammoManager = GetComponent<vAmmoManager>();
             ammoManager.updateTotalAmmo = new vAmmoManager.OnUpdateTotalAmmo(UpdateTotalAmmo);
@@ -518,8 +520,8 @@ namespace Invector.vShooter
 
             if (tpCamera != null)
             {
-                vCamera.vThirdPersonCamera.instance.offsetMouse.x = bx + tx;
-                vCamera.vThirdPersonCamera.instance.offsetMouse.y = by + ty;
+                tpCamera.offsetMouse.x = bx + tx;
+                tpCamera.offsetMouse.y = by + ty;
             }            
         }
 

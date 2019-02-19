@@ -10,7 +10,7 @@ namespace Invector.vCharacterController.vActions
     {
         #region Variables
         [Tooltip("Input to make the action")]
-        public GenericInput actionInput = new GenericInput("E", "A", "A");
+        public RewiredInputWrapper  actionInput = new RewiredInputWrapper("Interact");
         [Tooltip("Tag of the object you want to access")]
         public string actionTag = "Action";
         [Tooltip("Use root motion of the animation")]
@@ -41,7 +41,8 @@ namespace Invector.vCharacterController.vActions
 
         protected virtual void Start()
         {
-            tpInput = GetComponent<vThirdPersonInput>();           
+            tpInput = GetComponent<vThirdPersonInput>();
+            actionInput.playerID = tpInput.playerId;
         }
 
         void Update()
