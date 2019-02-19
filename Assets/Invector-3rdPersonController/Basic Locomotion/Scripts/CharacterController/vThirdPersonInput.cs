@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Invector.vCamera;
 
 namespace Invector.vCharacterController
 {
@@ -10,18 +11,21 @@ namespace Invector.vCharacterController
         #region Variables        
 
         [vEditorToolbar("Inputs")]
+        
+        [Header("Player Id")]
+        public int playerId;
         [Header("Default Input")]
         public bool lockInput;
         [Header("Uncheck if you need to use the cursor")]
         public bool unlockCursorOnStart = false;
         public bool showCursorOnStart = false;
-        public GenericInput horizontalInput = new GenericInput("Horizontal", "LeftAnalogHorizontal", "Horizontal");
-        public GenericInput verticallInput = new GenericInput("Vertical", "LeftAnalogVertical", "Vertical");
-        public GenericInput jumpInput = new GenericInput("Space", "X", "X");
-        public GenericInput rollInput = new GenericInput("Q", "B", "B");
-        public GenericInput strafeInput = new GenericInput("Tab", "RightStickClick", "RightStickClick");
-        public GenericInput sprintInput = new GenericInput("LeftShift", "LeftStickClick", "LeftStickClick");
-        public GenericInput crouchInput = new GenericInput("C", "Y", "Y");
+        public RewiredInputWrapper horizontalInput = new RewiredInputWrapper("Move Horizontal");
+        public RewiredInputWrapper verticallInput = new RewiredInputWrapper("Move Vertical");
+        public RewiredInputWrapper jumpInput = new RewiredInputWrapper("Jump");
+        public RewiredInputWrapper rollInput = new RewiredInputWrapper("Special Usage");
+        public RewiredInputWrapper strafeInput = new RewiredInputWrapper("Strafe");
+        public RewiredInputWrapper sprintInput = new RewiredInputWrapper("");
+        public RewiredInputWrapper crouchInput = new RewiredInputWrapper("Crouch");
 
         [vEditorToolbar("Camera Settings")]
         public bool lockCameraInput;
@@ -30,11 +34,10 @@ namespace Invector.vCharacterController
 
         [vEditorToolbar("Inputs")]
         [Header("Camera Input")]
-        public GenericInput rotateCameraXInput = new GenericInput("Mouse X", "RightAnalogHorizontal", "Mouse X");
-        public GenericInput rotateCameraYInput = new GenericInput("Mouse Y", "RightAnalogVertical", "Mouse Y");
-        public GenericInput cameraZoomInput = new GenericInput("Mouse ScrollWheel", "", "");
-        [HideInInspector]
-        public vCamera.vThirdPersonCamera tpCamera;              // acess camera info                
+        public RewiredInputWrapper rotateCameraXInput = new RewiredInputWrapper("Camera Move Horizontal");
+        public RewiredInputWrapper rotateCameraYInput = new RewiredInputWrapper("Camera Move Vertical");
+        public RewiredInputWrapper cameraZoomInput = new RewiredInputWrapper("");
+        public vThirdPersonCamera tpCamera;              // acess camera info                
         [HideInInspector]
         public string customCameraState;                    // generic string to change the CameraState        
         [HideInInspector]
@@ -85,6 +88,16 @@ namespace Invector.vCharacterController
 
             ShowCursor(showCursorOnStart);
             LockCursor(unlockCursorOnStart);
+            horizontalInput.playerID = playerId;
+            verticallInput.playerID = playerId;
+            jumpInput.playerID = playerId;
+            rollInput.playerID = playerId;
+            strafeInput.playerID = playerId;
+            sprintInput.playerID = playerId;
+            crouchInput.playerID = playerId;
+            rotateCameraXInput.playerID = playerId;
+            rotateCameraYInput.playerID = playerId;
+            cameraZoomInput.playerID = playerId;
         }       
 
         protected virtual IEnumerator CharacterInit()
@@ -295,8 +308,8 @@ namespace Invector.vCharacterController
             if (!Camera.main) Debug.Log("Missing a Camera with the tag MainCamera, please add one.");
             if (!ignoreCameraRotation)
             {
-                if (!keepDirection) cc.UpdateTargetDirection(Camera.main.transform);
-                RotateWithCamera(Camera.main.transform);
+                if (!keepDirection) cc.UpdateTargetDirection(tpCamera.transform);
+                RotateWithCamera(tpCamera.transform);
             }
 
             if (tpCamera == null)

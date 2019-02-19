@@ -9,18 +9,19 @@ namespace Invector.vShooter
     {
         #region Shooter Inputs
 
-        [vEditorToolbar("Inputs")]
-        [Header("Shooter Inputs")]
-        public GenericInput aimInput = new GenericInput("Mouse1", false, "LT", true, "LT", false);
-        public GenericInput shotInput = new GenericInput("Mouse0", false, "RT", true, "RT", false);
-        public GenericInput secundaryShotInput = new GenericInput("Mouse2", false, "X", true, "X", false);
-        public GenericInput reloadInput = new GenericInput("R", "LB", "LB");
-        public GenericInput switchCameraSideInput = new GenericInput("Tab", "RightStickClick", "RightStickClick");
-        public GenericInput scopeViewInput = new GenericInput("Z", "RB", "RB");
+        [vEditorToolbar("Inputs")] [Header("Shooter Inputs")]
+
+        public RewiredInputWrapper  aimInput = new RewiredInputWrapper ("Aim");
+        public RewiredInputWrapper shotInput = new RewiredInputWrapper("Shoot");
+        public RewiredInputWrapper secundaryShotInput = new RewiredInputWrapper("");
+        public RewiredInputWrapper reloadInput = new RewiredInputWrapper("LB");
+        public RewiredInputWrapper switchCameraSideInput = new RewiredInputWrapper("RightStickClick");
+        public RewiredInputWrapper scopeViewInput = new RewiredInputWrapper("RB");
 
         #endregion
 
-        #region Shooter Variables       
+        #region Shooter Variables 
+        
 
         internal vShooterManager shooterManager;
         internal bool blockAim;
@@ -51,6 +52,8 @@ namespace Invector.vShooter
         private GameObject aimAngleReference;
         private Vector3 ikRotationOffset;
         private Vector3 ikPositionOffset;
+        
+        
         public vControlAimCanvas controlAimCanvas
         {
             get
@@ -84,9 +87,15 @@ namespace Invector.vShooter
             aimAngleReference.transform.localPosition = Vector3.zero;
 
             headTrack = GetComponent<vHeadTrack>();
-
             if (!controlAimCanvas)
                 Debug.LogWarning("Missing the AimCanvas, drag and drop the prefab to this scene in order to Aim", gameObject);
+
+            aimInput.playerID = playerId;
+            shotInput.playerID = playerId;
+            secundaryShotInput.playerID = playerId;
+            reloadInput.playerID = playerId;
+            switchCameraSideInput.playerID = playerId;
+            scopeViewInput.playerID = playerId;
         }
 
         protected override void LateUpdate()
@@ -301,7 +310,7 @@ namespace Invector.vShooter
             shooterManager.UpdateShotTime();
         }       
 
-        protected virtual void HandleShot(vShooterWeapon weapon, GenericInput weaponInput, bool secundaryShot = false)
+        protected virtual void HandleShot(vShooterWeapon weapon, RewiredInputWrapper weaponInput, bool secundaryShot = false)
         {
             if (weapon.chargeWeapon)
             {
@@ -563,7 +572,7 @@ namespace Invector.vShooter
                     CurrentWeapon.zoomScopeCamera ? /* if true, check if weapon has a zoomScopeCamera, 
                 if true...*/
                     CurrentWeapon.zoomScopeCamera.transform : controlAimCanvas.scopeCamera.transform :
-                    /*else*/Camera.main.transform;
+                    /*else*/tpCamera.transform;
 
             var origin1 = camT.position;
             if (!(controlAimCanvas && controlAimCanvas.isScopeCameraActive && controlAimCanvas.scopeCamera))
@@ -580,13 +589,13 @@ namespace Invector.vShooter
                 RaycastHit hit;
                 Ray ray = new Ray(vOrigin, camT.forward);
 
-                if (Physics.Raycast(ray, out hit, Camera.main.farClipPlane, shooterManager.damageLayer))
+                if (Physics.Raycast(ray, out hit, tpCamera.GetComponent<Camera>().farClipPlane, shooterManager.damageLayer))
                 {
                     if (hit.collider.transform.IsChildOf(transform))
                     {
                         var collider = hit.collider;
-                        var hits = Physics.RaycastAll(ray, Camera.main.farClipPlane, shooterManager.damageLayer);
-                        var dist = Camera.main.farClipPlane;
+                        var hits = Physics.RaycastAll(ray, tpCamera.GetComponent<Camera>().farClipPlane, shooterManager.damageLayer);
+                        var dist = tpCamera.GetComponent<Camera>().farClipPlane;
                         for (int i = 0; i < hits.Length; i++)
                         {
                             if (hits[i].distance < dist && hits[i].collider.gameObject != collider.gameObject && !hits[i].collider.transform.IsChildOf(transform))
@@ -621,7 +630,7 @@ namespace Invector.vShooter
         {
             if (!shooterManager || !shooterManager.showCheckAimGizmos) return;
             var weaponSide = isCameraRightSwitched ? -1 : 1;
-            var _ray = new Ray(aimAngleReference.transform.position + transform.up * shooterManager.blockAimOffsetY + transform.right * shooterManager.blockAimOffsetX * weaponSide, Camera.main.transform.forward);
+            var _ray = new Ray(aimAngleReference.transform.position + transform.up * shooterManager.blockAimOffsetY + transform.right * shooterManager.blockAimOffsetX * weaponSide, tpCamera.transform.forward);
             Gizmos.DrawRay(_ray.origin, _ray.direction * shooterManager.minDistanceToAim);
             var color = Gizmos.color;
             color = aimConditions ? Color.green : Color.red;
@@ -790,7 +799,7 @@ namespace Invector.vShooter
             }
             else
             {
-                var _ray = new Ray(aimAngleReference.transform.position + transform.up * shooterManager.blockAimOffsetY + transform.right * shooterManager.blockAimOffsetX * weaponSide, Camera.main.transform.forward);
+                var _ray = new Ray(aimAngleReference.transform.position + transform.up * shooterManager.blockAimOffsetY + transform.right * shooterManager.blockAimOffsetX * weaponSide, tpCamera.transform.forward);
                 RaycastHit hit;
                 if (Physics.SphereCast(_ray, shooterManager.checkAimRadius, out hit, shooterManager.minDistanceToAim, shooterManager.blockAimLayer))
                 {
@@ -815,7 +824,7 @@ namespace Invector.vShooter
         {
             get
             {
-                return isUsingScopeView && controlAimCanvas.scopeCamera ? Camera.main.transform.position + Camera.main.transform.forward * lastAimDistance : aimPosition;
+                return isUsingScopeView && controlAimCanvas.scopeCamera ? tpCamera.transform.position + tpCamera.transform.forward * lastAimDistance : aimPosition;
             }
         }
 
@@ -823,7 +832,7 @@ namespace Invector.vShooter
         {
             get
             {
-                var t = controlAimCanvas && controlAimCanvas.isScopeCameraActive && controlAimCanvas.scopeCamera ? controlAimCanvas.scopeCamera.transform : Camera.main.transform;
+                var t = controlAimCanvas && controlAimCanvas.isScopeCameraActive && controlAimCanvas.scopeCamera ? controlAimCanvas.scopeCamera.transform : tpCamera.transform;
                 return t.forward;
             }
         }
@@ -872,7 +881,7 @@ namespace Invector.vShooter
 
             if (CurrentWeapon.scopeTarget)
             {
-                var lookPoint = Camera.main.transform.position + (Camera.main.transform.forward * (isUsingScopeView ? lastAimDistance : 100f));
+                var lookPoint = tpCamera.transform.position + (tpCamera.transform.forward * (isUsingScopeView ? lastAimDistance : 100f));
                 controlAimCanvas.UpdateScopeCamera(CurrentWeapon.scopeTarget.position, lookPoint, CurrentWeapon.zoomScopeCamera ? 0 : CurrentWeapon.scopeZoom);
             }
         }

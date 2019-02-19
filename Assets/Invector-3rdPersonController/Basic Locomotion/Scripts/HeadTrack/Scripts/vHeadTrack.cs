@@ -10,7 +10,7 @@ namespace Invector.vCharacterController
 
         [HideInInspector]
         public float minAngleX = -90f, maxAngleX = 90, minAngleY = -90f, maxAngleY = 90f;
-
+        
         public Transform head;
         public float strafeHeadWeight = 0.8f;
         public float strafeBodyWeight = 0.8f;
@@ -27,6 +27,7 @@ namespace Invector.vCharacterController
         [Header("--- Animator State Tag to ignore the HeadTrack ---")]
         public List<string> animatorTags = new List<string>() { "Attack", "LockMovement", "CustomAction" };
         public bool followCamera = true;
+        public Transform CameraFollow;
         [vHideInInspector("followCamera")]
         public bool awaysFollowCamera = false;
         public bool useLimitAngle = true;
@@ -163,7 +164,7 @@ namespace Invector.vCharacterController
             head.rotation *= _rotX * _rotY;
         }
 
-        bool lookConditions { get { return head != null && (followCamera && Camera.main != null) || (!followCamera && (currentLookTarget || simpleTarget)) || temporaryLookTime > 0; } }
+        bool lookConditions { get { return head != null && (followCamera && CameraFollow!= null) || (!followCamera && (currentLookTarget || simpleTarget)) || temporaryLookTime > 0; } }
 
         Vector3 GetLookPoint()
         {
@@ -176,7 +177,7 @@ namespace Invector.vCharacterController
                     var lookPosition = headPoint + (transform.forward * distanceToLoock);
                     if (followCamera)
                     {
-                        lookPosition = (Camera.main.transform.position + (Camera.main.transform.forward * distanceToLoock));
+                        lookPosition = (CameraFollow.transform.position + (CameraFollow.transform.forward * distanceToLoock));
                     }
 
                     dir = lookPosition - headPoint;
