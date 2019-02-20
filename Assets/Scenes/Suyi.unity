@@ -5919,6 +5919,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_Future
       objectReference: {fileID: 0}
+    - target: {fileID: 8703566988972128761, guid: 82d6083f7b98f0241bef0b3a2f541e2a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8703566988972128765, guid: 82d6083f7b98f0241bef0b3a2f541e2a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12335,7 +12340,7 @@ GameObject:
   - component: {fileID: 395957599}
   - component: {fileID: 395957602}
   - component: {fileID: 395957603}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -12350,7 +12355,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 395957597}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.38, y: 1, z: -23.51}
+  m_LocalPosition: {x: -11.95, y: 1, z: -23.51}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1750778518}
@@ -12428,7 +12433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerID: 0
-  MoveSpeed: 10
+  MoveSpeed: 20
   JumpForce: 10
 --- !u!54 &395957603
 Rigidbody:
@@ -63910,27 +63915,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8100611317119426619, guid: 2b026c8d4d665d14fac3e80a2afffb9a,
         type: 3}
-      propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.data[0]
-      value: 
-      objectReference: {fileID: 395957597}
-    - target: {fileID: 8100611317119426619, guid: 2b026c8d4d665d14fac3e80a2afffb9a,
-        type: 3}
-      propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.data[3]
-      value: 
-      objectReference: {fileID: 395957597}
-    - target: {fileID: 8100611317119426619, guid: 2b026c8d4d665d14fac3e80a2afffb9a,
-        type: 3}
-      propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.data[6]
+      propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.data[7]
       value: 
       objectReference: {fileID: 1235767828}
     - target: {fileID: 8100611317119426619, guid: 2b026c8d4d665d14fac3e80a2afffb9a,
         type: 3}
-      propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.data[7]
+      propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.data[8]
       value: 
       objectReference: {fileID: 1035171984}
     - target: {fileID: 8100611317119426619, guid: 2b026c8d4d665d14fac3e80a2afffb9a,
         type: 3}
-      propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.data[8]
+      propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.data[9]
       value: 
       objectReference: {fileID: 1719271902}
     m_RemovedComponents: []
@@ -63946,6 +63941,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player_Past
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703566988972128761, guid: 82d6083f7b98f0241bef0b3a2f541e2a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8703566988972128765, guid: 82d6083f7b98f0241bef0b3a2f541e2a,
         type: 3}

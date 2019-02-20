@@ -7,14 +7,16 @@ using BehaviorDesigner.Runtime.Tasks;
 public class KillTarget : Action
 {
 	public SharedGameObject Target;
+	public SharedGameObject LockedTarget;
 
 	public override TaskStatus OnUpdate()
 	{
-		if (Target.Value.activeSelf)
+		if (LockedTarget.Value.activeSelf)
 		{
-			Target.Value.SetActive(false);
+			LockedTarget.Value.SetActive(false);
+			LockedTarget.Value = null;
 			return TaskStatus.Success;
 		}
-		return TaskStatus.Running;
+		else return TaskStatus.Failure;
 	}
 }
