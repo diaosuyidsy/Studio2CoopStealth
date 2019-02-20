@@ -11,8 +11,9 @@ public class RaiseAwarenessLevel : Action
 	public Image DiscoverBar;
 	public SharedGameObject EnemyTarget;
 	public SharedGameObject LockedTarget;
-
 	public SharedFloat BarAmount;
+
+
 
 	public override void OnStart()
 	{
