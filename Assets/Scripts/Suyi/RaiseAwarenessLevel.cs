@@ -10,9 +10,8 @@ public class RaiseAwarenessLevel : Action
 	public float MaxFillSpeed = 10f;
 	public SharedGameObject DiscoverBar;
 	public SharedGameObject EnemyTarget;
-	public SharedGameObject LockedTarget;
 	public SharedFloat BarAmount;
-
+	public float BarSuccessAmount = 100f;
 
 
 	public override void OnStart()
@@ -22,7 +21,7 @@ public class RaiseAwarenessLevel : Action
 
 	public override TaskStatus OnUpdate()
 	{
-		if (BarAmount.Value > 0f)
+		if (BarAmount.Value > (100f - BarSuccessAmount))
 		{
 			BarAmount.Value -= Time.deltaTime * MaxFillSpeed;
 			DiscoverBar.Value.GetComponent<Image>().fillAmount = (100f - BarAmount.Value) / 100f;
@@ -30,7 +29,6 @@ public class RaiseAwarenessLevel : Action
 		else
 		{
 			BarAmount.Value = 0f;
-			if (EnemyTarget.Value != null) LockedTarget.Value = EnemyTarget.Value;
 			return TaskStatus.Success;
 		}
 		return TaskStatus.Running;
