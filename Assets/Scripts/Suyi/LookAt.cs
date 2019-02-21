@@ -1,22 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
+using BehaviorDesigner.Runtime;
 
-public class KillTarget : Action
+public class LookAt : Action
 {
 	public SharedGameObject Target;
-	public SharedGameObject LockedTarget;
 
 	public override TaskStatus OnUpdate()
 	{
-		if (LockedTarget.Value.activeSelf)
+		if (Target.Value != null)
 		{
-			LockedTarget.Value.SetActive(false);
-			LockedTarget.Value = null;
+			transform.LookAt(Target.Value.transform);
 			return TaskStatus.Success;
 		}
-		else return TaskStatus.Failure;
+		return TaskStatus.Failure;
 	}
 }

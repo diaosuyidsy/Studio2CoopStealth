@@ -24,16 +24,16 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
 			base.OnStart();
 
 			// initially move towards the closest waypoint
-			float distance = Mathf.Infinity;
-			float localDistance;
-			for (int i = 0; i < waypoints.Value.Count; ++i)
-			{
-				if ((localDistance = Vector3.Magnitude(transform.position - waypoints.Value[i].transform.position)) < distance)
-				{
-					distance = localDistance;
-					waypointIndex = i;
-				}
-			}
+			//float distance = Mathf.Infinity;
+			//float localDistance;
+			//for (int i = 0; i < waypoints.Value.Count; ++i)
+			//{
+			//	if ((localDistance = Vector3.Magnitude(transform.position - waypoints.Value[i].transform.position)) < distance)
+			//	{
+			//		distance = localDistance;
+			//		waypointIndex = i;
+			//	}
+			//}
 			waypointReachedTime = -1;
 			SetDestination(Target());
 		}
