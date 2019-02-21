@@ -8,7 +8,7 @@ using BehaviorDesigner.Runtime;
 public class RaiseAwarenessLevel : Action
 {
 	public float MaxFillSpeed = 10f;
-	public Image DiscoverBar;
+	public SharedGameObject DiscoverBar;
 	public SharedGameObject EnemyTarget;
 	public SharedGameObject LockedTarget;
 	public SharedFloat BarAmount;
@@ -25,13 +25,13 @@ public class RaiseAwarenessLevel : Action
 		if (BarAmount.Value > 0f)
 		{
 			BarAmount.Value -= Time.deltaTime * MaxFillSpeed;
-			DiscoverBar.fillAmount = (100f - BarAmount.Value) / 100f;
+			DiscoverBar.Value.GetComponent<Image>().fillAmount = (100f - BarAmount.Value) / 100f;
 		}
 		else
 		{
 			BarAmount.Value = 0f;
 			if (EnemyTarget.Value != null) LockedTarget.Value = EnemyTarget.Value;
-			return TaskStatus.Failure;
+			return TaskStatus.Success;
 		}
 		return TaskStatus.Running;
 	}

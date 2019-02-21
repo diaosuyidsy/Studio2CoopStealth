@@ -8,7 +8,7 @@ using BehaviorDesigner.Runtime;
 public class DropAwarenessLevel : Action
 {
 	public float DropSpeed = 10f;
-	public Image DiscoverBar;
+	public SharedGameObject DiscoverBar;
 
 	public SharedFloat BarAmount;
 
@@ -17,7 +17,7 @@ public class DropAwarenessLevel : Action
 		if (BarAmount.Value < 100f)
 		{
 			BarAmount.Value += Time.deltaTime * DropSpeed;
-			DiscoverBar.fillAmount = (100f - BarAmount.Value) / 100f;
+			DiscoverBar.Value.GetComponent<Image>().fillAmount = (100f - BarAmount.Value) / 100f;
 		}
 		else return TaskStatus.Success;
 
