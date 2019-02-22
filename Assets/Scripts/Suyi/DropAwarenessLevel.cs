@@ -19,7 +19,6 @@ public class DropAwarenessLevel : Action
 			BarAmount.Value += Time.deltaTime * DropSpeed;
 			DiscoverBar.Value.GetComponent<Image>().fillAmount = (100f - BarAmount.Value) / 100f;
 		}
-		else return TaskStatus.Success;
 
 		return TaskStatus.Running;
 	}

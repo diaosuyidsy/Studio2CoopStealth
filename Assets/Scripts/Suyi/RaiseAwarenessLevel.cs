@@ -28,7 +28,7 @@ public class RaiseAwarenessLevel : Action
 		}
 		else
 		{
-			BarAmount.Value = 0f;
+			BarAmount.Value = 100f - BarSuccessAmount;
 			return TaskStatus.Success;
 		}
 		return TaskStatus.Running;
