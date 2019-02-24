@@ -11,16 +11,19 @@ public class EnemyInitializer : MonoBehaviour
 	public GameObject AwarenessBar;
 	public Transform PatrolPointsHolder;
 	public GameObject ExclamationMark;
+	public string PlayerTag = "Player";
 	#endregion
 
 	private List<GameObject> _pps;
-
+	private GameObject _player;
 	private BehaviorTree _bt;
 
 	private void Awake()
 	{
 		_bt = GetComponent<BehaviorTree>();
 		_pps = new List<GameObject>();
+		_player = GameObject.FindGameObjectWithTag(PlayerTag);
+		_bt.SetVariableValue("Player", _player);
 		_bt.SetVariableValue("DiscoverBar", DiscoverBar);
 		for (int i = 0; i < PatrolPointsHolder.childCount; i++)
 		{
