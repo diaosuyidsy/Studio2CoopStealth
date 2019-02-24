@@ -30,6 +30,7 @@ TagManager:
   - FreeClimb
   - ClimbDirection
   - Zipline
+  - Corpse
   layers:
   - Default
   - TransparentFX

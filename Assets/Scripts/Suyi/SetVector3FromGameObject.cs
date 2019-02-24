@@ -11,7 +11,7 @@ public class SetVector3FromGameObject : Action
 
 	public override TaskStatus OnUpdate()
 	{
-		if (gameobject != null)
+		if (gameobject != null && gameobject.Value != null)
 		{
 			Vector3 temp = gameobject.Value.transform.position;
 			vector3.Value = new Vector3(temp.x, temp.y, temp.z);
