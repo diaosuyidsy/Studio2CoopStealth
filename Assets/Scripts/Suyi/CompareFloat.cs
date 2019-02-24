@@ -14,11 +14,11 @@ public class CompareFloat : Conditional
 	{
 		if (biggerThan)
 		{
-			return variable.Value > compareTo.Value ? TaskStatus.Success : TaskStatus.Failure;
+			return variable.Value >= compareTo.Value ? TaskStatus.Success : TaskStatus.Failure;
 		}
 		else
 		{
-			return variable.Value < compareTo.Value ? TaskStatus.Success : TaskStatus.Failure;
+			return variable.Value <= compareTo.Value ? TaskStatus.Success : TaskStatus.Failure;
 		}
 	}
 
