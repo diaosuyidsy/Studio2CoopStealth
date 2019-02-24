@@ -10,6 +10,8 @@ public class EnemyInitializer : MonoBehaviour
 	public GameObject DiscoverBar;
 	public GameObject AwarenessBar;
 	public Transform PatrolPointsHolder;
+	public Transform StandStillPoint;
+	public Vector3 StandStillRotation;
 	public GameObject ExclamationMark;
 	public string PlayerTag = "Player";
 	#endregion
@@ -25,6 +27,8 @@ public class EnemyInitializer : MonoBehaviour
 		_player = GameObject.FindGameObjectWithTag(PlayerTag);
 		_bt.SetVariableValue("Player", _player);
 		_bt.SetVariableValue("DiscoverBar", DiscoverBar);
+		_bt.SetVariableValue("StandStillPosition", new Vector3(StandStillPoint.position.x, StandStillPoint.position.y, StandStillPoint.position.z));
+		_bt.SetVariableValue("StandStillRotation", StandStillRotation);
 		for (int i = 0; i < PatrolPointsHolder.childCount; i++)
 		{
 			GameObject go = new GameObject();
