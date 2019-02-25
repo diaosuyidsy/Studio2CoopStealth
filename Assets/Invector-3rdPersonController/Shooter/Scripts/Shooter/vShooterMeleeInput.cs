@@ -48,7 +48,7 @@ namespace Invector.vShooter
         protected Quaternion handRotation, upperArmRotation;
         protected vIKSolver leftIK, rightIK;
         protected vHeadTrack headTrack;
-        private vControlAimCanvas _controlAimCanvas;
+        public vControlAimCanvas _controlAimCanvas;
         private GameObject aimAngleReference;
         private Vector3 ikRotationOffset;
         private Vector3 ikPositionOffset;
@@ -58,8 +58,8 @@ namespace Invector.vShooter
         {
             get
             {
-                if (!_controlAimCanvas)
-                    _controlAimCanvas = FindObjectOfType<vControlAimCanvas>();
+                /*if (!_controlAimCanvas)
+                    _controlAimCanvas = FindObjectOfType<vControlAimCanvas>();*/
                 return _controlAimCanvas;
             }
         }
@@ -274,9 +274,16 @@ namespace Invector.vShooter
             if (controlAimCanvas)
             {
                 if ((isAiming || aimTimming > 0) && !controlAimCanvas.isAimActive)
+                {
                     controlAimCanvas.SetActiveAim(true);
+                }
+
                 if ((!isAiming && aimTimming <= 0) && controlAimCanvas.isAimActive)
+                {
                     controlAimCanvas.SetActiveAim(false);
+                }
+                
+                
             }
             if (shooterManager.rWeapon)
             {
@@ -581,6 +588,8 @@ namespace Invector.vShooter
             var vOrigin = origin1;
             vOrigin += controlAimCanvas && controlAimCanvas.isScopeCameraActive && controlAimCanvas.scopeCamera ? camT.forward : Vector3.zero;
             aimPosition = camT.position + camT.forward * 100f;
+
+            
             //aimAngleReference.transform.eulerAngles = new Vector3(aimAngleReference.transform.eulerAngles.x, transform.eulerAngles.y, aimAngleReference.transform.eulerAngles.z);
             if (!isUsingScopeView) lastAimDistance = 100f;
 
