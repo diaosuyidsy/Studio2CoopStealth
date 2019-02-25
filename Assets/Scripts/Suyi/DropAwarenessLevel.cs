@@ -7,20 +7,24 @@ using BehaviorDesigner.Runtime;
 
 public class DropAwarenessLevel : Action
 {
-	public float DropSpeed = 10f;
+	public SharedFloat DropSpeed = 10f;
 	public SharedGameObject DiscoverBar;
+	public float BarSuccessAmount = 0f;
 
 	public SharedFloat BarAmount;
 
 	public override TaskStatus OnUpdate()
 	{
-		if (BarAmount.Value < 100f)
+		if (BarAmount.Value < (100f - BarSuccessAmount))
 		{
-			BarAmount.Value += Time.deltaTime * DropSpeed;
+			BarAmount.Value += Time.deltaTime * DropSpeed.Value;
 			DiscoverBar.Value.GetComponent<Image>().fillAmount = (100f - BarAmount.Value) / 100f;
 		}
-		else return TaskStatus.Success;
-
+		else
+		{
+			BarAmount.Value = 100f - BarSuccessAmount;
+			return TaskStatus.Success;
+		}
 		return TaskStatus.Running;
 	}
 }

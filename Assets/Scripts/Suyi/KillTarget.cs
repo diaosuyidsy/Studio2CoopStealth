@@ -6,7 +6,6 @@ using BehaviorDesigner.Runtime.Tasks;
 
 public class KillTarget : Action
 {
-	public SharedGameObject Target;
 	public SharedGameObject LockedTarget;
 
 	public override TaskStatus OnUpdate()
