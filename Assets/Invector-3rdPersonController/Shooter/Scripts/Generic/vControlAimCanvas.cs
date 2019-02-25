@@ -28,8 +28,8 @@ namespace Invector.vShooter
         protected Vector2 sizeDeltaTarget { get { return currentAimCanvas.sizeDeltaTarget; } }
         protected Vector2 sizeDeltaCenter { get { return currentAimCanvas.sizeDeltaCenter; } }
 
-        protected vCamera.vThirdPersonCamera tpCamera;
-        protected vThirdPersonController cc;
+        public vCamera.vThirdPersonCamera tpCamera;
+        public vThirdPersonController cc;
 
         protected UnityEvent onEnableAim { get { return currentAimCanvas.onEnableAim; } }
         protected UnityEvent onDisableAim { get { return currentAimCanvas.onDisableAim; } }
@@ -53,8 +53,8 @@ namespace Invector.vShooter
         void Start()
         {
             instance = this;
-            cc = FindObjectOfType<vThirdPersonController>();
-            tpCamera = FindObjectOfType<vCamera.vThirdPersonCamera>();
+            //cc = FindObjectOfType<vThirdPersonController>();            //改为public直接拖入
+            //tpCamera = FindObjectOfType<vCamera.vThirdPersonCamera>();  //改为public直接拖入
             currentAimCanvas = aimCanvasCollection[0];
             isValid = true;
         }
@@ -121,9 +121,9 @@ namespace Invector.vShooter
             if (validPoint == false) return;
             if (!aimTarget || !aimCenter) return;
 
-            Vector2 ViewportPosition = Camera.main.WorldToViewportPoint(wordPosition);
+            Vector2 ViewportPosition = tpCamera.GetComponent<Camera>().WorldToViewportPoint(wordPosition);
             Vector2 WorldObject_ScreenPosition = new Vector2(
-            ((ViewportPosition.x * canvas.sizeDelta.x) - (canvas.sizeDelta.x * 0.5f)),
+            ((ViewportPosition.x * canvas.sizeDelta.x) - (canvas.sizeDelta.x * 0.25f)),
             ((ViewportPosition.y * canvas.sizeDelta.y) - (canvas.sizeDelta.y * 0.5f)));
 
             aimTarget.anchoredPosition = WorldObject_ScreenPosition;
@@ -166,7 +166,7 @@ namespace Invector.vShooter
         /// <param name="useUI">set if scope camera use the Scope UI </param>
         public void SetActiveScopeCamera(bool value, bool useUI = false)
         {
-            if (currentAimCanvas == null) return;
+            if (currentAimCanvas == null) return;           
             if (isScopeCameraActive != value || isScopeUIActive != useUI)
             {
                 isScopeUIActive = useUI;
@@ -178,6 +178,7 @@ namespace Invector.vShooter
                     {
                         onEnableScopeUI.Invoke();
                         isScopeUIActive = true;
+                        
                     }
                     else
                     {
@@ -211,14 +212,14 @@ namespace Invector.vShooter
                 scopeCameraTargetPos = position;
                 scopeCameraTargetRot = Quaternion.LookRotation(lookPosition - scopeCamera.transform.position);
                 scopeCameraTargetZoom = _zoom;
-                scopeCameraOriginPos = Camera.main.transform.position;
-                scopeCameraOriginRot = Camera.main.transform.rotation;
-                scopeCameraOriginZoom = Camera.main.fieldOfView;
+                scopeCameraOriginPos = tpCamera.transform.position;
+                scopeCameraOriginRot = tpCamera.transform.rotation;
+                scopeCameraOriginZoom = tpCamera.GetComponent<Camera>().fieldOfView;
                 if (!scopeCamera.isActiveAndEnabled && useScopeTransition)
                 {
-                    scopeCamera.transform.position = Camera.main.transform.position;
-                    scopeCamera.transform.rotation = Camera.main.transform.rotation;
-                    scopeCamera.fieldOfView = Camera.main.fieldOfView;
+                    scopeCamera.transform.position = tpCamera.transform.position;
+                    scopeCamera.transform.rotation = tpCamera.transform.rotation;
+                    scopeCamera.fieldOfView = tpCamera.GetComponent<Camera>().fieldOfView;
                 }
             }
             else

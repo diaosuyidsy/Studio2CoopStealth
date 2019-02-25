@@ -16,23 +16,23 @@ MonoBehaviour:
   tpCameraStates:
   - Name: Default
     forward: -1
-    right: -0.36
-    defaultDistance: 2.53
+    right: -0.18
+    defaultDistance: 2.48
     maxDistance: 12
     minDistance: 0.6
-    height: 1.9
+    height: 1.2
     smooth: 10
     smoothDamp: 4
-    xMouseSensitivity: 2
+    xMouseSensitivity: 3
     yMouseSensitivity: 3
     yMinLimit: -60
-    yMaxLimit: 45
+    yMaxLimit: 75
     xMinLimit: -360
     xMaxLimit: 360
-    rotationOffSet: {x: -2, y: 0, z: 0}
-    cullingHeight: 1.8
+    rotationOffSet: {x: 9, y: 0, z: 0}
+    cullingHeight: 1.5
     cullingMinDist: 0.01
-    fov: 69
+    fov: 60
     useZoom: 0
     fixedAngle: {x: 360, y: 78}
     lookPoints:
@@ -66,23 +66,23 @@ MonoBehaviour:
     cameraMode: 0
   - Name: Aiming
     forward: -1
-    right: -0.3
-    defaultDistance: 1.8
+    right: -0.2
+    defaultDistance: 2.48
     maxDistance: 1.5
     minDistance: 0.25
-    height: 2
-    smooth: 10
+    height: 1.55
+    smooth: 12
     smoothDamp: 2
     xMouseSensitivity: 1
     yMouseSensitivity: 1
-    yMinLimit: -50
-    yMaxLimit: 45
+    yMinLimit: -40
+    yMaxLimit: 54.72973
     xMinLimit: -360
     xMaxLimit: 360
     rotationOffSet: {x: -1, y: 0, z: 0}
-    cullingHeight: 1.5
+    cullingHeight: 1
     cullingMinDist: 0.1
-    fov: 60
+    fov: 45
     useZoom: 0
     fixedAngle: {x: 0, y: 0}
     lookPoints: []

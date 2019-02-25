@@ -30,6 +30,7 @@ namespace Invector.vShooter
         public bool automaticWeapon;
         [Tooltip("Frequency of shots")]
         public float shootFrequency;
+        
 
         [vEditorToolbar("Ammo")]
 
@@ -81,7 +82,8 @@ namespace Invector.vShooter
         [Tooltip("Left IK of the weapon")]
         public Transform handIKTarget;
 
-        [vEditorToolbar("Projectile")]
+        [vEditorToolbar("Projectile")] 
+        public Vector3 offsetPast;
         public vShooterWeapon secundaryWeapon;
         [Tooltip("Prefab of the projectile")]
         public GameObject projectile;
@@ -147,7 +149,7 @@ namespace Invector.vShooter
         [Tooltip("assign an empty transform with the pos/rot of your scope view")]
         public Transform scopeTarget;
 
-        public Camera zoomScopeCamera;
+        public Transform zoomScopeCamera;
         [vHelpBox("Keep Scope Camera Z is used to align z rotation of the zoomScopeCamera to z rotation of the weapon muzzle<color=red> (Projectile toolbar)</color>. if you want to align camera with Vector3.up in z rotation enable this.")]
         public bool keepScopeCameraRotationZ = true;
         protected Transform sender;
@@ -427,7 +429,7 @@ namespace Invector.vShooter
                 for (int i = 0; i < projectilesPerShot; i++)
                 {
                     var spreadRotation = Quaternion.LookRotation(Dispersion(dir.normalized, DropOffEnd, dispersion));
-                    var obj = Instantiate(projectile, muzzle.transform.position, spreadRotation) as GameObject;
+                    var obj = Instantiate(projectile, muzzle.transform.position + offsetPast, spreadRotation) as GameObject;
 
                     var pCtrl = obj.GetComponent<vProjectileControl>();
 
@@ -446,7 +448,7 @@ namespace Invector.vShooter
             }
             else if (projectilesPerShot > 0 && projectile)
             {
-                var obj = Instantiate(projectile, muzzle.transform.position, rotation) as GameObject;
+                var obj = Instantiate(projectile, muzzle.transform.position + offsetPast, rotation) as GameObject;
                 var pCtrl = obj.GetComponent<vProjectileControl>();
                 pCtrl.shooterTransform = root;
                 pCtrl.ignoreTags = ignoreTags;
@@ -502,7 +504,7 @@ namespace Invector.vShooter
             if (zoomScopeCamera)
             {
                 var zoom = Mathf.Clamp(61 - value, 1, 179);
-                zoomScopeCamera.fieldOfView = zoom;
+                //zoomScopeCamera.fieldOfView = zoom;
             }
         }
 
