@@ -79,7 +79,6 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
 					waypointReachedTime = -1;
 				}
 			}
-
 			return TaskStatus.Running;
 		}
 

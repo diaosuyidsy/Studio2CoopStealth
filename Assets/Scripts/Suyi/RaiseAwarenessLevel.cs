@@ -7,12 +7,11 @@ using BehaviorDesigner.Runtime;
 
 public class RaiseAwarenessLevel : Action
 {
-	public float MaxFillSpeed = 10f;
+	public SharedFloat MaxFillSpeed = 10f;
 	public SharedGameObject DiscoverBar;
 	public SharedGameObject EnemyTarget;
-	public SharedGameObject LockedTarget;
 	public SharedFloat BarAmount;
-
+	public float BarSuccessAmount = 100f;
 
 
 	public override void OnStart()
@@ -22,15 +21,14 @@ public class RaiseAwarenessLevel : Action
 
 	public override TaskStatus OnUpdate()
 	{
-		if (BarAmount.Value > 0f)
+		if (BarAmount.Value > (100f - BarSuccessAmount))
 		{
-			BarAmount.Value -= Time.deltaTime * MaxFillSpeed;
+			BarAmount.Value -= Time.deltaTime * MaxFillSpeed.Value;
 			DiscoverBar.Value.GetComponent<Image>().fillAmount = (100f - BarAmount.Value) / 100f;
 		}
 		else
 		{
-			BarAmount.Value = 0f;
-			if (EnemyTarget.Value != null) LockedTarget.Value = EnemyTarget.Value;
+			//BarAmount.Value = 100f - BarSuccessAmount;
 			return TaskStatus.Success;
 		}
 		return TaskStatus.Running;

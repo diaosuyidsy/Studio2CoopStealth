@@ -30,6 +30,9 @@ TagManager:
   - FreeClimb
   - ClimbDirection
   - Zipline
+  - Corpse
+  - SeenCorpse
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -47,7 +50,7 @@ TagManager:
   - Action
   - HeadTrack
   - BodyPart
-  - 
+  - Ground
   - 
   - 
   - 
