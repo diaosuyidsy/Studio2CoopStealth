@@ -40,4 +40,12 @@ public class EnemyInitializer : MonoBehaviour
 		_bt.SetVariableValue("Awareness Bar", AwarenessBar);
 	}
 
+	public void SetSuspiciousObject(GameObject go)
+	{
+		print(go.name);
+		var myGameObjectVariable = (SharedGameObject)_bt.GetVariable("SuspicionObject");
+		myGameObjectVariable.Value = go;
+		print("Set");
+	}
+
 }

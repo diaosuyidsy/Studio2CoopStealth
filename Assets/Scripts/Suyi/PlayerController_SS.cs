@@ -16,6 +16,8 @@ public class PlayerController_SS : MonoBehaviour
 	private Player _player;
 	private Rigidbody _rb;
 	private Vector3 _moveVector;
+	private float _horizontal;
+	private float _vertical;
 	private bool _jump;
 	private bool _specialAction;
 	private bool _stealthKill;
@@ -39,10 +41,8 @@ public class PlayerController_SS : MonoBehaviour
 
 	private void _getInput()
 	{
-		Vector3 v = transform.forward * Mathf.Abs(_player.GetAxis("Move Vertical")) * MaxMoveSpeed;
-		Vector3 u = transform.right * _player.GetAxis("Move Horizontal") * MaxMoveSpeed;
-		_moveVector = v + u;
-		_moveVector.y = _rb.velocity.y;
+		_horizontal = _player.GetAxis("Move Horizontal");
+		_vertical = _player.GetAxis("Move Vertical");
 		_jump = _player.GetButtonDown("Jump");
 		_specialAction = _player.GetButtonDown("Special Usage");
 		_stealthKill = _player.GetButtonDoublePressDown("Stealth Kill");
@@ -50,6 +50,10 @@ public class PlayerController_SS : MonoBehaviour
 
 	private void _processMovement()
 	{
+		Vector3 v = transform.forward * (_vertical > 0f ? _vertical : 0f) * MaxMoveSpeed;
+		Vector3 u = transform.right * _horizontal * MaxMoveSpeed;
+		_moveVector = v + u;
+		_moveVector.y = _rb.velocity.y;
 		_rb.velocity = _moveVector;
 		float rotationAngle = Mathf.Atan2(_rb.velocity.x, _rb.velocity.z) * Mathf.Rad2Deg;
 		if (!Mathf.Approximately(rotationAngle, 0f))
