@@ -14,6 +14,7 @@ public class EnemyInitializer : MonoBehaviour
 	public Vector3 StandStillRotation;
 	public GameObject ExclamationMark;
 	public string PlayerTag = "Player";
+	public GameObject KillableImage;
 	#endregion
 
 	private List<GameObject> _pps;
@@ -40,12 +41,9 @@ public class EnemyInitializer : MonoBehaviour
 		_bt.SetVariableValue("Awareness Bar", AwarenessBar);
 	}
 
-	public void SetSuspiciousObject(GameObject go)
+	public void SetKillable(bool t)
 	{
-		print(go.name);
-		var myGameObjectVariable = (SharedGameObject)_bt.GetVariable("SuspicionObject");
-		myGameObjectVariable.Value = go;
-		print("Set");
+		KillableImage.SetActive(t);
 	}
 
 }
