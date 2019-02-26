@@ -38,7 +38,7 @@ public class EnemyInitializer : MonoBehaviour
 		}
 		_bt.SetVariableValue("Patrol Points", _pps);
 		_bt.SetVariableValue("Excalmation Mark", ExclamationMark);
-		_bt.SetVariableValue("Awareness Bar", AwarenessBar);
+		//_bt.SetVariableValue("Awareness Bar", AwarenessBar);
 	}
 
 	public void SetKillable(bool t)
