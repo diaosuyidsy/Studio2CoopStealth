@@ -11,7 +11,6 @@ public class PlayerController_SS : MonoBehaviour
 	public float MaxLookAtRotationDelta = 4f;
 	public float JumpForce = 10f;
 	public LayerMask JumpMask;
-	public LayerMask EnemyMask;
 	public Transform LookTarget;
 
 	#region Player Controller Section
@@ -21,10 +20,7 @@ public class PlayerController_SS : MonoBehaviour
 	private float _horizontal;
 	private float _vertical;
 	private bool _jump;
-	private bool _specialAction;
-	private bool _stealthKill;
 	private float _distToGround;
-	private GameObject _interactableObject;
 	#endregion
 
 	private void Awake()
@@ -39,7 +35,6 @@ public class PlayerController_SS : MonoBehaviour
 	{
 		_getInput();
 		_processMovement();
-		_checkInteraction();
 		_processAction();
 	}
 
@@ -48,8 +43,6 @@ public class PlayerController_SS : MonoBehaviour
 		_horizontal = _player.GetAxis("Move Horizontal");
 		_vertical = _player.GetAxis("Move Vertical");
 		_jump = _player.GetButtonDown("Jump");
-		_specialAction = _player.GetButtonDown("Special Usage");
-		_stealthKill = _player.GetButtonDown("Stealth Kill");
 	}
 
 	private void _processMovement()
@@ -74,45 +67,7 @@ public class PlayerController_SS : MonoBehaviour
 	private void _processAction()
 	{
 		if (_jump && IsGrounded()) _rb.AddForce(new Vector3(0f, JumpForce, 0f), ForceMode.Impulse);
-		if (_specialAction) EventManager.TriggerEvent("TimeSwitch");
-		if (_stealthKill)
-		{
-			if (_interactableObject != null) _interactableObject.SetActive(false);
-		}
-	}
 
-	private void _checkInteraction()
-	{
-		// First check if there is a enemy to kill
-		Collider[] hitcolliders = Physics.OverlapSphere(transform.position, 1.5f, EnemyMask);
-		if (hitcolliders.Length == 0) return;
-		float smallestAngle = Mathf.Infinity;
-		GameObject smallestGO = null;
-		for (int i = 0; i < hitcolliders.Length; i++)
-		{
-			var hit = hitcolliders[i].gameObject;
-			float angle = _angleBetween(hit);
-			if (angle < 60f && angle < smallestAngle)
-			{
-				smallestGO = hit;
-			}
-		}
-		if (smallestGO == null && _interactableObject != null)
-		{
-			_interactableObject.GetComponent<EnemyInitializer>().SetKillable(false);
-			_interactableObject = null;
-		}
-		if (smallestGO != null)
-		{
-			_interactableObject = smallestGO;
-			_interactableObject.GetComponent<EnemyInitializer>().SetKillable(true);
-		}
-
-	}
-
-	public void SetInteractableObject(GameObject go)
-	{
-		_interactableObject = go;
 	}
 
 	public bool IsGrounded()
@@ -123,10 +78,5 @@ public class PlayerController_SS : MonoBehaviour
 		return result;
 	}
 
-	private float _angleBetween(GameObject go)
-	{
-		Vector3 targetDir = go.transform.position - transform.position;
-		float angle = Vector3.Angle(targetDir, transform.forward);
-		return angle;
-	}
+
 }
