@@ -36,6 +36,7 @@ TagManager:
   - Player1
   - Player2
   - TeleportTransmitter
+  - Mech
   layers:
   - Default
   - TransparentFX

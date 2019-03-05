@@ -3,19 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using Rewired;
 
+[RequireComponent(typeof(PlayerController_SS))]
 public abstract class Ability : MonoBehaviour
 {
 	public string ButtonName;
 	public float BaseCoolDown = 1f;
-	public int PlayerID;
 
 	protected float coolDownTimeLeft = 0f;
 	protected float nextReadyTime;
 	protected Player _player;
 	protected bool _isUsingOtherAbility;
+	protected int PlayerID;
 
 	public virtual void Awake()
 	{
+		PlayerID = GetComponent<PlayerController_SS>().PlayerID;
 		_player = ReInput.players.GetPlayer(PlayerID);
 	}
 	/// <summary>
