@@ -35,6 +35,7 @@ TagManager:
   - Ground
   - Player1
   - Player2
+  - TeleportTransmitter
   layers:
   - Default
   - TransparentFX

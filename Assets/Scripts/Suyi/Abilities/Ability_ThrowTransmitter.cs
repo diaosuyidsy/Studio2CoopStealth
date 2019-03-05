@@ -9,21 +9,29 @@ public class Ability_ThrowTransmitter : Ability
 	public float Range = 10f;
 	public float ThrowMarkMoveSpeed = 5f;
 	public Transform ThrowMark;
+	public Transform TeleportTransmitter;
+
+	private float firingAngle = 45f;
+	private float gravity = 25f;
 
 	private void Update()
 	{
-		if (_player.GetButtonDown(ButtonName))
+		bool coolDownComplete = Time.time > nextReadyTime;
+		if (coolDownComplete)
 		{
-			OnPressedDownAbility();
+			if (_player.GetButtonDown(ButtonName))
+				OnPressedDownAbility();
+			if (_player.GetButton(ButtonName))
+			{
+				OnPressingAbility();
+				if (_player.GetButtonDown(SecondaryButtonName))
+					OnPressedDownSecondaryAbility();
+			}
+
+			if (_player.GetButtonUp(ButtonName))
+				OnLiftUpAbility();
 		}
-		if (_player.GetButton(ButtonName))
-		{
-			OnPressingAbility();
-		}
-		if (_player.GetButtonUp(ButtonName))
-		{
-			OnLiftUpAbility();
-		}
+		else CoolDown();
 	}
 
 	/// <summary>
@@ -59,6 +67,8 @@ public class Ability_ThrowTransmitter : Ability
 			ThrowMark.position = newPosition;
 		}
 		else ThrowMark.position = newPosition;
+
+		transform.LookAt(new Vector3(ThrowMark.position.x, transform.position.y, ThrowMark.position.z));
 	}
 
 	/// <summary>
@@ -77,7 +87,44 @@ public class Ability_ThrowTransmitter : Ability
 	/// </summary>
 	private void OnPressedDownSecondaryAbility()
 	{
+		nextReadyTime = Time.time + BaseCoolDown;
+		coolDownTimeLeft = BaseCoolDown;
+		StartCoroutine(SimulateProjectile());
+	}
 
+	IEnumerator SimulateProjectile()
+	{
+		TeleportTransmitter.gameObject.SetActive(true);
+		TeleportTransmitter.parent = null;
+		// Move projectile to the position of throwing object + add some offset if needed.
+		TeleportTransmitter.position = transform.position + new Vector3(0f, 0f, 0.5f);
+
+		// Calculate distance to target
+		float targetDistance = Vector3.Distance(TeleportTransmitter.position, ThrowMark.position);
+
+		// Calculate the velocity needed to throw the object to the target at specified angle.
+		float projectileVelocity = targetDistance / (Mathf.Sin(2 * firingAngle * Mathf.Deg2Rad) / gravity);
+
+		// Extract the X  Y componenent of the velocity
+		float Vx = Mathf.Sqrt(projectileVelocity) * Mathf.Cos(firingAngle * Mathf.Deg2Rad);
+		float Vy = Mathf.Sqrt(projectileVelocity) * Mathf.Sin(firingAngle * Mathf.Deg2Rad);
+
+		// Calculate flight time.
+		float flightDuration = targetDistance / Vx;
+
+		TeleportTransmitter.rotation = Quaternion.LookRotation(ThrowMark.position - TeleportTransmitter.position);
+
+		OnLiftUpAbility();
+
+		float elapsedTime = 0f;
+
+		while (elapsedTime < flightDuration)
+		{
+			TeleportTransmitter.Translate(0, (Vy - (gravity * elapsedTime)) * Time.deltaTime, Vx * Time.deltaTime);
+			elapsedTime += Time.deltaTime;
+			yield return null;
+		}
+		TeleportTransmitter.rotation = Quaternion.identity;
 	}
 }
 
