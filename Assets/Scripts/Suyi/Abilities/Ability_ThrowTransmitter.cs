@@ -10,6 +10,7 @@ public class Ability_ThrowTransmitter : Ability
 	public float ThrowMarkMoveSpeed = 5f;
 	public Transform ThrowMark;
 	public Transform TeleportTransmitter;
+	public LayerMask ThrowMarkLandMask;
 
 	private float firingAngle = 45f;
 	private float gravity = 25f;
@@ -56,6 +57,9 @@ public class Ability_ThrowTransmitter : Ability
 		float HAxis = _player.GetAxis("Move Horizontal");
 		float VAxis = _player.GetAxis("Move Vertical");
 		Vector3 newPosition = ThrowMark.position + new Vector3(HAxis, 0f, VAxis) * ThrowMarkMoveSpeed;
+		RaycastHit hit;
+		if (Physics.Raycast(newPosition + new Vector3(0, 20f), Vector3.down, out hit, 100f, ThrowMarkLandMask))
+			newPosition.y = hit.point.y;
 		Vector3 centerPosition = transform.position - new Vector3(0f, 1f);
 		float distance = Vector3.Distance(newPosition, centerPosition);
 

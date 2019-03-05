@@ -12823,9 +12823,12 @@ MonoBehaviour:
   BaseCoolDown: 5
   SecondaryButtonName: RT
   Range: 10
-  ThrowMarkMoveSpeed: 1
+  ThrowMarkMoveSpeed: 0.2
   ThrowMark: {fileID: 1134313010}
   TeleportTransmitter: {fileID: 590662261}
+  ThrowMarkLandMask:
+    serializedVersion: 2
+    m_Bits: 65537
 --- !u!120 &395957605
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -63143,7 +63146,7 @@ Transform:
   m_GameObject: {fileID: 2066662427}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 69.83939, y: 0.5, z: 238.74762}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 1, z: 5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 14
