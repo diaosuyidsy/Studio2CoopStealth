@@ -26,6 +26,7 @@ public class Ability_Transform : Ability
 	{
 		if (_isUsingOtherAbility) return;
 		EventManager.TriggerEvent($"Player{PlayerID}InAbility");
+		GetComponent<Rigidbody>().isKinematic = true;
 		StoneForm.SetActive(true);
 		PlayerModel.SetActive(false);
 	}
@@ -34,6 +35,7 @@ public class Ability_Transform : Ability
 	{
 		if (!StoneForm.activeSelf) return;
 		EventManager.TriggerEvent($"Player{PlayerID}Free");
+		GetComponent<Rigidbody>().isKinematic = false;
 		StoneForm.SetActive(false);
 		PlayerModel.SetActive(true);
 		nextReadyTime = Time.time + BaseCoolDown;
