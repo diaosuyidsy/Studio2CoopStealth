@@ -26,12 +26,11 @@ public class Ability_Assasination : Ability
 		_getNearbyEnemy();
 		// And then see if stealth kill cd is complete, if so then can kill
 		bool coolDownComplete = Time.time > nextReadyTime;
-		if (_player.GetButtonDown(ButtonName))
+		if (coolDownComplete)
 		{
-			if (coolDownComplete)
-				OnPressedDownAbility();
-			else CoolDown();
+			if (_player.GetButtonDown(ButtonName)) OnPressedDownAbility();
 		}
+		else CoolDown();
 	}
 
 	public override void OnPressedDownAbility()
