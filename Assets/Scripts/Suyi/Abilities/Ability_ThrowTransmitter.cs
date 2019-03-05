@@ -47,12 +47,18 @@ public class Ability_ThrowTransmitter : Ability
 		if (!ThrowMark.gameObject.activeSelf) return;
 		float HAxis = _player.GetAxis("Move Horizontal");
 		float VAxis = _player.GetAxis("Move Vertical");
-		Vector3 targetPosition = ThrowMark.position + new Vector3(HAxis, 0f, VAxis);
-		if (Vector3.Distance(targetPosition, transform.position - new Vector3(0f, 1f)) < Range)
+		Vector3 newPosition = ThrowMark.position + new Vector3(HAxis, 0f, VAxis) * ThrowMarkMoveSpeed;
+		Vector3 centerPosition = transform.position - new Vector3(0f, 1f);
+		float distance = Vector3.Distance(newPosition, centerPosition);
+
+		if (distance > Range)
 		{
-			ThrowMark.position = ThrowMark.position + new Vector3(HAxis, 0f, VAxis) * ThrowMarkMoveSpeed;
-			transform.LookAt(new Vector3(ThrowMark.position.x, transform.position.y, ThrowMark.position.z));
+			Vector3 fromOriginToObject = newPosition - centerPosition;
+			fromOriginToObject *= Range / distance;
+			newPosition = centerPosition + fromOriginToObject;
+			ThrowMark.position = newPosition;
 		}
+		else ThrowMark.position = newPosition;
 	}
 
 	/// <summary>
