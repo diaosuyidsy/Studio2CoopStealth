@@ -8,13 +8,8 @@ using Rewired;
 /// </summary>
 public class Ability_Transform : Ability
 {
-	private float _MaxEnergyAmount;
-
-	public override void Awake()
-	{
-		base.Awake();
-		_MaxEnergyAmount = BaseCoolDown;
-	}
+	public GameObject StoneForm;
+	public GameObject PlayerModel;
 
 	private void Update()
 	{
@@ -29,12 +24,17 @@ public class Ability_Transform : Ability
 
 	public override void OnPressedDownAbility()
 	{
-		EventManager.TriggerEvent($"Player{PlayerID}Stone");
+		if (_isUsingOtherAbility) return;
+		EventManager.TriggerEvent($"Player{PlayerID}InAbility");
+		StoneForm.SetActive(true);
+		PlayerModel.SetActive(false);
 	}
 
 	public override void OnLiftUpAbility()
 	{
-		EventManager.TriggerEvent($"Player{PlayerID}NotStone");
+		EventManager.TriggerEvent($"Player{PlayerID}Free");
+		StoneForm.SetActive(false);
+		PlayerModel.SetActive(true);
 		nextReadyTime = Time.time + BaseCoolDown;
 		coolDownTimeLeft = BaseCoolDown;
 	}

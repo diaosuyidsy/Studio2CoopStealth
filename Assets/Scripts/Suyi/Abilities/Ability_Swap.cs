@@ -17,6 +17,7 @@ public class Ability_Swap : Ability
 
 	public override void OnPressedDownAbility()
 	{
+		if (_isUsingOtherAbility) return;
 		nextReadyTime = BaseCoolDown + Time.time;
 		coolDownTimeLeft = BaseCoolDown;
 

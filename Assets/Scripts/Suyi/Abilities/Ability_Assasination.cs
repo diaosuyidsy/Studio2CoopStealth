@@ -27,7 +27,7 @@ public class Ability_Assasination : Ability
 
 	public override void OnPressedDownAbility()
 	{
-		if (_isStone) return;
+		if (_isUsingOtherAbility) return;
 		nextReadyTime = BaseCoolDown + Time.time;
 		coolDownTimeLeft = BaseCoolDown;
 		if (_interactableObject != null) _interactableObject.SetActive(false);
@@ -70,7 +70,7 @@ public class DrawSolidArc : Editor
 	{
 		Handles.color = Color.yellow;
 		Ability_Assasination AA = (Ability_Assasination)target;
-		Handles.DrawSolidArc(AA.transform.position, AA.transform.up, AA.transform.forward, AA.Angle, AA.Range);
-		Handles.DrawSolidArc(AA.transform.position, AA.transform.up, AA.transform.forward, -AA.Angle, AA.Range);
+		Handles.DrawSolidArc(AA.transform.position - new Vector3(0f, 0.5f, 0f), AA.transform.up, AA.transform.forward, AA.Angle, AA.Range);
+		Handles.DrawSolidArc(AA.transform.position - new Vector3(0f, 0.5f, 0f), AA.transform.up, AA.transform.forward, -AA.Angle, AA.Range);
 	}
 }

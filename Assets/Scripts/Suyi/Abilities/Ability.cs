@@ -12,7 +12,7 @@ public abstract class Ability : MonoBehaviour
 	protected float coolDownTimeLeft = 0f;
 	protected float nextReadyTime;
 	protected Player _player;
-	protected bool _isStone;
+	protected bool _isUsingOtherAbility;
 
 	public virtual void Awake()
 	{
@@ -43,14 +43,14 @@ public abstract class Ability : MonoBehaviour
 
 	public virtual void OnEnable()
 	{
-		EventManager.StartListening($"Player{PlayerID}Stone", () => _isStone = true);
-		EventManager.StartListening($"Player{PlayerID}NotStone", () => _isStone = false);
+		EventManager.StartListening($"Player{PlayerID}InAbility", () => _isUsingOtherAbility = true);
+		EventManager.StartListening($"Player{PlayerID}Free", () => _isUsingOtherAbility = false);
 	}
 
 	public virtual void OnDisable()
 	{
-		EventManager.StopListening($"Player{PlayerID}Stone", () => _isStone = true);
-		EventManager.StopListening($"Player{PlayerID}NotStone", () => _isStone = false);
+		EventManager.StopListening($"Player{PlayerID}InAbility", () => _isUsingOtherAbility = true);
+		EventManager.StopListening($"Player{PlayerID}Free", () => _isUsingOtherAbility = false);
 	}
 
 
