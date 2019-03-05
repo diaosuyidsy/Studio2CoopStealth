@@ -32,6 +32,7 @@ public class Ability_Transform : Ability
 
 	public override void OnLiftUpAbility()
 	{
+		if (!StoneForm.activeSelf) return;
 		EventManager.TriggerEvent($"Player{PlayerID}Free");
 		StoneForm.SetActive(false);
 		PlayerModel.SetActive(true);

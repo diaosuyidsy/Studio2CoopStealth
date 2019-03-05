@@ -76,6 +76,7 @@ public class Ability_ThrowTransmitter : Ability
 	/// </summary>
 	public override void OnLiftUpAbility()
 	{
+		if (!ThrowMark.gameObject.activeSelf) return;
 		EventManager.TriggerEvent($"Player{PlayerID}Free");
 		ThrowMark.parent = transform;
 		ThrowMark.localPosition = new Vector3(0, -1f, 0f);
@@ -87,6 +88,7 @@ public class Ability_ThrowTransmitter : Ability
 	/// </summary>
 	private void OnPressedDownSecondaryAbility()
 	{
+		if (!ThrowMark.gameObject.activeSelf) return;
 		nextReadyTime = Time.time + BaseCoolDown;
 		coolDownTimeLeft = BaseCoolDown;
 		StartCoroutine(SimulateProjectile());
