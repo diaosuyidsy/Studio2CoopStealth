@@ -12,11 +12,11 @@ namespace Invector.vCharacterController.vActions
         public string actionTag = "LadderTrigger";
         
         [Tooltip("Input to up/down the ladder")]
-        public GenericInput verticallInput = new GenericInput("Vertical", "LeftAnalogVertical", "Vertical");
+        public RewiredInputWrapper verticallInput = new RewiredInputWrapper("Move Vertical");
         [Tooltip("Input to enter the ladder")]
-        public GenericInput enterInput = new GenericInput("E", "A", "A");
+        public RewiredInputWrapper enterInput = new RewiredInputWrapper("Jump");
         [Tooltip("Input to exit the ladder")]
-        public GenericInput exitInput = new GenericInput("Space", "B", "B");     
+        public RewiredInputWrapper exitInput = new RewiredInputWrapper("B");     
         public bool debugMode;
 
         public UnityEvent OnEnterLadder;
@@ -45,7 +45,10 @@ namespace Invector.vCharacterController.vActions
 
         void Start()
         {
-            tpInput = GetComponent<vThirdPersonInput>();           
+            tpInput = GetComponent<vThirdPersonInput>(); 
+            verticallInput.playerID = tpInput.playerId;
+            enterInput.playerID = tpInput.playerId;
+            exitInput.playerID = tpInput.playerId;
         }
 
         void Update()

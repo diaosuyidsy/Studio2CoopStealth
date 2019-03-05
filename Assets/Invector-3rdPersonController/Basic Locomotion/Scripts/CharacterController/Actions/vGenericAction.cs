@@ -204,7 +204,7 @@ namespace Invector.vCharacterController.vActions
             
             var dist = Vector3.Distance(transform.forward, _triggerAction.transform.forward);
 
-            if (!_triggerAction.activeFromForward || dist <= 0.8f)
+            if (_triggerAction.PlayerId == tpInput.playerId && (!_triggerAction.activeFromForward || dist <= 0.8f))
             {
                 triggerAction = _triggerAction;
                 canTriggerAction = true;

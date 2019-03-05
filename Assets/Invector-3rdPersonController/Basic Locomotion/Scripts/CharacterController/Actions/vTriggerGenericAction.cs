@@ -10,6 +10,8 @@ namespace Invector.vCharacterController.vActions
         [Header("Trigger Action Options")]
         [Tooltip("Automatically execute the action without the need to press a Button")]
         public bool autoAction;
+        [Tooltip("Which player can do this action")]
+        public int PlayerId;        
         [Tooltip("Disable the the Capsule Collider Collision of the Player")]
         public bool disableCollision = true;
         [Tooltip("Disable the Rigibody Gravity of the Player")]
