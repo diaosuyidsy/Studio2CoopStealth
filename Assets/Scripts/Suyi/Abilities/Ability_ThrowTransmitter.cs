@@ -58,7 +58,7 @@ public class Ability_ThrowTransmitter : Ability
 		float VAxis = _player.GetAxis("Move Vertical");
 		Vector3 newPosition = ThrowMark.position + new Vector3(HAxis, 0f, VAxis) * ThrowMarkMoveSpeed;
 		RaycastHit hit;
-		if (Physics.Raycast(newPosition + new Vector3(0, 20f), Vector3.down, out hit, 100f, ThrowMarkLandMask))
+		if (Physics.Raycast(newPosition + new Vector3(0, 20f), Vector3.down, out hit, Mathf.Infinity, ThrowMarkLandMask))
 			newPosition.y = hit.point.y;
 		Vector3 centerPosition = transform.position - new Vector3(0f, 1f);
 		float distance = Vector3.Distance(newPosition, centerPosition);
