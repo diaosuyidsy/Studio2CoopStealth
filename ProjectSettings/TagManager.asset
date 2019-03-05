@@ -1,3 +1,76 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:f75b37511a79fbd9577bdf99f4f3344fcf8405e2835c7c1cec218b35c385c0e1
-size 807
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Action
+  - AutoCrouch
+  - Ragdoll
+  - Ignore Ragdoll
+  - Boss
+  - Enemy
+  - CompanionAI
+  - Weapon
+  - PlayerUI
+  - Collectable
+  - LookAt
+  - Interactable
+  - Dirt
+  - Wood
+  - Metal
+  - Concrete
+  - Glass
+  - Item
+  - Water
+  - LadderTrigger
+  - Cover
+  - ExitWater
+  - Barrel
+  - FreeClimb
+  - ClimbDirection
+  - Zipline
+  - Corpse
+  - SeenCorpse
+  - Ground
+  - Player1
+  - Player2
+  - TeleportTransmitter
+  - Mech
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Player
+  - Enemy
+  - CompanionAI
+  - Triggers
+  - StopMove
+  - Action
+  - HeadTrack
+  - BodyPart
+  - Ground
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
