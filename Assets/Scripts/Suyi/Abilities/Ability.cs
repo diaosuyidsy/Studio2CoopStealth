@@ -1,15 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Rewired;
 
 public abstract class Ability : MonoBehaviour
 {
 	public string ButtonName;
 	public float BaseCoolDown = 1f;
+	public int PlayerID;
 
 	protected float coolDownTimeLeft = 0f;
 	protected float nextReadyTime;
+	protected Player _player;
+	protected bool _isStone;
 
+	public virtual void Awake()
+	{
+		_player = ReInput.players.GetPlayer(PlayerID);
+	}
 	/// <summary>
 	/// Pressed Down the Button
 	/// </summary>
@@ -32,5 +40,19 @@ public abstract class Ability : MonoBehaviour
 	{
 		coolDownTimeLeft -= Time.deltaTime;
 	}
+
+	public virtual void OnEnable()
+	{
+		EventManager.StartListening($"Player{PlayerID}Stone", () => _isStone = true);
+		EventManager.StartListening($"Player{PlayerID}NotStone", () => _isStone = false);
+	}
+
+	public virtual void OnDisable()
+	{
+		EventManager.StopListening($"Player{PlayerID}Stone", () => _isStone = true);
+		EventManager.StopListening($"Player{PlayerID}NotStone", () => _isStone = false);
+	}
+
+
 
 }

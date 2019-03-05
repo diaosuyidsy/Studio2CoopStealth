@@ -11,14 +11,6 @@ public class Ability_Assasination : Ability
 
 	[SerializeField] private LayerMask EnemyMask;
 	private GameObject _interactableObject;
-	// Should not be modified since only player 0 could have this ability
-	private readonly int PlayerID = 0;
-	private Player _player;
-
-	private void Awake()
-	{
-		_player = ReInput.players.GetPlayer(PlayerID);
-	}
 
 	private void Update()
 	{
@@ -35,6 +27,7 @@ public class Ability_Assasination : Ability
 
 	public override void OnPressedDownAbility()
 	{
+		if (_isStone) return;
 		nextReadyTime = BaseCoolDown + Time.time;
 		coolDownTimeLeft = BaseCoolDown;
 		if (_interactableObject != null) _interactableObject.SetActive(false);

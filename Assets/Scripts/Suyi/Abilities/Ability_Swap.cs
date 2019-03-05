@@ -7,13 +7,11 @@ public class Ability_Swap : Ability
 {
 	public float Range = Mathf.Infinity;
 
-	private int PlayerID = 1;
-	private Player _player;
 	private GameObject _otherPlayer;
 
-	private void Awake()
+	public override void Awake()
 	{
-		_player = ReInput.players.GetPlayer(PlayerID);
+		base.Awake();
 		_otherPlayer = GameObject.FindGameObjectWithTag("Player1");
 	}
 

@@ -21,6 +21,7 @@ public class PlayerController_SS : MonoBehaviour
 	private float _vertical;
 	private bool _jump;
 	private float _distToGround;
+	private bool _isStone;
 	#endregion
 
 	private void Awake()
@@ -47,6 +48,7 @@ public class PlayerController_SS : MonoBehaviour
 
 	private void _processMovement()
 	{
+		if (_isStone) return;
 		_moveVector.x = _horizontal * MaxMoveSpeed;
 		_moveVector.y = _rb.velocity.y;
 		_moveVector.z = _vertical * MaxMoveSpeed;
@@ -78,5 +80,16 @@ public class PlayerController_SS : MonoBehaviour
 		return result;
 	}
 
+	private void OnEnable()
+	{
+		EventManager.StartListening($"Player{PlayerID}Stone", () => _isStone = true);
+		EventManager.StartListening($"Player{PlayerID}NotStone", () => _isStone = false);
+	}
+
+	private void OnDisable()
+	{
+		EventManager.StopListening($"Player{PlayerID}Stone", () => _isStone = true);
+		EventManager.StopListening($"Player{PlayerID}NotStone", () => _isStone = false);
+	}
 
 }

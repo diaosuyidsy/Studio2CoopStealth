@@ -9,13 +9,11 @@ using Rewired;
 public class Ability_Transform : Ability
 {
 	private float _MaxEnergyAmount;
-	private readonly int PlayerID = 0;
-	private Player _player;
 
-	private void Awake()
+	public override void Awake()
 	{
+		base.Awake();
 		_MaxEnergyAmount = BaseCoolDown;
-		_player = ReInput.players.GetPlayer(PlayerID);
 	}
 
 	private void Update()
@@ -31,10 +29,12 @@ public class Ability_Transform : Ability
 
 	public override void OnPressedDownAbility()
 	{
+		EventManager.TriggerEvent($"Player{PlayerID}Stone");
 	}
 
 	public override void OnLiftUpAbility()
 	{
+		EventManager.TriggerEvent($"Player{PlayerID}NotStone");
 		nextReadyTime = Time.time + BaseCoolDown;
 		coolDownTimeLeft = BaseCoolDown;
 	}
