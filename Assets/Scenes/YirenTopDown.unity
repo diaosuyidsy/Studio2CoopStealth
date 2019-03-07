@@ -3442,6 +3442,14 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 105836, guid: 461fa00a921d2974880b26458d39d9e4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497444, guid: 461fa00a921d2974880b26458d39d9e4, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 461fa00a921d2974880b26458d39d9e4, type: 3}
 --- !u!4 &268823880 stripped
@@ -7431,8 +7439,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 611767145}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.612, z: 0.25}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.38006, y: -0.62269, z: -6.5805}
+  m_LocalScale: {x: 1.64136, y: 1.64136, z: 1.64136}
   m_Children: []
   m_Father: {fileID: 1151542519}
   m_RootOrder: 0
@@ -7686,7 +7694,7 @@ GameObject:
   - component: {fileID: 649373785}
   m_Layer: 11
   m_Name: push
-  m_TagString: Action
+  m_TagString: PushTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7699,8 +7707,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 649373783}
   m_LocalRotation: {x: 0, y: -0.70710665, z: 0, w: 0.70710695}
-  m_LocalPosition: {x: 1.065, y: 1.0320001, z: 0}
-  m_LocalScale: {x: 1.45, y: 1.64, z: 0.1}
+  m_LocalPosition: {x: 1.1936, y: 1.0320001, z: -0.00024016}
+  m_LocalScale: {x: 1.6240001, y: 1.8368, z: 0.112}
   m_Children:
   - {fileID: 1352614955}
   - {fileID: 1559820864}
@@ -7716,39 +7724,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 649373783}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53a2f2cffbeaacb49b92a9a282dd4c19, type: 3}
+  m_Script: {fileID: 11500000, guid: acb414223d4e72240a4c12d2d6a14be1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   openCloseEvents: 1
   openCloseWindow: 0
   selectedToolbar: 0
   autoAction: 0
-  PlayerId: 0
-  disableCollision: 1
-  disableGravity: 1
-  resetPlayerSettings: 1
-  playAnimation: Push
-  endExitTimeAnimation: 0.8
-  avatarTarget: 0
-  matchTargetMask: {x: 0, y: 0, z: 0}
-  matchTarget: {fileID: 0}
-  startMatchTarget: 0
-  endMatchTarget: 0
+  playAnimation: EnterPush
+  matchTarget: {fileID: 1352614955}
+  exitAnimation: 
+  startMatchTarget: 0.1
+  endMatchTarget: 0.85
   activeFromForward: 1
   useTriggerRotation: 0
-  destroyAfter: 0
-  destroyDelay: 0
-  onDoActionDelay: 0
   OnDoAction:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1497825101}
+        m_MethodName: MoveObj
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 928609949}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  onDoActionWithTarget:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: Invector.vCharacterController.vActions.OnDoActionWithTarget, Assembly-CSharp,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   OnPlayerEnter:
     m_PersistentCalls:
       m_Calls: []
@@ -11676,7 +11681,7 @@ GameObject:
   - component: {fileID: 789654291}
   m_Layer: 11
   m_Name: push
-  m_TagString: Action
+  m_TagString: PushTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11689,8 +11694,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 789654289}
   m_LocalRotation: {x: 0, y: 0.70710653, z: 0, w: 0.70710707}
-  m_LocalPosition: {x: -1.065, y: 1.0320001, z: 0}
-  m_LocalScale: {x: 1.45, y: 1.64, z: 0.1}
+  m_LocalPosition: {x: -1.192, y: 1.0320001, z: -0.00024016}
+  m_LocalScale: {x: 1.6240001, y: 1.8368, z: 0.112}
   m_Children:
   - {fileID: 1212872078}
   - {fileID: 100103109}
@@ -11706,39 +11711,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 789654289}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53a2f2cffbeaacb49b92a9a282dd4c19, type: 3}
+  m_Script: {fileID: 11500000, guid: acb414223d4e72240a4c12d2d6a14be1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   openCloseEvents: 1
   openCloseWindow: 0
   selectedToolbar: 0
   autoAction: 0
-  PlayerId: 0
-  disableCollision: 1
-  disableGravity: 1
-  resetPlayerSettings: 1
-  playAnimation: Push
-  endExitTimeAnimation: 0.8
-  avatarTarget: 0
-  matchTargetMask: {x: 0, y: 0, z: 0}
-  matchTarget: {fileID: 0}
-  startMatchTarget: 0
-  endMatchTarget: 0
+  playAnimation: EnterPush
+  matchTarget: {fileID: 1212872078}
+  exitAnimation: 
+  startMatchTarget: 0.1
+  endMatchTarget: 0.85
   activeFromForward: 1
   useTriggerRotation: 0
-  destroyAfter: 0
-  destroyDelay: 0
-  onDoActionDelay: 0
   OnDoAction:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1497825101}
+        m_MethodName: MoveObj
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 928609949}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  onDoActionWithTarget:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: Invector.vCharacterController.vActions.OnDoActionWithTarget, Assembly-CSharp,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   OnPlayerEnter:
     m_PersistentCalls:
       m_Calls: []
@@ -12408,7 +12410,7 @@ GameObject:
   - component: {fileID: 840570496}
   m_Layer: 11
   m_Name: push
-  m_TagString: Action
+  m_TagString: PushTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12421,8 +12423,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 840570494}
   m_LocalRotation: {x: 0, y: -0.0000001937151, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.0320001, z: -1.065}
-  m_LocalScale: {x: 1.45, y: 1.64, z: 0.1}
+  m_LocalPosition: {x: 0.00083886, y: 1.0320001, z: -1.193}
+  m_LocalScale: {x: 1.6240001, y: 1.8368, z: 0.112}
   m_Children:
   - {fileID: 2059684696}
   - {fileID: 592520547}
@@ -12438,39 +12440,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 840570494}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53a2f2cffbeaacb49b92a9a282dd4c19, type: 3}
+  m_Script: {fileID: 11500000, guid: acb414223d4e72240a4c12d2d6a14be1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   openCloseEvents: 1
   openCloseWindow: 0
   selectedToolbar: 0
   autoAction: 0
-  PlayerId: 0
-  disableCollision: 1
-  disableGravity: 1
-  resetPlayerSettings: 1
-  playAnimation: Push
-  endExitTimeAnimation: 0.8
-  avatarTarget: 0
-  matchTargetMask: {x: 0, y: 0, z: 0}
-  matchTarget: {fileID: 0}
-  startMatchTarget: 0
-  endMatchTarget: 0
+  playAnimation: EnterPush
+  matchTarget: {fileID: 2059684696}
+  exitAnimation: 
+  startMatchTarget: 0.1
+  endMatchTarget: 0.85
   activeFromForward: 1
   useTriggerRotation: 0
-  destroyAfter: 0
-  destroyDelay: 0
-  onDoActionDelay: 0
   OnDoAction:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1497825101}
+        m_MethodName: MoveObj
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 928609949}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  onDoActionWithTarget:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: Invector.vCharacterController.vActions.OnDoActionWithTarget, Assembly-CSharp,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   OnPlayerEnter:
     m_PersistentCalls:
       m_Calls: []
@@ -13457,6 +13456,7 @@ GameObject:
   - component: {fileID: 928609951}
   - component: {fileID: 928609950}
   - component: {fileID: 928609960}
+  - component: {fileID: 928609961}
   m_Layer: 8
   m_Name: vThirdPersonShooter
   m_TagString: Player
@@ -13472,7 +13472,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 928609948}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -262.84225, y: -81.00014, z: 711.2041}
+  m_LocalPosition: {x: -250.24, y: -81.00014, z: 711.56}
   m_LocalScale: {x: 2.0493464, y: 2.0493464, z: 2.0493464}
   m_Children:
   - {fileID: 817331703}
@@ -13991,6 +13991,53 @@ MonoBehaviour:
   leftKneeObj: {fileID: 0}
   ikRightKneePositionAmount: 0
   ikLeftKneePositionAmount: 0
+--- !u!114 &928609961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 928609948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dba7cef373beec4f81ba6aa57adf2fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  openCloseEvents: 1
+  openCloseWindow: 1
+  selectedToolbar: 0
+  actionEnter: 0
+  actionStay: 0
+  actionExit: 0
+  OnDoAction:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Invector.vCharacterController.vActions.vActionListener+vOnActionHandle,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  actionTag: PushTrigger
+  verticallInput:
+    actionName: Move Vertical
+    playerID: 0
+  horicallInput:
+    actionName: Move Horizontal
+    playerID: 0
+  enterInput:
+    actionName: Jump
+    playerID: 0
+  exitInput:
+    actionName: Jump
+    playerID: 0
+  debugMode: 1
+  OnEnterLadder:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnExitLadder:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &930190464
 GameObject:
   m_ObjectHideFlags: 0
@@ -16303,7 +16350,7 @@ GameObject:
   - component: {fileID: 1151542520}
   m_Layer: 11
   m_Name: push
-  m_TagString: Action
+  m_TagString: PushTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16316,8 +16363,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1151542518}
   m_LocalRotation: {x: 0, y: -1, z: 0, w: 0.00000040233135}
-  m_LocalPosition: {x: 0, y: 1.0320001, z: 1.065}
-  m_LocalScale: {x: 1.45, y: 1.64, z: 0.1}
+  m_LocalPosition: {x: 0.00083886, y: 1.0320001, z: 1.1926}
+  m_LocalScale: {x: 1.6240001, y: 1.8368, z: 0.112}
   m_Children:
   - {fileID: 611767146}
   - {fileID: 2059827542}
@@ -16333,39 +16380,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 1151542518}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53a2f2cffbeaacb49b92a9a282dd4c19, type: 3}
+  m_Script: {fileID: 11500000, guid: acb414223d4e72240a4c12d2d6a14be1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   openCloseEvents: 1
   openCloseWindow: 0
   selectedToolbar: 0
   autoAction: 0
-  PlayerId: 0
-  disableCollision: 1
-  disableGravity: 1
-  resetPlayerSettings: 1
-  playAnimation: Push
-  endExitTimeAnimation: 0.8
-  avatarTarget: 0
-  matchTargetMask: {x: 0, y: 0, z: 0}
-  matchTarget: {fileID: 0}
-  startMatchTarget: 0
-  endMatchTarget: 0
+  playAnimation: EnterPush
+  matchTarget: {fileID: 611767146}
+  exitAnimation: 
+  startMatchTarget: 0.1
+  endMatchTarget: 0.85
   activeFromForward: 1
   useTriggerRotation: 0
-  destroyAfter: 0
-  destroyDelay: 0
-  onDoActionDelay: 0
   OnDoAction:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1497825101}
+        m_MethodName: MoveObj
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 928609949}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  onDoActionWithTarget:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: Invector.vCharacterController.vActions.OnDoActionWithTarget, Assembly-CSharp,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   OnPlayerEnter:
     m_PersistentCalls:
       m_Calls: []
@@ -17161,8 +17205,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1212872077}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.612, z: 0.25}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.35983, y: -0.62269, z: -6.4191}
+  m_LocalScale: {x: 1.64136, y: 1.64136, z: 1.64136}
   m_Children: []
   m_Father: {fileID: 789654290}
   m_RootOrder: 0
@@ -18922,8 +18966,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1352614954}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.617, z: 0.25}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.35385, y: -0.61447, z: -6.4191}
+  m_LocalScale: {x: 1.64136, y: 1.64136, z: 1.64136}
   m_Children: []
   m_Father: {fileID: 649373784}
   m_RootOrder: 0
@@ -19850,7 +19894,7 @@ GameObject:
   - component: {fileID: 1497825100}
   m_Layer: 0
   m_Name: push
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19863,8 +19907,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1497825098}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.43, y: -0.51, z: -10.39}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 11.43, y: -0.51, z: 20.7}
+  m_LocalScale: {x: 1.9417799, y: 1.9417799, z: 1.9417799}
   m_Children:
   - {fileID: 789654290}
   - {fileID: 649373784}
@@ -19883,13 +19927,13 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1497825098}
   serializedVersion: 2
-  m_Mass: 100
+  m_Mass: 1000
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 0
   m_CollisionDetection: 3
 --- !u!114 &1497825101
 MonoBehaviour:
@@ -19903,6 +19947,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3ef7928c5bbc444c8ff29e1ca4e1aa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  keepDis: {x: 0, y: 0, z: 0}
 --- !u!1 &1498567071
 GameObject:
   m_ObjectHideFlags: 0
@@ -26579,8 +26624,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2059684695}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.606, z: -0.25}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.38006, y: -0.63253, z: -7.0805}
+  m_LocalScale: {x: 1.64136, y: 1.64136, z: 1.64136}
   m_Children: []
   m_Father: {fileID: 840570495}
   m_RootOrder: 0

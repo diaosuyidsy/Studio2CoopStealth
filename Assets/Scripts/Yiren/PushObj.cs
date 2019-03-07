@@ -5,8 +5,17 @@ using UnityEngine;
 public class PushObj : MonoBehaviour
 {
 
-    public void MoveObj()
-    {        
-        
+    public Vector3 keepDis;
+    public void MoveObj(Transform PlayerPosition)
+    {
+
+        transform.parent = PlayerPosition;
+        transform.GetComponent<Rigidbody>().isKinematic = false;
     }
+
+    public void StopMove()
+    {
+        transform.parent = null;
+    }
+
 }
