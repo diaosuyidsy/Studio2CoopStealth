@@ -49,12 +49,13 @@ public class PlayerController_SS : MonoBehaviour
 	private void _processMovement()
 	{
 		if (_isUsingOtherAbility) return;
-		_moveVector.x = _horizontal * MaxMoveSpeed;
-		_moveVector.y = _rb.velocity.y;
-		_moveVector.z = _vertical * MaxMoveSpeed;
-		_rb.velocity = _moveVector;
 		if (!Mathf.Approximately(_horizontal, 0f) || !Mathf.Approximately(_vertical, 0f))
 		{
+			_moveVector.x = _horizontal * MaxMoveSpeed;
+			_moveVector.y = _rb.velocity.y;
+			_moveVector.z = _vertical * MaxMoveSpeed;
+			_rb.velocity = _moveVector;
+
 			Transform target = LookTarget.transform.GetChild(0);
 			Vector3 relativePos = target.position - transform.position;
 

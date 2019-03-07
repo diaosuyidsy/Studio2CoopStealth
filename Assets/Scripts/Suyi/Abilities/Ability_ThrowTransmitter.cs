@@ -10,27 +10,38 @@ public class Ability_ThrowTransmitter : Ability
 	public float ThrowThrust = 10f;
 	[Range(10f, 90f)]
 	public float ThrowAngle = 45f;
-	private float ThrowMarkMoveSpeed = 5f;
+	public float FetchRadius = 1.5f;
 	public Transform ThrowMark;
 	public Transform TeleportTransmitter;
 	public LayerMask ThrowMarkLandMask;
 	public LayerMask ObstacleMask;
 
 	private float firingAngle = 45f;
+	private float ThrowMarkMoveSpeed = 5f;
 	private float gravity = 25f;
 	private LineRenderer lineRenderer;
 	private float HRAxis;
 	private float VRAxis;
 	private float lineStepPerTime = 0.1f;
 	private float lineMaxTime = 10f;
+	private Vector3 _startVelocityCache;
 	private Vector3 StartVelocity
 	{
 		get
 		{
+			if (Mathf.Approximately(HRAxis, 0f) && Mathf.Approximately(VRAxis, 0f))
+			{
+				Vector3 temp = new Vector3(_startVelocityCache.x, 0f, _startVelocityCache.z);
+				float mgtemp = Mathf.Tan(ThrowAngle * Mathf.Deg2Rad) * temp.magnitude;
+				temp.y = mgtemp;
+				_startVelocityCache = temp.normalized * ThrowThrust;
+				return _startVelocityCache;
+			}
 			Vector3 result = new Vector3(HRAxis, 0f, VRAxis);
 			float mag = Mathf.Tan(ThrowAngle * Mathf.Deg2Rad) * result.magnitude;
 			result.y = mag;
-			return result.normalized * ThrowThrust;
+			_startVelocityCache = result.normalized * ThrowThrust;
+			return _startVelocityCache;
 		}
 	}
 
@@ -108,15 +119,27 @@ public class Ability_ThrowTransmitter : Ability
 	private void OnPressedDownSecondaryAbility()
 	{
 		if (!ThrowMark.gameObject.activeSelf) return;
+		GameObject nearbyPlayer = _hasOtherPlayerNearby(FetchRadius);
+		if (nearbyPlayer == null) return;
 		nextReadyTime = Time.time + BaseCoolDown;
 		coolDownTimeLeft = BaseCoolDown;
-		//StartCoroutine(SimulateProjectile());
-		TeleportTransmitter.gameObject.SetActive(true);
-		TeleportTransmitter.parent = null;
-		TeleportTransmitter.position = transform.position + new Vector3(0f, 0f, 0.5f);
-		TeleportTransmitter.GetComponent<Rigidbody>().velocity = StartVelocity;
+		//TeleportTransmitter.gameObject.SetActive(true);
+		//TeleportTransmitter.parent = null;
+		//TeleportTransmitter.position = transform.position + new Vector3(0f, 0f, 0.5f);
+		nearbyPlayer.transform.position = transform.position + new Vector3(0f, 0f, 0.5f);
+		nearbyPlayer.transform.rotation = transform.rotation;
+		nearbyPlayer.GetComponent<Rigidbody>().velocity = StartVelocity;
 		OnLiftUpAbility();
+	}
 
+	private GameObject _hasOtherPlayerNearby(float radius)
+	{
+		Collider[] hits = Physics.OverlapSphere(transform.position, radius, 1 << LayerMask.NameToLayer("Player"));
+		foreach (var hit in hits)
+		{
+			if (!hit.CompareTag(tag)) return hit.gameObject;
+		}
+		return null;
 	}
 
 	private void DrawTrajectory()
@@ -172,6 +195,7 @@ public class DrawWireArc : Editor
 		Handles.color = Color.red;
 		Ability_ThrowTransmitter AA = (Ability_ThrowTransmitter)target;
 		Handles.DrawWireArc(AA.transform.position - new Vector3(0f, 1f, 0f), AA.transform.up, AA.transform.forward, 360f, Mathf.Pow(AA.ThrowThrust, 2f) / -Physics.gravity.y);
+		Handles.DrawWireArc(AA.transform.position - new Vector3(0f, 1f, 0f), AA.transform.up, AA.transform.forward, 360f, AA.FetchRadius);
 	}
 }
 

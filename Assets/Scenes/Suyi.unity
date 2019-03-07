@@ -12828,6 +12828,7 @@ MonoBehaviour:
   SecondaryButtonName: RT
   ThrowThrust: 10
   ThrowAngle: 45
+  FetchRadius: 1.5
   ThrowMark: {fileID: 1957511003}
   TeleportTransmitter: {fileID: 590662261}
   ThrowMarkLandMask:
@@ -18344,7 +18345,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 572096779}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -62.8, y: 1, z: 270.2}
+  m_LocalPosition: {x: 56.1, y: 1, z: 252.45}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1552700415}
