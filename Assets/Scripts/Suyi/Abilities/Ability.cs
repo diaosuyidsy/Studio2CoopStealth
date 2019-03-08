@@ -1,9 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Invector.vCharacterController;
+using Invector.vItemManager;
+using Invector.vShooter;
 using UnityEngine;
 using Rewired;
 
-[RequireComponent(typeof(PlayerController_SS))]
+[RequireComponent(typeof(vShooterMeleeInput))]
+[RequireComponent(typeof(vThirdPersonController))]
 public abstract class Ability : MonoBehaviour
 {
 	public string ButtonName;
@@ -17,7 +21,7 @@ public abstract class Ability : MonoBehaviour
 
 	public virtual void Awake()
 	{
-		PlayerID = GetComponent<PlayerController_SS>().PlayerID;
+		PlayerID = GetComponent<vShooterMeleeInput>().playerId;
 		_player = ReInput.players.GetPlayer(PlayerID);
 	}
 	/// <summary>
@@ -45,14 +49,42 @@ public abstract class Ability : MonoBehaviour
 
 	public virtual void OnEnable()
 	{
-		EventManager.StartListening($"Player{PlayerID}InAbility", () => _isUsingOtherAbility = true);
-		EventManager.StartListening($"Player{PlayerID}Free", () => _isUsingOtherAbility = false);
+		//EventManager.StartListening($"Player{PlayerID}InAbility", () => _isUsingOtherAbility = true);
+		EventManager.StartListening($"Player{PlayerID}InAbility",
+			() =>
+			{
+				GetComponent<vThirdPersonController>().enabled = false;
+				GetComponent<vShooterMeleeInput>().enabled = false;
+			}
+		);
+		EventManager.StartListening($"Player{PlayerID}Free",
+			() =>
+			{
+				GetComponent<vThirdPersonController>().enabled = true;
+				GetComponent<vShooterMeleeInput>().enabled = true;
+			}
+		);
+		//EventManager.StartListening($"Player{PlayerID}Free", () => _isUsingOtherAbility = false);
 	}
 
 	public virtual void OnDisable()
 	{
-		EventManager.StopListening($"Player{PlayerID}InAbility", () => _isUsingOtherAbility = true);
-		EventManager.StopListening($"Player{PlayerID}Free", () => _isUsingOtherAbility = false);
+		EventManager.StartListening($"Player{PlayerID}InAbility",
+			() =>
+			{
+				GetComponent<vThirdPersonController>().enabled = false;
+				GetComponent<vShooterMeleeInput>().enabled = false;
+			}
+		);
+		EventManager.StartListening($"Player{PlayerID}Free",
+			() =>
+			{
+				GetComponent<vThirdPersonController>().enabled = true;
+				GetComponent<vShooterMeleeInput>().enabled = true;
+			}
+		);
+		//EventManager.StopListening($"Player{PlayerID}InAbility", () => _isUsingOtherAbility = true);
+		//EventManager.StopListening($"Player{PlayerID}Free", () => _isUsingOtherAbility = false);
 	}
 
 

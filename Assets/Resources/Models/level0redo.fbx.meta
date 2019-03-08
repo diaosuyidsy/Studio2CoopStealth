@@ -1,0 +1,250 @@
+fileFormatVersion: 2
+guid: c95af3c31408891459517406251a8380
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: box1
+    100002: box2
+    100004: Building 01
+    100006: Building 01 Door
+    100008: Building 01.001
+    100010: Building 02
+    100012: Building 02 Door
+    100014: Building 02.001
+    100016: Building 02.002
+    100018: Building 02.003
+    100020: Building 02.004
+    100022: 'Building 04 '
+    100024: Building 04 001
+    100026: ending
+    100028: ground
+    100030: //RootNode
+    100032: road01
+    100034: road02
+    100036: road03
+    100038: road04
+    100040: road05
+    100042: road06
+    100044: road07
+    100046: road08
+    100048: road09
+    100050: road10
+    100052: road11
+    100054: Stairs 01
+    100056: Stairs 01.001
+    100058: wall1
+    100060: wall2
+    400000: box1
+    400002: box2
+    400004: Building 01
+    400006: Building 01 Door
+    400008: Building 01.001
+    400010: Building 02
+    400012: Building 02 Door
+    400014: Building 02.001
+    400016: Building 02.002
+    400018: Building 02.003
+    400020: Building 02.004
+    400022: 'Building 04 '
+    400024: Building 04 001
+    400026: ending
+    400028: ground
+    400030: //RootNode
+    400032: road01
+    400034: road02
+    400036: road03
+    400038: road04
+    400040: road05
+    400042: road06
+    400044: road07
+    400046: road08
+    400048: road09
+    400050: road10
+    400052: road11
+    400054: Stairs 01
+    400056: Stairs 01.001
+    400058: wall1
+    400060: wall2
+    2100000: 07 - Default.005
+    2100002: 07 - Default.004
+    2100004: 07 - Default.002
+    2100006: No Name
+    2100008: 07 - Default.003
+    2100010: 07 - Default.001
+    2100012: 07 - Default
+    2100014: Material
+    2300000: box1
+    2300002: box2
+    2300004: Building 01
+    2300006: Building 01 Door
+    2300008: Building 01.001
+    2300010: Building 02
+    2300012: Building 02 Door
+    2300014: Building 02.001
+    2300016: Building 02.002
+    2300018: Building 02.003
+    2300020: Building 02.004
+    2300022: 'Building 04 '
+    2300024: Building 04 001
+    2300026: ending
+    2300028: ground
+    2300030: road01
+    2300032: road02
+    2300034: road03
+    2300036: road04
+    2300038: road05
+    2300040: road06
+    2300042: road07
+    2300044: road08
+    2300046: road09
+    2300048: road10
+    2300050: road11
+    2300052: Stairs 01
+    2300054: Stairs 01.001
+    2300056: wall1
+    2300058: wall2
+    3300000: box1
+    3300002: box2
+    3300004: Building 01
+    3300006: Building 01 Door
+    3300008: Building 01.001
+    3300010: Building 02
+    3300012: Building 02 Door
+    3300014: Building 02.001
+    3300016: Building 02.002
+    3300018: Building 02.003
+    3300020: Building 02.004
+    3300022: 'Building 04 '
+    3300024: Building 04 001
+    3300026: ending
+    3300028: ground
+    3300030: road01
+    3300032: road02
+    3300034: road03
+    3300036: road04
+    3300038: road05
+    3300040: road06
+    3300042: road07
+    3300044: road08
+    3300046: road09
+    3300048: road10
+    3300050: road11
+    3300052: Stairs 01
+    3300054: Stairs 01.001
+    3300056: wall1
+    3300058: wall2
+    4300000: ending
+    4300002: Stairs 01.001
+    4300004: wall2
+    4300006: Building 02.004
+    4300008: Building 01.001
+    4300010: Building 04 001
+    4300012: road11
+    4300014: road10
+    4300016: road09
+    4300018: road08
+    4300020: road07
+    4300022: road06
+    4300024: box2
+    4300026: box1
+    4300028: wall1
+    4300030: Building 02.003
+    4300032: Building 02.002
+    4300034: Building 02.001
+    4300036: Stairs 01
+    4300038: road05
+    4300040: road04
+    4300042: road03
+    4300044: road02
+    4300046: Building 01
+    4300048: Building 01 Door
+    4300050: Building 02
+    4300052: Building 02 Door
+    4300054: 'Building 04 '
+    4300056: ground
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

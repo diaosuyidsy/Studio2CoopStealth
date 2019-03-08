@@ -6,13 +6,6 @@ public class Ability_Teleport : Ability
 {
 	private GameObject TeleportTransmitter;
 
-	public override void Awake()
-	{
-		base.Awake();
-		TeleportTransmitter = GameObject.FindGameObjectWithTag("TeleportTransmitter");
-		TeleportTransmitter.SetActive(false);
-	}
-
 	private void Update()
 	{
 		if (_player.GetButtonDown(ButtonName))

@@ -4618,7 +4618,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openCloseEvents: 0
   openCloseWindow: 1
-  selectedToolbar: 1
+  selectedToolbar: 7
   damageLayer:
     serializedVersion: 2
     m_Bits: 16385
@@ -4678,7 +4678,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openCloseEvents: 0
   openCloseWindow: 1
-  selectedToolbar: 1
+  selectedToolbar: 0
   playerId: 1
   lockInput: 0
   unlockCursorOnStart: 0
@@ -4815,7 +4815,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openCloseEvents: 0
   openCloseWindow: 1
-  selectedToolbar: 0
+  selectedToolbar: 7
   _isDead: 0
   _currentHealth: 100
   maxHealth: 100
@@ -12747,6 +12747,7 @@ MonoBehaviour:
   openCloseWindow: 0
   selectedToolbar: 0
   autoAction: 0
+  PlayerId: 0
   disableCollision: 1
   disableGravity: 1
   resetPlayerSettings: 1
@@ -12854,6 +12855,7 @@ MonoBehaviour:
   openCloseWindow: 0
   selectedToolbar: 0
   autoAction: 0
+  PlayerId: 0
   disableCollision: 1
   disableGravity: 1
   resetPlayerSettings: 1
@@ -13170,6 +13172,7 @@ MonoBehaviour:
   openCloseWindow: 0
   selectedToolbar: 0
   autoAction: 0
+  PlayerId: 0
   disableCollision: 1
   disableGravity: 1
   resetPlayerSettings: 1
@@ -13270,6 +13273,7 @@ MonoBehaviour:
   openCloseWindow: 0
   selectedToolbar: 0
   autoAction: 0
+  PlayerId: 0
   disableCollision: 1
   disableGravity: 1
   resetPlayerSettings: 1
@@ -17638,7 +17642,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openCloseEvents: 0
   openCloseWindow: 1
-  selectedToolbar: 4
+  selectedToolbar: 7
   isLeftWeapon: 0
   chargeWeapon: 0
   autoShotOnFinishCharge: 0
@@ -17917,6 +17921,7 @@ MonoBehaviour:
   openCloseWindow: 1
   selectedToolbar: 0
   autoAction: 0
+  PlayerId: 1
   disableCollision: 0
   disableGravity: 0
   resetPlayerSettings: 0
@@ -21982,6 +21987,7 @@ MonoBehaviour:
   openCloseWindow: 0
   selectedToolbar: 0
   autoAction: 0
+  PlayerId: 0
   disableCollision: 1
   disableGravity: 1
   resetPlayerSettings: 1
@@ -22082,6 +22088,7 @@ MonoBehaviour:
   openCloseWindow: 0
   selectedToolbar: 0
   autoAction: 0
+  PlayerId: 0
   disableCollision: 1
   disableGravity: 1
   resetPlayerSettings: 1
@@ -22398,6 +22405,7 @@ MonoBehaviour:
   openCloseWindow: 0
   selectedToolbar: 0
   autoAction: 0
+  PlayerId: 0
   disableCollision: 1
   disableGravity: 1
   resetPlayerSettings: 1
@@ -22564,6 +22572,7 @@ MonoBehaviour:
   openCloseWindow: 0
   selectedToolbar: 0
   autoAction: 0
+  PlayerId: 0
   disableCollision: 1
   disableGravity: 1
   resetPlayerSettings: 1
@@ -25325,7 +25334,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openCloseEvents: 0
-  openCloseWindow: 0
+  openCloseWindow: 1
   selectedToolbar: 0
   actionEnter: 0
   actionStay: 0
@@ -25426,7 +25435,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openCloseEvents: 0
   openCloseWindow: 1
-  selectedToolbar: 1
+  selectedToolbar: 0
   damageLayer:
     serializedVersion: 2
     m_Bits: 1
@@ -41232,6 +41241,7 @@ MonoBehaviour:
   openCloseWindow: 0
   selectedToolbar: 0
   autoAction: 0
+  PlayerId: 0
   disableCollision: 1
   disableGravity: 1
   resetPlayerSettings: 1
@@ -41427,6 +41437,7 @@ MonoBehaviour:
   openCloseWindow: 0
   selectedToolbar: 0
   autoAction: 0
+  PlayerId: 0
   disableCollision: 1
   disableGravity: 1
   resetPlayerSettings: 1
@@ -41651,6 +41662,7 @@ MonoBehaviour:
   openCloseWindow: 0
   selectedToolbar: 0
   autoAction: 0
+  PlayerId: 0
   disableCollision: 1
   disableGravity: 1
   resetPlayerSettings: 1
@@ -41986,6 +41998,7 @@ MonoBehaviour:
   openCloseWindow: 0
   selectedToolbar: 0
   autoAction: 0
+  PlayerId: 0
   disableCollision: 1
   disableGravity: 1
   resetPlayerSettings: 1
@@ -44579,7 +44592,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-3274
+  m_Name: pb_Mesh-5878
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2

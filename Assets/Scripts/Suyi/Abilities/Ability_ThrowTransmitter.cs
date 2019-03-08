@@ -126,6 +126,7 @@ public class Ability_ThrowTransmitter : Ability
 		//TeleportTransmitter.gameObject.SetActive(true);
 		//TeleportTransmitter.parent = null;
 		//TeleportTransmitter.position = transform.position + new Vector3(0f, 0f, 0.5f);
+		EventManager.TriggerEvent("Player1InAbility");
 		nearbyPlayer.transform.position = transform.position + new Vector3(0f, 0f, 0.5f);
 		nearbyPlayer.transform.rotation = transform.rotation;
 		nearbyPlayer.GetComponent<Rigidbody>().velocity = StartVelocity;
