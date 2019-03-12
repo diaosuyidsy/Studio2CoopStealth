@@ -12,7 +12,7 @@ public class LookAt : Action
 	{
 		if (Target.Value != null)
 		{
-			transform.LookAt(Target.Value.transform);
+			transform.LookAt(new Vector3(Target.Value.transform.position.x, transform.position.y, Target.Value.transform.position.z));
 			return TaskStatus.Success;
 		}
 		return TaskStatus.Failure;

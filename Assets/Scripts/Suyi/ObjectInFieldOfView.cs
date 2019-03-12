@@ -21,10 +21,11 @@ public class ObjectInFieldOfView : Conditional
 		foreach (var target in targetsInViewRadius)
 		{
 			Transform t = target.transform;
-			Vector3 dirToTarget = (t.position - transform.position).normalized;
+			var CenterPos = t.GetComponent<Collider>().bounds.center;
+			Vector3 dirToTarget = (CenterPos - transform.position).normalized;
 			if (Vector3.Angle(transform.forward, dirToTarget) < fieldOfViewAngle.Value / 2)
 			{
-				float dstToTarget = Vector3.Distance(transform.position, t.position);
+				float dstToTarget = Vector3.Distance(transform.position, CenterPos);
 				if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, ObstacleLayerMask))
 				{
 					// meaning target now is a visible enemy
