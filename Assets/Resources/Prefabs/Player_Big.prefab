@@ -1400,7 +1400,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonName: X
-  BaseCoolDown: 1
+  BaseCoolDown: 0.1
   Range: 2
   Angle: 60
   EnemyMask:
@@ -1531,17 +1531,17 @@ MonoBehaviour:
   ButtonName: LT
   BaseCoolDown: 5
   SecondaryButtonName: RT
-  ThrowThrust: 10
+  ThrowThrust: 14.72
   ThrowAngle: 45
   FetchRadius: 1.5
   ThrowMark: {fileID: 5528740680967196866}
   TeleportTransmitter: {fileID: 5528740679930312620}
   ThrowMarkLandMask:
     serializedVersion: 2
-    m_Bits: 65537
+    m_Bits: 196609
   ObstacleMask:
     serializedVersion: 2
-    m_Bits: 65537
+    m_Bits: 196609
 --- !u!114 &5528740680766719005
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1875,6 +1875,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 10844900, guid: d568fd0a4535a084291a2948abc6a831, type: 3}
       propertyPath: m_Intensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 21288276, guid: d568fd0a4535a084291a2948abc6a831, type: 3}
+      propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -29568,26 +29568,6 @@ PrefabInstance:
       propertyPath: tpCamera
       value: 
       objectReference: {fileID: 753739643}
-    - target: {fileID: 5528740680766719001, guid: b5c98a20cafbc5d409b67ee8db3e53a7,
-        type: 3}
-      propertyPath: BaseCoolDown
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5528740680766719006, guid: b5c98a20cafbc5d409b67ee8db3e53a7,
-        type: 3}
-      propertyPath: ThrowThrust
-      value: 14.72
-      objectReference: {fileID: 0}
-    - target: {fileID: 5528740680766719006, guid: b5c98a20cafbc5d409b67ee8db3e53a7,
-        type: 3}
-      propertyPath: ObstacleMask.m_Bits
-      value: 196609
-      objectReference: {fileID: 0}
-    - target: {fileID: 5528740680766719006, guid: b5c98a20cafbc5d409b67ee8db3e53a7,
-        type: 3}
-      propertyPath: ThrowMarkLandMask.m_Bits
-      value: 196609
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5c98a20cafbc5d409b67ee8db3e53a7, type: 3}
 --- !u!4 &8565927628612891696 stripped
