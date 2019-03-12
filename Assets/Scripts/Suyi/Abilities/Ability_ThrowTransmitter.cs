@@ -80,6 +80,8 @@ public class Ability_ThrowTransmitter : Ability
 	{
 		if (_isUsingOtherAbility) return;
 		EventManager.TriggerEvent($"Player{PlayerID}InAbility");
+		var rb = GetComponent<Rigidbody>();
+		if (rb) rb.velocity = Vector3.zero;
 		ThrowMark.parent = null;
 		ThrowMark.gameObject.SetActive(true);
 	}
@@ -125,7 +127,7 @@ public class Ability_ThrowTransmitter : Ability
 		coolDownTimeLeft = BaseCoolDown;
 		TeleportTransmitter.gameObject.SetActive(true);
 		TeleportTransmitter.parent = null;
-		TeleportTransmitter.position = transform.position + new Vector3(0f, 0f, 0.5f);
+		TeleportTransmitter.position = transform.position + new Vector3(0f, 0f, 0f);
 		TeleportTransmitter.GetComponent<Rigidbody>().velocity = StartVelocity;
 		EventManager.TriggerEvent($"Player{PlayerID}InAbility");
 		//nearbyPlayer.transform.position = transform.position + new Vector3(0f, 0f, 0.5f);
