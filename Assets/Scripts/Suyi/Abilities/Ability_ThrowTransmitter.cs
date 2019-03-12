@@ -8,7 +8,7 @@ public class Ability_ThrowTransmitter : Ability
 {
 	public string SecondaryButtonName;
 	public float ThrowThrust = 10f;
-	[Range(10f, 90f)]
+	[Range(10f, 87f)]
 	public float ThrowAngle = 45f;
 	public float FetchRadius = 1.5f;
 	public Transform ThrowMark;
@@ -96,7 +96,7 @@ public class Ability_ThrowTransmitter : Ability
 		VRAxis = _player.GetAxis("Move Vertical");
 		float VLAxis = _player.GetAxis("Camera Move Vertical");
 		ThrowAngle += VLAxis * ThrowMarkMoveSpeed;
-		ThrowAngle = Mathf.Clamp(ThrowAngle, 10f, 90f);
+		ThrowAngle = Mathf.Clamp(ThrowAngle, 10f, 87f);
 		DrawTrajectory();
 
 		transform.LookAt(new Vector3(ThrowMark.position.x, transform.position.y, ThrowMark.position.z));

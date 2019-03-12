@@ -391,7 +391,7 @@ GameObject:
   - component: {fileID: 5528740679930312623}
   - component: {fileID: 5528740679930312622}
   - component: {fileID: 5528740679930312621}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: TeleportTransmitter
   m_TagString: TeleportTransmitter
   m_Icon: {fileID: 0}
@@ -480,7 +480,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5528740679930312611}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 1448504ef12cc8646b82d03647b2cb8b, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
