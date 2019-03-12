@@ -1290,7 +1290,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-232460
+  m_Name: pb_Mesh32902
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -7342,7 +7342,7 @@ MonoBehaviour:
   FOVSizeMin: 30
   FOVSizeMax: 60
   XOffset: 12
-  ZOffset: -0.33
+  ZOffset: -15.62467
   WonFOVSize: 30
 --- !u!1 &559509246
 GameObject:
@@ -14374,7 +14374,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-321410
+  m_Name: pb_Mesh34320
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -20660,7 +20660,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-221562
+  m_Name: pb_Mesh33978
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -32333,7 +32333,7 @@ PrefabInstance:
     - target: {fileID: 59234584415198763, guid: 7753b757f66dc5a4d8e4c95d9b39cc9c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 60.11
+      value: 18.55
       objectReference: {fileID: 0}
     - target: {fileID: 59234584415198763, guid: 7753b757f66dc5a4d8e4c95d9b39cc9c,
         type: 3}
@@ -32343,7 +32343,7 @@ PrefabInstance:
     - target: {fileID: 59234584415198763, guid: 7753b757f66dc5a4d8e4c95d9b39cc9c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.2
+      value: -18.880001
       objectReference: {fileID: 0}
     - target: {fileID: 59234584415198763, guid: 7753b757f66dc5a4d8e4c95d9b39cc9c,
         type: 3}
@@ -32481,7 +32481,7 @@ PrefabInstance:
     - target: {fileID: 5528740680766718984, guid: b5c98a20cafbc5d409b67ee8db3e53a7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 60.11
+      value: 16.7
       objectReference: {fileID: 0}
     - target: {fileID: 5528740680766718984, guid: b5c98a20cafbc5d409b67ee8db3e53a7,
         type: 3}
@@ -32491,7 +32491,7 @@ PrefabInstance:
     - target: {fileID: 5528740680766718984, guid: b5c98a20cafbc5d409b67ee8db3e53a7,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.1999998
+      value: -19.76
       objectReference: {fileID: 0}
     - target: {fileID: 5528740680766718984, guid: b5c98a20cafbc5d409b67ee8db3e53a7,
         type: 3}

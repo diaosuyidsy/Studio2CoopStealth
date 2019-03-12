@@ -35,11 +35,6 @@ public class CameraController : MonoBehaviour
 		// Set the max Distance originally
 		float maxDist = 0f;
 		_maxDistanceOrigin = maxDist;
-		// Set X and Z Original Difference
-		//_xDiffOrigin = transform.position.x - FollowTarget.x;
-		_zDiffOrigin = transform.position.z - Players[0].transform.position.z;
-		_xDiffOrigin = 0f;
-		//iffOrigin = 0f;
 	}
 
 	// Update is called once per frame
@@ -62,8 +57,6 @@ public class CameraController : MonoBehaviour
 		_desiredPosition = new Vector3(FollowTarget.x + _xDiffOrigin, transform.position.y, FollowTarget.z + _zDiffOrigin);
 		_smoothedPosition = Vector3.Lerp(transform.position, _desiredPosition, SmoothSpeed);
 		transform.position = _smoothedPosition;
-		//GetComponent<Camera> ().fieldOfView += (MaxDistance () - _maxDistanceOrigin) * CameraScaleSpeed;
-		//_maxDistanceOrigin = MaxDistance ();
 		_desiredFOV = 2f * MaxDistance() + 3.99f;
 		GetComponent<Camera>().fieldOfView = Mathf.Lerp(GetComponent<Camera>().fieldOfView, _desiredFOV, SmoothSpeed);
 		GetComponent<Camera>().fieldOfView = Mathf.Clamp(GetComponent<Camera>().fieldOfView, FOVSizeMin, FOVSizeMax);
