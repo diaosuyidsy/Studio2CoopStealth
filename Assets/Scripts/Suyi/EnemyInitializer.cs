@@ -25,8 +25,8 @@ public class EnemyInitializer : MonoBehaviour
 	{
 		_bt = GetComponent<BehaviorTree>();
 		_pps = new List<GameObject>();
-		_player = GameObject.FindGameObjectWithTag(PlayerTag);
-		_bt.SetVariableValue("Player", _player);
+		//_player = GameObject.FindGameObjectWithTag(PlayerTag);
+		//_bt.SetVariableValue("Player", _player);
 		_bt.SetVariableValue("DiscoverBar", DiscoverBar);
 		_bt.SetVariableValue("StandStillPosition", new Vector3(StandStillPoint.position.x, StandStillPoint.position.y, StandStillPoint.position.z));
 		_bt.SetVariableValue("StandStillRotation", StandStillRotation);
