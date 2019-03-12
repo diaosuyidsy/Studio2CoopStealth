@@ -69,14 +69,14 @@ public abstract class Ability : MonoBehaviour
 
 	public virtual void OnDisable()
 	{
-		EventManager.StartListening($"Player{PlayerID}InAbility",
+		EventManager.StopListening($"Player{PlayerID}InAbility",
 			() =>
 			{
 				GetComponent<vThirdPersonController>().enabled = false;
 				GetComponent<vShooterMeleeInput>().enabled = false;
 			}
 		);
-		EventManager.StartListening($"Player{PlayerID}Free",
+		EventManager.StopListening($"Player{PlayerID}Free",
 			() =>
 			{
 				GetComponent<vThirdPersonController>().enabled = true;

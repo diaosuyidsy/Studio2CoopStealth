@@ -119,17 +119,18 @@ public class Ability_ThrowTransmitter : Ability
 	private void OnPressedDownSecondaryAbility()
 	{
 		if (!ThrowMark.gameObject.activeSelf) return;
-		GameObject nearbyPlayer = _hasOtherPlayerNearby(FetchRadius);
-		if (nearbyPlayer == null) return;
+		//GameObject nearbyPlayer = _hasOtherPlayerNearby(FetchRadius);
+		//if (nearbyPlayer == null) return;
 		nextReadyTime = Time.time + BaseCoolDown;
 		coolDownTimeLeft = BaseCoolDown;
-		//TeleportTransmitter.gameObject.SetActive(true);
-		//TeleportTransmitter.parent = null;
-		//TeleportTransmitter.position = transform.position + new Vector3(0f, 0f, 0.5f);
-		EventManager.TriggerEvent("Player1InAbility");
-		nearbyPlayer.transform.position = transform.position + new Vector3(0f, 0f, 0.5f);
-		nearbyPlayer.transform.rotation = transform.rotation;
-		nearbyPlayer.GetComponent<Rigidbody>().velocity = StartVelocity;
+		TeleportTransmitter.gameObject.SetActive(true);
+		TeleportTransmitter.parent = null;
+		TeleportTransmitter.position = transform.position + new Vector3(0f, 0f, 0.5f);
+		TeleportTransmitter.GetComponent<Rigidbody>().velocity = StartVelocity;
+		EventManager.TriggerEvent($"Player{PlayerID}InAbility");
+		//nearbyPlayer.transform.position = transform.position + new Vector3(0f, 0f, 0.5f);
+		//nearbyPlayer.transform.rotation = transform.rotation;
+		//nearbyPlayer.GetComponent<Rigidbody>().velocity = StartVelocity;
 		OnLiftUpAbility();
 	}
 
