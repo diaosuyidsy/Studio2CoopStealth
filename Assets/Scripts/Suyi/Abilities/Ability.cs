@@ -49,7 +49,6 @@ public abstract class Ability : MonoBehaviour
 
 	public virtual void OnEnable()
 	{
-		//EventManager.StartListening($"Player{PlayerID}InAbility", () => _isUsingOtherAbility = true);
 		EventManager.StartListening($"Player{PlayerID}InAbility",
 			() =>
 			{
@@ -64,7 +63,6 @@ public abstract class Ability : MonoBehaviour
 				GetComponent<vShooterMeleeInput>().enabled = true;
 			}
 		);
-		//EventManager.StartListening($"Player{PlayerID}Free", () => _isUsingOtherAbility = false);
 	}
 
 	public virtual void OnDisable()
@@ -83,8 +81,6 @@ public abstract class Ability : MonoBehaviour
 				GetComponent<vShooterMeleeInput>().enabled = true;
 			}
 		);
-		//EventManager.StopListening($"Player{PlayerID}InAbility", () => _isUsingOtherAbility = true);
-		//EventManager.StopListening($"Player{PlayerID}Free", () => _isUsingOtherAbility = false);
 	}
 
 

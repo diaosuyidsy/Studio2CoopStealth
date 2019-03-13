@@ -1532,8 +1532,8 @@ MonoBehaviour:
   BaseCoolDown: 5
   SecondaryButtonName: RT
   ThrowThrust: 14.72
-  ThrowAngle: 45
   FetchRadius: 1.5
+  ThrowMarkMoveSpeed: 20
   ThrowMark: {fileID: 5528740680967196866}
   TeleportTransmitter: {fileID: 5528740679930312620}
   ThrowMarkLandMask:
