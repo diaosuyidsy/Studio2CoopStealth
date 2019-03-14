@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &813518728
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 813518729}
+  m_Layer: 8
+  m_Name: ShadowThrowMark
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &813518729
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 813518728}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 0.13, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5528740680766718984}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5528740679510627317
 GameObject:
   m_ObjectHideFlags: 0
@@ -843,6 +873,7 @@ Transform:
   - {fileID: 5528740680156052605}
   - {fileID: 5528740680967196866}
   - {fileID: 5528740679930312620}
+  - {fileID: 813518729}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -893,7 +924,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openCloseEvents: 0
   openCloseWindow: 1
-  selectedToolbar: 0
+  selectedToolbar: 3
   _isDead: 0
   _currentHealth: 0
   maxHealth: 100
@@ -1535,6 +1566,7 @@ MonoBehaviour:
   FetchRadius: 1.5
   ThrowMarkMoveSpeed: 20
   ThrowMark: {fileID: 5528740680967196866}
+  ShadowThrowMark: {fileID: 813518729}
   TeleportTransmitter: {fileID: 5528740679930312620}
   ThrowMarkLandMask:
     serializedVersion: 2

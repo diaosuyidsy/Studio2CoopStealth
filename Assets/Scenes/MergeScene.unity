@@ -29069,7 +29069,7 @@ PrefabInstance:
     - target: {fileID: 59234584415198763, guid: 7753b757f66dc5a4d8e4c95d9b39cc9c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 62.849995
+      value: 62.349995
       objectReference: {fileID: 0}
     - target: {fileID: 59234584415198763, guid: 7753b757f66dc5a4d8e4c95d9b39cc9c,
         type: 3}
@@ -29079,7 +29079,7 @@ PrefabInstance:
     - target: {fileID: 59234584415198763, guid: 7753b757f66dc5a4d8e4c95d9b39cc9c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.1200008
+      value: -1.6200001
       objectReference: {fileID: 0}
     - target: {fileID: 59234584415198763, guid: 7753b757f66dc5a4d8e4c95d9b39cc9c,
         type: 3}
@@ -29131,6 +29131,11 @@ PrefabInstance:
       propertyPath: tpCamera
       value: 
       objectReference: {fileID: 753739643}
+    - target: {fileID: 59234584415198804, guid: 7753b757f66dc5a4d8e4c95d9b39cc9c,
+        type: 3}
+      propertyPath: selectedToolbar
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7753b757f66dc5a4d8e4c95d9b39cc9c, type: 3}
 --- !u!1001 &4719874837990811941
@@ -29267,7 +29272,7 @@ PrefabInstance:
     - target: {fileID: 5528740680766718984, guid: b5c98a20cafbc5d409b67ee8db3e53a7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 61
+      value: 60.5
       objectReference: {fileID: 0}
     - target: {fileID: 5528740680766718984, guid: b5c98a20cafbc5d409b67ee8db3e53a7,
         type: 3}
@@ -29277,7 +29282,7 @@ PrefabInstance:
     - target: {fileID: 5528740680766718984, guid: b5c98a20cafbc5d409b67ee8db3e53a7,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.5
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 5528740680766718984, guid: b5c98a20cafbc5d409b67ee8db3e53a7,
         type: 3}

@@ -11,6 +11,7 @@ public class Ability_ThrowTransmitter : Ability
 	public float FetchRadius = 1.5f;
 	public float ThrowMarkMoveSpeed = 0.5f;
 	public Transform ThrowMark;
+	public Transform ShadowThrowMark;
 	public Transform TeleportTransmitter;
 	public LayerMask ThrowMarkLandMask;
 	public LayerMask ObstacleMask;
@@ -25,25 +26,46 @@ public class Ability_ThrowTransmitter : Ability
 	private float lineStepPerTime = 0.1f;
 	private float lineMaxTime = 10f;
 	private Vector3 _startVelocityCache;
+	//private Vector3 StartVelocity
+	//{
+	//	get
+	//	{
+	//		if (Mathf.Approximately(HRAxis, 0f) && Mathf.Approximately(VRAxis, 0f))
+	//		{
+	//			Vector3 temp = new Vector3(_startVelocityCache.x, 0f, _startVelocityCache.z);
+	//			float mgtemp = Mathf.Tan(ThrowAngle * Mathf.Deg2Rad) * temp.magnitude;
+	//			temp.y = mgtemp;
+	//			_startVelocityCache = temp.normalized * ThrowThrust;
+	//			return _startVelocityCache;
+	//		}
+	//		Vector3 tp = new Vector3(HRAxis, 0f, VRAxis);
+	//		var noy = new Vector3(_startVelocityCache.x, 0f, _startVelocityCache.z);
+	//		Vector3 result = Vector3.Slerp(noy, tp, Time.deltaTime * 2f);
+	//		float mag = Mathf.Tan(ThrowAngle * Mathf.Deg2Rad) * result.magnitude;
+	//		result.y = mag;
+	//		_startVelocityCache = result.normalized * ThrowThrust;
+	//		return _startVelocityCache;
+	//	}
+	//}
 	private Vector3 StartVelocity
 	{
 		get
 		{
-			if (Mathf.Approximately(HRAxis, 0f) && Mathf.Approximately(VRAxis, 0f))
-			{
-				Vector3 temp = new Vector3(_startVelocityCache.x, 0f, _startVelocityCache.z);
-				float mgtemp = Mathf.Tan(ThrowAngle * Mathf.Deg2Rad) * temp.magnitude;
-				temp.y = mgtemp;
-				_startVelocityCache = temp.normalized * ThrowThrust;
-				return _startVelocityCache;
-			}
-			Vector3 tp = new Vector3(HRAxis, 0f, VRAxis);
-			var noy = new Vector3(_startVelocityCache.x, 0f, _startVelocityCache.z);
-			Vector3 result = Vector3.Slerp(noy, tp, Time.deltaTime * 2f);
+			float diffz = ShadowThrowMark.position.z - transform.position.z;
+			float diffx = ShadowThrowMark.position.x - transform.position.x;
+			Vector3 result = new Vector3(diffx, 0f, diffz);
 			float mag = Mathf.Tan(ThrowAngle * Mathf.Deg2Rad) * result.magnitude;
 			result.y = mag;
 			_startVelocityCache = result.normalized * ThrowThrust;
 			return _startVelocityCache;
+		}
+	}
+
+	private float Range
+	{
+		get
+		{
+			return Mathf.Pow(ThrowThrust, 2) / -Physics.gravity.y - 1f;
 		}
 	}
 
@@ -87,6 +109,9 @@ public class Ability_ThrowTransmitter : Ability
 		if (rb) rb.velocity = Vector3.zero;
 		ThrowMark.parent = null;
 		ThrowMark.gameObject.SetActive(true);
+
+		ShadowThrowMark.parent = null;
+		ShadowThrowMark.gameObject.SetActive(true);
 	}
 
 	/// <summary>
@@ -98,8 +123,28 @@ public class Ability_ThrowTransmitter : Ability
 		HRAxis = _player.GetAxis("Move Horizontal");
 		VRAxis = _player.GetAxis("Move Vertical");
 		float VLAxis = _player.GetAxis("Camera Move Vertical");
-		ThrowAngle += VLAxis * ThrowMarkMoveSpeed * Time.deltaTime;
-		ThrowAngle = Mathf.Clamp(ThrowAngle, 10f, 89f);
+
+		// Move the Shadow Mark
+		Vector3 newPosition = ShadowThrowMark.position + new Vector3(HRAxis, 0f, VRAxis) * Time.deltaTime * ThrowMarkMoveSpeed;
+		RaycastHit hit;
+		if (Physics.Raycast(newPosition + new Vector3(0, 20f), Vector3.down, out hit, 100f, ThrowMarkLandMask))
+			newPosition.y = hit.point.y;
+		Vector3 centerPosition = transform.position;
+		float distance = Vector3.Distance(new Vector3(newPosition.x, 0f, newPosition.z), new Vector3(centerPosition.x, 0f, centerPosition.z));
+
+		if (distance > Range)
+		{
+			Vector3 fromOriginToObject = newPosition - centerPosition;
+			fromOriginToObject *= Range / distance;
+			newPosition = centerPosition + fromOriginToObject;
+			ShadowThrowMark.position = newPosition;
+		}
+		else ShadowThrowMark.position = newPosition;
+		ThrowAngle = 90f - Mathf.Asin(-Physics.gravity.y * distance / (ThrowThrust * ThrowThrust)) * Mathf.Rad2Deg / 2f;
+		// End Move
+
+		//ThrowAngle += VLAxis * ThrowMarkMoveSpeed * Time.deltaTime;
+		//ThrowAngle = Mathf.Clamp(ThrowAngle, 10f, 89f);
 		DrawTrajectory();
 
 		transform.LookAt(new Vector3(ThrowMark.position.x, transform.position.y, ThrowMark.position.z));
