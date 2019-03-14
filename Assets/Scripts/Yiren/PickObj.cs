@@ -5,11 +5,18 @@ using UnityEngine;
 
 public class PickObj : MonoBehaviour
 {
-    public Transform HoldingPos; //holding pos on player
+    private Transform HoldingPos; //holding pos on player
     public Transform[] pickUpTriggers;
     public Transform holdPosOnObj; 
     private bool isFalling = false;
-    public IKAnimation ikAnimation;
+    private IKAnimation ikAnimation;
+
+    private void Start()
+    {
+        ikAnimation = GameObject.Find("Player_Big").GetComponent<IKAnimation>();
+        HoldingPos = GameObject.Find("Player_Big").transform.Find("RigPelvis").Find("RigSpine1").Find("RigSpine2")
+            .Find("HoldingPos");
+    }
 
 
     public void SetObjParent(Transform triggerPos)
@@ -29,6 +36,7 @@ public class PickObj : MonoBehaviour
         Vector3 dir = Vector3.Scale(transform.position - triggerPos.position,new Vector3(1,0,1)).normalized;
         holdPosOnObj.rotation = Quaternion.LookRotation(dir);
         ikAnimation.setHandPos(holdPosOnObj.Find("RightHandPos"),holdPosOnObj.Find("LeftHandPos"));
+        ikAnimation.SetIKOn();
     }
     
     public void PutDown()
@@ -46,7 +54,7 @@ public class PickObj : MonoBehaviour
         {
             trigger.GetComponent<Collider>().enabled = true;
         }
-        
+        ikAnimation.SetIKOff();
 
     }
     
@@ -69,7 +77,7 @@ public class PickObj : MonoBehaviour
             RaycastHit rayHit = new RaycastHit();
             if (Physics.Raycast(ray, out rayHit,raycastDist))
             {
-                if (!rayHit.transform.tag.Equals("Player"))
+                if (!rayHit.transform.tag.Contains("Player"))
                 {
                     GetComponent<Rigidbody>().isKinematic = true;
                     isFalling = false;

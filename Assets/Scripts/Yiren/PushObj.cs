@@ -6,10 +6,17 @@ public class PushObj : MonoBehaviour
 {
 
     public Vector3 keepDis;
-    public void MoveObj(Transform PlayerPosition)
+    private Transform playerPos;
+
+    private void Start()
+    {
+        playerPos = GameObject.Find("Player_Big").transform;
+    }
+
+    public void MoveObj()
     {
 
-        transform.parent = PlayerPosition;
+        transform.parent = playerPos;
         transform.GetComponent<Rigidbody>().isKinematic = false;
     }
 
