@@ -928,6 +928,7 @@ GameObject:
   - component: {fileID: 59234584415198766}
   - component: {fileID: 59234584415198761}
   - component: {fileID: 59234584415198760}
+  - component: {fileID: 59234583749507692}
   m_Layer: 8
   m_Name: Player_Small
   m_TagString: Player2
@@ -1001,7 +1002,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openCloseEvents: 0
   openCloseWindow: 1
-  selectedToolbar: 5
+  selectedToolbar: 3
   _isDead: 0
   _currentHealth: 0
   maxHealth: 100
@@ -1502,6 +1503,24 @@ MonoBehaviour:
   BaseCoolDown: 1
   Range: 5
   _curCharge: 1
+--- !u!114 &59234583749507692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 59234584415198815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eadd5b1b55d7aec4fafa058b41535caa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ButtonName: A
+  BaseCoolDown: 0
+  Range: 2
+  InteractableMask:
+    serializedVersion: 2
+    m_Bits: 524288
 --- !u!1 &59234584474465823
 GameObject:
   m_ObjectHideFlags: 0
