@@ -54,6 +54,7 @@ public abstract class Ability : MonoBehaviour
 			{
 				GetComponent<vThirdPersonController>().enabled = false;
 				GetComponent<vShooterMeleeInput>().enabled = false;
+				_isUsingOtherAbility = true;
 			}
 		);
 		EventManager.StartListening($"Player{PlayerID}Free",
@@ -61,6 +62,7 @@ public abstract class Ability : MonoBehaviour
 			{
 				GetComponent<vThirdPersonController>().enabled = true;
 				GetComponent<vShooterMeleeInput>().enabled = true;
+				_isUsingOtherAbility = false;
 			}
 		);
 	}
@@ -72,6 +74,7 @@ public abstract class Ability : MonoBehaviour
 			{
 				GetComponent<vThirdPersonController>().enabled = false;
 				GetComponent<vShooterMeleeInput>().enabled = false;
+				_isUsingOtherAbility = true;
 			}
 		);
 		EventManager.StopListening($"Player{PlayerID}Free",
@@ -79,6 +82,7 @@ public abstract class Ability : MonoBehaviour
 			{
 				GetComponent<vThirdPersonController>().enabled = true;
 				GetComponent<vShooterMeleeInput>().enabled = true;
+				_isUsingOtherAbility = false;
 			}
 		);
 	}
