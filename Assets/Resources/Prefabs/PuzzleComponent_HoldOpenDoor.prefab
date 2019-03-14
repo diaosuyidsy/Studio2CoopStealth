@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8131698925321044098}
   m_Layer: 0
-  m_Name: HoldOpenDoor
+  m_Name: PuzzleComponent_HoldOpenDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -136,10 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14fe7af564076b747ad2def5d0694985, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Door: {fileID: 8131698925883623977}
-  FinalPositionOffset: {x: 0, y: 5, z: 0}
-  DoorOpenMovingSpeed: 2
-  DoorCloseMovingSpeed: 4
+  Object: {fileID: 1525620865}
 --- !u!1 &8131698925883623978
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,6 +150,7 @@ GameObject:
   - component: {fileID: 8131698925883623958}
   - component: {fileID: 8131698925883623959}
   - component: {fileID: 8131698925883623976}
+  - component: {fileID: 1525620865}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -448,3 +446,18 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 0}
+--- !u!114 &1525620865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8131698925883623978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db1cab3335fcfc146aeb7ec9e2cb54af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FinalPositionOffset: {x: 0, y: 5, z: 0}
+  DoorOpenMovingSpeed: 2
+  DoorCloseMovingSpeed: 4

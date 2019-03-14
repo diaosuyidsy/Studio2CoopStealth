@@ -907,7 +907,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.12464489
+  m_Radius: 0.27
   m_Height: 2.0600002
   m_Direction: 1
   m_Center: {x: 0, y: 1.0900003, z: 0.013649265}
@@ -1038,11 +1038,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openCloseEvents: 0
   openCloseWindow: 1
-  selectedToolbar: 2
+  selectedToolbar: 0
   playerId: 0
   lockInput: 0
-  unlockCursorOnStart: 0
-  showCursorOnStart: 0
+  unlockCursorOnStart: 1
+  showCursorOnStart: 1
   horizontalInput:
     actionName: Move Horizontal
     playerID: 0

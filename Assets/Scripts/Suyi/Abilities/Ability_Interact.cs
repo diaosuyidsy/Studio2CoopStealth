@@ -11,6 +11,7 @@ public class Ability_Interact : Ability
 	[SerializeField] private LayerMask InteractableMask;
 	private Collider _coll;
 	private bool _isInteracting;
+	private Interactable _temp;
 
 	public override void Awake()
 	{
@@ -21,12 +22,9 @@ public class Ability_Interact : Ability
 
 	private void Update()
 	{
-		if (_scanInteractable(out _interactable))
-		{
-			if (_player.GetButtonDown(ButtonName)) OnPressedDownAbility();
-			if (_player.GetButton(ButtonName)) OnHoldAbility();
-			if (_player.GetButtonUp(ButtonName)) OnLiftUpAbility();
-		}
+		if (_player.GetButtonDown(ButtonName)) OnPressedDownAbility();
+		if (_player.GetButton(ButtonName)) OnHoldAbility();
+		if (_player.GetButtonUp(ButtonName)) OnLiftUpAbility();
 	}
 
 	/// <summary>
@@ -63,9 +61,9 @@ public class Ability_Interact : Ability
 
 	public override void OnPressedDownAbility()
 	{
-		if (!_interactable.IsOccupied)
+		if (_scanInteractable(out _interactable) && !_interactable.IsOccupied)
 		{
-			_interactable.OnInteractDown();
+			_interactable.OnInteractDown(gameObject);
 			_isInteracting = true;
 			EventManager.TriggerEvent($"Player{PlayerID}InAbility");
 		}
@@ -74,14 +72,21 @@ public class Ability_Interact : Ability
 	public override void OnHoldAbility()
 	{
 		if (!_isInteracting) return;
-		_interactable.OnInteracting();
+		if (!_scanInteractable(out _temp))
+		{
+			OnLiftUpAbility();
+			return;
+		}
+
+		_interactable.OnInteracting(gameObject);
 	}
 
 	public override void OnLiftUpAbility()
 	{
-		if (!_isInteracting) return;
+		if (!_isInteracting || !_interactable) return;
 		EventManager.TriggerEvent($"Player{PlayerID}Free");
-		_interactable.OnInteractUp();
+		_interactable.OnInteractUp(gameObject);
 		_isInteracting = false;
+		_interactable = null;
 	}
 }

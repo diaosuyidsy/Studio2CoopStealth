@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4885800295504342099}
   - component: {fileID: 4885800295504342098}
   - component: {fileID: 4885800295504342101}
-  - component: {fileID: 4885800295504342100}
+  - component: {fileID: 1048994497}
   m_Layer: 19
   m_Name: Trigger
   m_TagString: Untagged
@@ -92,7 +92,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4885800295504342100
+--- !u!114 &1048994497
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -101,13 +101,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4885800295504342102}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f23e86225f66f94ea06211a97d2d06f, type: 3}
+  m_Script: {fileID: 11500000, guid: 6760c30d74db1664ba7eeccd60480f2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Door: {fileID: 4885800295786514192}
-  FinalPositionOffset: {x: 5, y: 0, z: 0}
-  DoorOpenMovingSpeed: 2
-  DoorCloseMovingSpeed: 4
+  Object: {fileID: 946668937}
 --- !u!1 &4885800295786514195
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,6 +118,7 @@ GameObject:
   - component: {fileID: 4885800295786514207}
   - component: {fileID: 4885800295786514206}
   - component: {fileID: 4885800295786514193}
+  - component: {fileID: 946668937}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -416,6 +414,21 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 0}
+--- !u!114 &946668937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4885800295786514195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db1cab3335fcfc146aeb7ec9e2cb54af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FinalPositionOffset: {x: 5, y: 0, z: 0}
+  DoorOpenMovingSpeed: 2
+  DoorCloseMovingSpeed: 4
 --- !u!1 &4885800296088293229
 GameObject:
   m_ObjectHideFlags: 0
@@ -426,7 +439,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4885800296088293226}
   m_Layer: 0
-  m_Name: StepOnDoorSingle
+  m_Name: PuzzleComponent_PressurePadDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
