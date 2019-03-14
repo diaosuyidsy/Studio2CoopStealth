@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &813518728
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 813518729}
+  m_Layer: 8
+  m_Name: ShadowThrowMark
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &813518729
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 813518728}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 0.13, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5528740680766718984}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5528740679510627317
 GameObject:
   m_ObjectHideFlags: 0
@@ -817,6 +847,7 @@ GameObject:
   - component: {fileID: 5528740680766719007}
   - component: {fileID: 5528740680766719006}
   - component: {fileID: 5528740680766719005}
+  - component: {fileID: 5528740679563701638}
   m_Layer: 8
   m_Name: Player_Big
   m_TagString: Player1
@@ -843,6 +874,7 @@ Transform:
   - {fileID: 5528740680156052605}
   - {fileID: 5528740680967196866}
   - {fileID: 5528740679930312620}
+  - {fileID: 813518729}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -875,7 +907,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.12464489
+  m_Radius: 0.27
   m_Height: 2.0600002
   m_Direction: 1
   m_Center: {x: 0, y: 1.0900003, z: 0.013649265}
@@ -893,7 +925,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openCloseEvents: 0
   openCloseWindow: 1
-  selectedToolbar: 0
+  selectedToolbar: 3
   _isDead: 0
   _currentHealth: 0
   maxHealth: 100
@@ -1006,11 +1038,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openCloseEvents: 0
   openCloseWindow: 1
-  selectedToolbar: 2
+  selectedToolbar: 0
   playerId: 0
   lockInput: 0
-  unlockCursorOnStart: 0
-  showCursorOnStart: 0
+  unlockCursorOnStart: 1
+  showCursorOnStart: 1
   horizontalInput:
     actionName: Move Horizontal
     playerID: 0
@@ -1532,9 +1564,10 @@ MonoBehaviour:
   BaseCoolDown: 5
   SecondaryButtonName: RT
   ThrowThrust: 14.72
-  ThrowAngle: 45
   FetchRadius: 1.5
+  ThrowMarkMoveSpeed: 20
   ThrowMark: {fileID: 5528740680967196866}
+  ShadowThrowMark: {fileID: 813518729}
   TeleportTransmitter: {fileID: 5528740679930312620}
   ThrowMarkLandMask:
     serializedVersion: 2
@@ -1558,6 +1591,24 @@ MonoBehaviour:
   BaseCoolDown: 1
   Range: 5
   _curCharge: 1
+--- !u!114 &5528740679563701638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5528740680766718991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eadd5b1b55d7aec4fafa058b41535caa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ButtonName: A
+  BaseCoolDown: 0
+  Range: 2
+  InteractableMask:
+    serializedVersion: 2
+    m_Bits: 524288
 --- !u!1 &5528740681051940330
 GameObject:
   m_ObjectHideFlags: 0

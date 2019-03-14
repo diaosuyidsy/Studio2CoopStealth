@@ -8,16 +8,17 @@ public class Ability_ThrowTransmitter : Ability
 {
 	public string SecondaryButtonName;
 	public float ThrowThrust = 10f;
-	[Range(10f, 87f)]
-	public float ThrowAngle = 45f;
 	public float FetchRadius = 1.5f;
+	public float ThrowMarkMoveSpeed = 0.5f;
 	public Transform ThrowMark;
+	public Transform ShadowThrowMark;
 	public Transform TeleportTransmitter;
 	public LayerMask ThrowMarkLandMask;
 	public LayerMask ObstacleMask;
 
+	[Range(10f, 89f)]
+	private float ThrowAngle = 45f;
 	private float firingAngle = 45f;
-	private float ThrowMarkMoveSpeed = 5f;
 	private float gravity = 25f;
 	private LineRenderer lineRenderer;
 	private float HRAxis;
@@ -25,19 +26,34 @@ public class Ability_ThrowTransmitter : Ability
 	private float lineStepPerTime = 0.1f;
 	private float lineMaxTime = 10f;
 	private Vector3 _startVelocityCache;
+	//private Vector3 StartVelocity
+	//{
+	//	get
+	//	{
+	//		if (Mathf.Approximately(HRAxis, 0f) && Mathf.Approximately(VRAxis, 0f))
+	//		{
+	//			Vector3 temp = new Vector3(_startVelocityCache.x, 0f, _startVelocityCache.z);
+	//			float mgtemp = Mathf.Tan(ThrowAngle * Mathf.Deg2Rad) * temp.magnitude;
+	//			temp.y = mgtemp;
+	//			_startVelocityCache = temp.normalized * ThrowThrust;
+	//			return _startVelocityCache;
+	//		}
+	//		Vector3 tp = new Vector3(HRAxis, 0f, VRAxis);
+	//		var noy = new Vector3(_startVelocityCache.x, 0f, _startVelocityCache.z);
+	//		Vector3 result = Vector3.Slerp(noy, tp, Time.deltaTime * 2f);
+	//		float mag = Mathf.Tan(ThrowAngle * Mathf.Deg2Rad) * result.magnitude;
+	//		result.y = mag;
+	//		_startVelocityCache = result.normalized * ThrowThrust;
+	//		return _startVelocityCache;
+	//	}
+	//}
 	private Vector3 StartVelocity
 	{
 		get
 		{
-			if (Mathf.Approximately(HRAxis, 0f) && Mathf.Approximately(VRAxis, 0f))
-			{
-				Vector3 temp = new Vector3(_startVelocityCache.x, 0f, _startVelocityCache.z);
-				float mgtemp = Mathf.Tan(ThrowAngle * Mathf.Deg2Rad) * temp.magnitude;
-				temp.y = mgtemp;
-				_startVelocityCache = temp.normalized * ThrowThrust;
-				return _startVelocityCache;
-			}
-			Vector3 result = new Vector3(HRAxis, 0f, VRAxis);
+			float diffz = ShadowThrowMark.position.z - transform.position.z;
+			float diffx = ShadowThrowMark.position.x - transform.position.x;
+			Vector3 result = new Vector3(diffx, 0f, diffz);
 			float mag = Mathf.Tan(ThrowAngle * Mathf.Deg2Rad) * result.magnitude;
 			result.y = mag;
 			_startVelocityCache = result.normalized * ThrowThrust;
@@ -45,10 +61,19 @@ public class Ability_ThrowTransmitter : Ability
 		}
 	}
 
+	private float Range
+	{
+		get
+		{
+			return Mathf.Pow(ThrowThrust, 2) / -Physics.gravity.y - 1f;
+		}
+	}
+
 	public override void Awake()
 	{
 		base.Awake();
 		lineRenderer = GetComponent<LineRenderer>();
+		_startVelocityCache = new Vector3(0, 1f, 1f);
 	}
 
 	private void Update()
@@ -84,6 +109,9 @@ public class Ability_ThrowTransmitter : Ability
 		if (rb) rb.velocity = Vector3.zero;
 		ThrowMark.parent = null;
 		ThrowMark.gameObject.SetActive(true);
+
+		ShadowThrowMark.parent = null;
+		ShadowThrowMark.gameObject.SetActive(true);
 	}
 
 	/// <summary>
@@ -95,8 +123,28 @@ public class Ability_ThrowTransmitter : Ability
 		HRAxis = _player.GetAxis("Move Horizontal");
 		VRAxis = _player.GetAxis("Move Vertical");
 		float VLAxis = _player.GetAxis("Camera Move Vertical");
-		ThrowAngle += VLAxis * ThrowMarkMoveSpeed;
-		ThrowAngle = Mathf.Clamp(ThrowAngle, 10f, 87f);
+
+		// Move the Shadow Mark
+		Vector3 newPosition = ShadowThrowMark.position + new Vector3(HRAxis, 0f, VRAxis) * Time.deltaTime * ThrowMarkMoveSpeed;
+		RaycastHit hit;
+		if (Physics.Raycast(newPosition + new Vector3(0, 20f), Vector3.down, out hit, 100f, ThrowMarkLandMask))
+			newPosition.y = hit.point.y;
+		Vector3 centerPosition = transform.position;
+		float distance = Vector3.Distance(new Vector3(newPosition.x, 0f, newPosition.z), new Vector3(centerPosition.x, 0f, centerPosition.z));
+
+		if (distance > Range)
+		{
+			Vector3 fromOriginToObject = newPosition - centerPosition;
+			fromOriginToObject *= Range / distance;
+			newPosition = centerPosition + fromOriginToObject;
+			ShadowThrowMark.position = newPosition;
+		}
+		else ShadowThrowMark.position = newPosition;
+		ThrowAngle = 90f - Mathf.Asin(-Physics.gravity.y * distance / (ThrowThrust * ThrowThrust)) * Mathf.Rad2Deg / 2f;
+		// End Move
+
+		//ThrowAngle += VLAxis * ThrowMarkMoveSpeed * Time.deltaTime;
+		//ThrowAngle = Mathf.Clamp(ThrowAngle, 10f, 89f);
 		DrawTrajectory();
 
 		transform.LookAt(new Vector3(ThrowMark.position.x, transform.position.y, ThrowMark.position.z));
@@ -121,8 +169,6 @@ public class Ability_ThrowTransmitter : Ability
 	private void OnPressedDownSecondaryAbility()
 	{
 		if (!ThrowMark.gameObject.activeSelf) return;
-		//GameObject nearbyPlayer = _hasOtherPlayerNearby(FetchRadius);
-		//if (nearbyPlayer == null) return;
 		nextReadyTime = Time.time + BaseCoolDown;
 		coolDownTimeLeft = BaseCoolDown;
 		TeleportTransmitter.gameObject.SetActive(true);
@@ -130,9 +176,6 @@ public class Ability_ThrowTransmitter : Ability
 		TeleportTransmitter.position = transform.position + new Vector3(0f, 0f, 0f);
 		TeleportTransmitter.GetComponent<Rigidbody>().velocity = StartVelocity;
 		EventManager.TriggerEvent($"Player{PlayerID}InAbility");
-		//nearbyPlayer.transform.position = transform.position + new Vector3(0f, 0f, 0.5f);
-		//nearbyPlayer.transform.rotation = transform.rotation;
-		//nearbyPlayer.GetComponent<Rigidbody>().velocity = StartVelocity;
 		OnLiftUpAbility();
 	}
 
@@ -189,6 +232,32 @@ public class Ability_ThrowTransmitter : Ability
 	{
 		return start + startVelocity * time + Physics.gravity * time * time * 0.5f;
 	}
+
+	public override void OnEnable()
+	{
+		base.OnEnable();
+		EventManager.StartListening($"Player{PlayerID}InAbility",
+			() =>
+			{
+				GetComponent<Animator>().SetFloat("InputVertical", 0f);
+				GetComponent<Animator>().SetFloat("InputHorizontal", 0f);
+				GetComponent<Animator>().SetFloat("InputMagnitude", 0f);
+			}
+		);
+	}
+
+	public override void OnDisable()
+	{
+		base.OnDisable();
+		EventManager.StopListening($"Player{PlayerID}InAbility",
+			() =>
+			{
+				GetComponent<Animator>().SetFloat("InputVertical", 0f);
+				GetComponent<Animator>().SetFloat("InputHorizontal", 0f);
+				GetComponent<Animator>().SetFloat("InputMagnitude", 0f);
+			}
+		);
+	}
 }
 
 [CustomEditor(typeof(Ability_ThrowTransmitter))]
@@ -202,56 +271,3 @@ public class DrawWireArc : Editor
 		Handles.DrawWireArc(AA.transform.position - new Vector3(0f, 1f, 0f), AA.transform.up, AA.transform.forward, 360f, AA.FetchRadius);
 	}
 }
-
-//float HAxis = _player.GetAxis("Move Horizontal");
-//float VAxis = _player.GetAxis("Move Vertical");
-//Vector3 newPosition = ThrowMark.position + new Vector3(HAxis, 0f, VAxis) * ThrowMarkMoveSpeed;
-//RaycastHit hit;
-//if (Physics.Raycast(newPosition + new Vector3(0, 20f), Vector3.down, out hit, Mathf.Infinity, ThrowMarkLandMask))
-//	newPosition.y = hit.point.y;
-//Vector3 centerPosition = transform.position - new Vector3(0f, 1f);
-//float distance = Vector3.Distance(newPosition, centerPosition);
-
-//if (distance > Range)
-//{
-//	Vector3 fromOriginToObject = newPosition - centerPosition;
-//	fromOriginToObject *= Range / distance;
-//	newPosition = centerPosition + fromOriginToObject;
-//	ThrowMark.position = newPosition;
-//}
-//else ThrowMark.position = newPosition;
-
-//IEnumerator SimulateProjectile()
-//{
-//	TeleportTransmitter.gameObject.SetActive(true);
-//	TeleportTransmitter.parent = null;
-//	// Move projectile to the position of throwing object + add some offset if needed.
-//	TeleportTransmitter.position = transform.position + new Vector3(0f, 0f, 0.5f);
-
-//	// Calculate distance to target
-//	float targetDistance = Vector3.Distance(TeleportTransmitter.position, ThrowMark.position);
-
-//	// Calculate the velocity needed to throw the object to the target at specified angle.
-//	float projectileVelocity = targetDistance / (Mathf.Sin(2 * firingAngle * Mathf.Deg2Rad) / gravity);
-
-//	// Extract the X  Y componenent of the velocity
-//	float Vx = Mathf.Sqrt(projectileVelocity) * Mathf.Cos(firingAngle * Mathf.Deg2Rad);
-//	float Vy = Mathf.Sqrt(projectileVelocity) * Mathf.Sin(firingAngle * Mathf.Deg2Rad);
-
-//	// Calculate flight time.
-//	float flightDuration = targetDistance / Vx;
-
-//	TeleportTransmitter.rotation = Quaternion.LookRotation(ThrowMark.position - TeleportTransmitter.position);
-
-//	OnLiftUpAbility();
-
-//	float elapsedTime = 0f;
-
-//	while (elapsedTime < flightDuration)
-//	{
-//		TeleportTransmitter.Translate(0, (Vy - (gravity * elapsedTime)) * Time.deltaTime, Vx * Time.deltaTime);
-//		elapsedTime += Time.deltaTime;
-//		yield return null;
-//	}
-//	TeleportTransmitter.rotation = Quaternion.identity;
-//}
