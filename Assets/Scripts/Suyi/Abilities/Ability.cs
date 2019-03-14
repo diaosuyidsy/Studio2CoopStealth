@@ -49,12 +49,12 @@ public abstract class Ability : MonoBehaviour
 
 	public virtual void OnEnable()
 	{
-		//EventManager.StartListening($"Player{PlayerID}InAbility", () => _isUsingOtherAbility = true);
 		EventManager.StartListening($"Player{PlayerID}InAbility",
 			() =>
 			{
 				GetComponent<vThirdPersonController>().enabled = false;
 				GetComponent<vShooterMeleeInput>().enabled = false;
+				_isUsingOtherAbility = true;
 			}
 		);
 		EventManager.StartListening($"Player{PlayerID}Free",
@@ -62,9 +62,9 @@ public abstract class Ability : MonoBehaviour
 			{
 				GetComponent<vThirdPersonController>().enabled = true;
 				GetComponent<vShooterMeleeInput>().enabled = true;
+				_isUsingOtherAbility = false;
 			}
 		);
-		//EventManager.StartListening($"Player{PlayerID}Free", () => _isUsingOtherAbility = false);
 	}
 
 	public virtual void OnDisable()
@@ -74,6 +74,7 @@ public abstract class Ability : MonoBehaviour
 			{
 				GetComponent<vThirdPersonController>().enabled = false;
 				GetComponent<vShooterMeleeInput>().enabled = false;
+				_isUsingOtherAbility = true;
 			}
 		);
 		EventManager.StopListening($"Player{PlayerID}Free",
@@ -81,10 +82,9 @@ public abstract class Ability : MonoBehaviour
 			{
 				GetComponent<vThirdPersonController>().enabled = true;
 				GetComponent<vShooterMeleeInput>().enabled = true;
+				_isUsingOtherAbility = false;
 			}
 		);
-		//EventManager.StopListening($"Player{PlayerID}InAbility", () => _isUsingOtherAbility = true);
-		//EventManager.StopListening($"Player{PlayerID}Free", () => _isUsingOtherAbility = false);
 	}
 
 
