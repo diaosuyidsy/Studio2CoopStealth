@@ -22,6 +22,10 @@ public class Laser : MonoBehaviour
 			{
 				lr.SetPosition(1, hit.point);
 			}
+			if (hit.collider.CompareTag("Player1") || hit.collider.CompareTag("Player2") || hit.collider.CompareTag("Enemy"))
+			{
+				hit.collider.gameObject.SetActive(false);
+			}
 		}
 		else lr.SetPosition(1, transform.forward * 5000);
 	}
