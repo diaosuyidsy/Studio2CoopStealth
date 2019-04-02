@@ -33,11 +33,13 @@ public class Interactable_TriggerControlpad : Interactable
 		{
 			float haxis = _curPlayer.GetAxis("Move Horizontal");
 			float vaxis = _curPlayer.GetAxis("Move Vertical");
-			_moveVector.x = haxis * MoveSpeed;
-			_moveVector.z = vaxis * MoveSpeed;
-			_rb.velocity = _moveVector;
+			//_moveVector.x = haxis * MoveSpeed;
+			//_moveVector.z = vaxis * MoveSpeed;
+			//_rb.velocity = _moveVector;
 			// Clamp Pad Position
 			Vector3 _curPosition = transform.position;
+			_curPosition.x += Time.deltaTime * MoveSpeed * haxis;
+			_curPosition.z += Time.deltaTime * MoveSpeed * vaxis;
 			_curPosition.x = Mathf.Clamp(_curPosition.x, _xmin, _xmax);
 			_curPosition.z = Mathf.Clamp(_curPosition.z, _zmin, _zmax);
 			transform.position = _curPosition;

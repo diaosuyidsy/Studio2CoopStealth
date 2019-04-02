@@ -85,6 +85,7 @@ public abstract class Ability : MonoBehaviour
 				_isUsingOtherAbility = false;
 			}
 		);
+		EventManager.TriggerEvent("PlayerDied");
 	}
 
 
