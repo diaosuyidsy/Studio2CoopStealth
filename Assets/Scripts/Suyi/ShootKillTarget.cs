@@ -15,6 +15,7 @@ public class ShootKillTarget : Action
 			if (GetComponent<EnemyShootVisual>() != null)
 				GetComponent<EnemyShootVisual>().Shoot();
 			LockedTarget.Value.SetActive(false);
+			EventManager.TriggerEvent("PlayerDied");
 			LockedTarget.Value = null;
 			return TaskStatus.Success;
 		}

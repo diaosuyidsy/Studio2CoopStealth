@@ -89,4 +89,22 @@ public class Ability_Interact : Ability
 		_isInteracting = false;
 		_interactable = null;
 	}
+
+	public override void OnEnable()
+	{
+		base.OnEnable();
+		EventManager.StartListening("OnRewind", () =>
+		{
+			OnLiftUpAbility();
+		});
+	}
+
+	public override void OnDisable()
+	{
+		base.OnDisable();
+		EventManager.StopListening("OnRewind", () =>
+		{
+			OnLiftUpAbility();
+		});
+	}
 }

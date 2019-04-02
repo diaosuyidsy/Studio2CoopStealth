@@ -14,6 +14,7 @@ public class KillTarget : Action
 		{
 			LockedTarget.Value.SetActive(false);
 			LockedTarget.Value = null;
+			EventManager.TriggerEvent("PlayerDied");
 			return TaskStatus.Success;
 		}
 		else return TaskStatus.Failure;
