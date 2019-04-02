@@ -14,7 +14,9 @@ public class CameraController : MonoBehaviour
 	public float XOffset = 0f;
 	public float ZOffset = -0.33f;
 	public float WonFOVSize = 6f;
+	public float AdjustHeight = 0f;
 
+	private float _startPosY;
 	private float _maxDistanceOrigin;
 	private float _xDiffOrigin;
 	private float _zDiffOrigin;
@@ -35,6 +37,7 @@ public class CameraController : MonoBehaviour
 		// Set the max Distance originally
 		float maxDist = 0f;
 		_maxDistanceOrigin = maxDist;
+		_startPosY = transform.position.y;
 	}
 
 	// Update is called once per frame
@@ -54,7 +57,7 @@ public class CameraController : MonoBehaviour
 		{
 			return;
 		}
-		_desiredPosition = new Vector3(FollowTarget.x + _xDiffOrigin, transform.position.y, FollowTarget.z + _zDiffOrigin);
+		_desiredPosition = new Vector3(FollowTarget.x + _xDiffOrigin, _startPosY, FollowTarget.z + _zDiffOrigin) - AdjustHeight * transform.forward.normalized;
 		_smoothedPosition = Vector3.Lerp(transform.position, _desiredPosition, SmoothSpeed);
 		transform.position = _smoothedPosition;
 		_desiredFOV = 2f * MaxDistance() + 3.99f;

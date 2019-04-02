@@ -23,7 +23,7 @@ public class PickObj : MonoBehaviour
     {        
         transform.parent = HoldingPos;
         transform.position = HoldingPos.position;
-        transform.Find("Mesh").GetComponent<Collider>().isTrigger = true;
+        transform.GetComponent<Collider>().isTrigger = true;
         foreach (var trigger in pickUpTriggers)
         {
             trigger.GetComponent<Collider>().enabled = false;
@@ -63,7 +63,7 @@ public class PickObj : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         isFalling = true;
-        transform.Find("Mesh").GetComponent<Collider>().isTrigger = false;
+        transform.GetComponent<Collider>().isTrigger = false;
     }
 
     private void Update()

@@ -6,7 +6,7 @@ public class SavingPoint : MonoBehaviour
 {
 	public Vector3 P1SpawnOffset;
 	public Vector3 P2SpawnOffset;
-
+	public float CameraHeight;
 	public Vector3 Player1SpawnPoint
 	{
 		get
@@ -35,6 +35,7 @@ public class SavingPoint : MonoBehaviour
 		{
 			recorded = true;
 			SavingManager.SM.SavingIndex++;
+			Camera.main.transform.GetComponent<CameraController>().AdjustHeight = CameraHeight;
 		}
 	}
 
