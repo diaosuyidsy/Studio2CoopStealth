@@ -43,7 +43,7 @@ public class PulleyBasket : MonoBehaviour
 
 	private void OnCollisionEnter(Collision collision)
 	{
-		if (collision.collider.CompareTag("Player1") || collision.collider.CompareTag("Player2"))
+		if (collision.collider.CompareTag("Player1") || collision.collider.CompareTag("Player2") || collision.collider.CompareTag("Item"))
 		{
 			collision.collider.transform.parent = transform;
 			var rb = collision.collider.GetComponent<Rigidbody>();
@@ -56,6 +56,12 @@ public class PulleyBasket : MonoBehaviour
 		if (collision.collider.CompareTag("Player1") || collision.collider.CompareTag("Player2"))
 		{
 			collision.collider.transform.parent = null;
+			var rb = collision.collider.GetComponent<Rigidbody>();
+			_massOnObject -= rb.mass;
+		}
+
+		if (collision.collider.CompareTag("Item"))
+		{
 			var rb = collision.collider.GetComponent<Rigidbody>();
 			_massOnObject -= rb.mass;
 		}
