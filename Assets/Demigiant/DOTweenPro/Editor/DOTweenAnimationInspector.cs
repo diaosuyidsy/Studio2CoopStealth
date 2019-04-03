@@ -41,7 +41,7 @@ namespace DG.DOTweenEditor
 #if true // PHYSICS_MARKER
                 typeof(Rigidbody),
 #endif
-#if false // PHYSICS2D_MARKER
+#if true // PHYSICS2D_MARKER
                 typeof(Rigidbody2D),
 #endif
 #if true // UI_MARKER
@@ -53,7 +53,7 @@ namespace DG.DOTweenEditor
 #if true // PHYSICS_MARKER
                 typeof(Rigidbody),
 #endif
-#if false // PHYSICS2D_MARKER
+#if true // PHYSICS2D_MARKER
                 typeof(Rigidbody2D),
 #endif
                 typeof(Transform)

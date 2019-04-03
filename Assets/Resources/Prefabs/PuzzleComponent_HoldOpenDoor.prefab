@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 638501780}
   - component: {fileID: 638501782}
   - component: {fileID: 638501781}
+  - component: {fileID: 1867393475}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -101,9 +102,9 @@ MonoBehaviour:
   targetIsSelf: 1
   targetGO: {fileID: 0}
   tweenTargetIsTargetGO: 1
-  delay: 0
-  duration: 1.5
-  easeType: 30
+  delay: 0.5
+  duration: 1.2
+  easeType: 5
   easeCurve:
     serializedVersion: 2
     m_Curve:
@@ -131,7 +132,7 @@ MonoBehaviour:
   loopType: 0
   loops: 1
   id: Up
-  isRelative: 1
+  isRelative: 0
   isFrom: 0
   isIndependentUpdate: 0
   autoKill: 0
@@ -144,7 +145,7 @@ MonoBehaviour:
   autoPlay: 0
   useTargetAsV3: 0
   endValueFloat: 0
-  endValueV3: {x: 0, y: 5, z: 0}
+  endValueV3: {x: -1.503438, y: 7, z: 5.526255}
   endValueV2: {x: 0, y: 0}
   endValueColor: {r: 1, g: 1, b: 1, a: 1}
   endValueString: 
@@ -211,6 +212,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1867393475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 638501778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd1f496aad6cf1f48ac240c8954efbb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8131698925321044099
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,6 +233,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8131698925321044098}
+  - component: {fileID: 1776704037}
   m_Layer: 0
   m_Name: PuzzleComponent_HoldOpenDoor
   m_TagString: Untagged
@@ -243,6 +257,46 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1776704037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8131698925321044099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93f07fbb11db62d4390cbfa956b19c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NextSavePointIndex: 1
+  OnRewindEvents:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1867393476}
+        m_MethodName: DOPlayBackwards
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8131698925535907678}
+        m_MethodName: OnInteractUp
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &8131698925535907667
 GameObject:
   m_ObjectHideFlags: 0
@@ -349,6 +403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DTAnimationID: Down
+  Object: {fileID: 0}
 --- !u!114 &1867393476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -389,6 +444,17 @@ MonoBehaviour:
           m_StringArgument: Up
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1867393475}
+        m_MethodName: StopAllCoroutines
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   onUpdate:
@@ -414,15 +480,15 @@ MonoBehaviour:
   onRewind:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 638501780}
-        m_MethodName: DOPlayBackwardsById
-        m_Mode: 5
+      - m_Target: {fileID: 1867393475}
+        m_MethodName: PauseForSeconds
+        m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Up
+          m_FloatArgument: 1
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,

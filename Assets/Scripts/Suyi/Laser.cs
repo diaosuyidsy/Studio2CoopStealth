@@ -26,6 +26,10 @@ public class Laser : MonoBehaviour
 			{
 				hit.collider.gameObject.SetActive(false);
 			}
+			if (hit.collider.CompareTag("Player1") || hit.collider.CompareTag("Player2"))
+			{
+				EventManager.TriggerEvent("PlayerDied");
+			}
 		}
 		else lr.SetPosition(1, transform.forward * 5000);
 	}
