@@ -22,9 +22,7 @@ public class Rewindable : MonoBehaviour
 
 	public virtual void OnRewind()
 	{
-		print("Rewind1");
 		if (SavingManager.SM.SavingIndex > NextSavePointIndex) return;
-		print("Rewind2");
 		// First rewind the transform
 		transform.position = OriginalPosition;
 		transform.eulerAngles = OriginalRotation;

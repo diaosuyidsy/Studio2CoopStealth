@@ -34,13 +34,10 @@ public class Ability_Interact : Ability
 	/// <returns>true if there is interactablel object nearby</returns>
 	private bool _scanInteractable(out Interactable _int)
 	{
+		_int = null;
 		Collider[] hitcolliders = Physics.OverlapSphere(_coll.bounds.center, Range, InteractableMask);
 
-		if (hitcolliders.Length <= 0)
-		{
-			_int = null;
-			return false;
-		}
+		if (hitcolliders.Length <= 0) return false;
 
 		float minDist = Mathf.Infinity;
 		GameObject smallestGO = null;
@@ -48,12 +45,13 @@ public class Ability_Interact : Ability
 		{
 			var hit = hitcolliders[i].gameObject;
 			var dist = Vector3.Distance(hit.transform.position, _coll.bounds.center);
-			if (dist < minDist)
+			if (dist < minDist && hit.GetComponent<Interactable>() && !Physics.Linecast(transform.position, hit.transform.position, 1 << LayerMask.NameToLayer("Default")))
 			{
 				smallestGO = hit.gameObject;
 				minDist = dist;
 			}
 		}
+		if (!smallestGO) return false;
 		_int = smallestGO.GetComponent<Interactable>();
 		return true;
 
