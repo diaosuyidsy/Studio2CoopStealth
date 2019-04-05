@@ -192,12 +192,7 @@ namespace Invector.vCharacterController.vActions
 
         void RemovePushObjFromParent()
         {
-            if (transform.Find("push") != null)
-            {
-                transform.Find("push").GetComponent<PushObj>().StopMove();
-                
-            }
-            
+            ladderActionTemp.transform.parent.GetComponent<PushObj>().StopMove();
         }
 
         void ResetPlayerSettings()
