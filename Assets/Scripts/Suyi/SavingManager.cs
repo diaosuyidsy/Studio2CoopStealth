@@ -25,6 +25,8 @@ public class SavingManager : MonoBehaviour
 
 		yield return new WaitForSeconds(time);
 
+		EventManager.TriggerEvent("OnRewind");
+
 		Player1.transform.position = SavingPoints[SavingIndex].GetComponent<SavingPoint>().Player1SpawnPoint;
 		Player2.transform.position = SavingPoints[SavingIndex].GetComponent<SavingPoint>().Player2SpawnPoint;
 
