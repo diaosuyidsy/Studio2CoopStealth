@@ -7,7 +7,10 @@ public class SavingPoint : MonoBehaviour
 	public Vector3 P1SpawnOffset;
 	public Vector3 P2SpawnOffset;
 	public float CameraHeight;
+
 	public bool CameraFollowPlayer;
+	public Transform CamPosition;
+	public float CamFOV;
 
 	public Vector3 Player1SpawnPoint
 	{
