@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PushObj : MonoBehaviour
 {
-
-    public Vector3 keepDis;
     private Transform playerPos;
 
     private void Start()
@@ -15,13 +13,23 @@ public class PushObj : MonoBehaviour
 
     public void MoveObj()
     {
-
-        transform.parent = playerPos;
+        StartCoroutine(SetParent());
+        
+        
         transform.GetComponent<Rigidbody>().isKinematic = false;
     }
 
+    IEnumerator SetParent()
+    {
+        yield return new WaitForSeconds(1f);
+        transform.parent = playerPos;
+    }
+    
+    
+
     public void StopMove()
     {
+        StopAllCoroutines();
         transform.parent = null;
     }
 
