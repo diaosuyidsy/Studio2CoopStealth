@@ -10,6 +10,7 @@ namespace Invector.vCharacterController.vActions
     public class PushAction : vActionListener
     {
         #region public variables
+        public float pushSpeed = 2;
         public string actionTag = "PushTrigger";
         public RewiredInputWrapper verticallInput = new RewiredInputWrapper("Move Vertical");
         public RewiredInputWrapper horicallInput = new RewiredInputWrapper("Move Horizontal");
@@ -117,7 +118,7 @@ namespace Invector.vCharacterController.vActions
             speed = Vector3.Dot(moveDir, objDir);
             speed = Mathf.Clamp(speed, 0f, 1f);
             //speed = Mathf.Clamp(tpInput.cc.input.y, -1f, 1f);
-            tpInput.cc.animator.SetFloat("InputVertical", speed, 0.25f, Time.deltaTime);
+            tpInput.cc.animator.SetFloat("InputVertical", speed * pushSpeed, 0.25f, Time.deltaTime);
             
             
             // enter ladder behaviour           
@@ -130,13 +131,14 @@ namespace Invector.vCharacterController.vActions
                 {
                     // smoothly rotate the character to the target
                     transform.rotation = Quaternion.Lerp(transform.rotation, ladderActionTemp.matchTarget.transform.rotation, tpInput.cc.animator.GetCurrentAnimatorStateInfo(0).normalizedTime);
+                    
                 }
 
                 if (ladderActionTemp.matchTarget != null)
                 {
                     if (debugMode) Debug.Log("Match Target...");
                     // use match target to match the Y and Z target 
-                    tpInput.cc.MatchTarget(ladderActionTemp.matchTarget.transform.position, ladderActionTemp.matchTarget.transform.rotation, AvatarTarget.Root, new MatchTargetWeightMask(new Vector3(0, 0, 1), 0), ladderActionTemp.startMatchTarget, ladderActionTemp.endMatchTarget);
+                    tpInput.cc.MatchTarget(ladderActionTemp.matchTarget.transform.position, ladderActionTemp.matchTarget.transform.rotation, AvatarTarget.Root, new MatchTargetWeightMask(new Vector3(1, 1, 1), 0), ladderActionTemp.startMatchTarget, ladderActionTemp.endMatchTarget);
                 }
             }
 
@@ -192,9 +194,8 @@ namespace Invector.vCharacterController.vActions
         {
             if (transform.Find("push") != null)
             {
+                transform.Find("push").GetComponent<PushObj>().StopMove();
                 
-                //transform.Find("push").GetComponent<Rigidbody>().isKinematic = true;
-                transform.Find("push").parent = null;
             }
             
         }
