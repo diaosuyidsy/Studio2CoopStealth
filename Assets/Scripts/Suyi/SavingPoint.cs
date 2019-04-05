@@ -32,6 +32,13 @@ public class SavingPoint : MonoBehaviour
 	private bool P2Entered;
 	private bool recorded;
 
+	private int thisSavingIndex;
+
+	private void Awake()
+	{
+		thisSavingIndex = transform.GetSiblingIndex();
+	}
+
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.CompareTag("Player1")) P1Entered = true;
@@ -39,7 +46,7 @@ public class SavingPoint : MonoBehaviour
 		if (!recorded && P1Entered && P2Entered)
 		{
 			recorded = true;
-			SavingManager.SM.SavingIndex++;
+			SavingManager.SM.SavingIndex = thisSavingIndex + 1;
 			Camera.main.transform.GetComponent<CameraController>().AdjustHeight = CameraHeight;
 		}
 	}
