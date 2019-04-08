@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Rewired;
 
 public class SavingManager : MonoBehaviour
 {
@@ -39,6 +40,8 @@ public class SavingManager : MonoBehaviour
 	{
 		EventManager.StartListening("PlayerDied", () =>
 		{
+			ReInput.players.GetPlayer(0).SetVibration(0, 1.0f, 0.25f);
+			ReInput.players.GetPlayer(1).SetVibration(0, 1.0f, 0.25f);
 			StartCoroutine(Revive(2f));
 		});
 	}
@@ -47,6 +50,8 @@ public class SavingManager : MonoBehaviour
 	{
 		EventManager.StopListening("PlayerDied", () =>
 		{
+			ReInput.players.GetPlayer(0).SetVibration(0, 1.0f, 0.25f);
+			ReInput.players.GetPlayer(1).SetVibration(0, 1.0f, 0.25f);
 			StartCoroutine(Revive(2f));
 		});
 	}
