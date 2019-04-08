@@ -37,7 +37,7 @@ public class Rewindable : MonoBehaviour
 		EventManager.StartListening("OnRewind", OnRewind);
 	}
 
-	protected virtual void OnDisable()
+    protected virtual void OnDisable()
 	{
 		EventManager.StopListening("OnRewind", OnRewind);
 	}
