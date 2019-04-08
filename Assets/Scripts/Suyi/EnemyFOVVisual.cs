@@ -7,6 +7,7 @@ public class EnemyFOVVisual : MonoBehaviour
 
 	public float viewRadius { get; set; }
 	public float viewAngle { get; set; }
+	public float discoverDistance { get; set; }
 
 	public LayerMask targetMask;
 	public LayerMask obstacleMask;
@@ -22,12 +23,16 @@ public class EnemyFOVVisual : MonoBehaviour
 
 	public MeshFilter viewMeshFilter;
 	Mesh viewMesh;
+	Renderer meshRenderer;
 
 	void Start()
 	{
 		viewMesh = new Mesh();
 		viewMesh.name = "View Mesh";
 		viewMeshFilter.mesh = viewMesh;
+		meshRenderer = viewMeshFilter.GetComponent<Renderer>();
+		// Set up a copy of the material
+		meshRenderer.material = new Material(meshRenderer.material);
 
 		StartCoroutine("FindTargetsWithDelay", .2f);
 	}
@@ -40,6 +45,11 @@ public class EnemyFOVVisual : MonoBehaviour
 			yield return new WaitForSeconds(delay);
 			FindVisibleTargets();
 		}
+	}
+
+	private void Update()
+	{
+		meshRenderer.material.SetFloat("_TransitionDistance", discoverDistance);
 	}
 
 	void LateUpdate()
@@ -122,6 +132,14 @@ public class EnemyFOVVisual : MonoBehaviour
 
 		viewMesh.vertices = vertices;
 		viewMesh.triangles = triangles;
+		// TO Create UVs on the newly created meshes
+		Vector2[] uvs = new Vector2[vertices.Length];
+		for (int i = 0; i < uvs.Length; i++)
+		{
+			uvs[i] = new Vector2(vertices[i].x, vertices[i].z);
+		}
+		viewMesh.uv = uvs;
+
 		viewMesh.RecalculateNormals();
 	}
 

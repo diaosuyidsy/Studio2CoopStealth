@@ -16,6 +16,7 @@ public class SavingManager : MonoBehaviour
 		SavingPoints = GetComponentsInChildren<Transform>();
 		Player1 = GameObject.FindGameObjectWithTag("Player1");
 		Player2 = GameObject.FindGameObjectWithTag("Player2");
+		SavingIndex = 0;
 	}
 
 	IEnumerator Revive(float time)
