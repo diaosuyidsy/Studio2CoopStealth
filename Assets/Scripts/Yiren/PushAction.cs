@@ -33,6 +33,7 @@ namespace Invector.vCharacterController.vActions
         protected bool isExitingLadder;
         protected bool triggerEnterOnce;
         protected bool triggerExitOnce;
+        protected bool isTouchingPushObject;
 
         #endregion
 
@@ -51,6 +52,7 @@ namespace Invector.vCharacterController.vActions
             exitInput.playerID = tpInput.playerId;
         }
 
+
         void Update()
         {
             //AutoEnterLadder(); 
@@ -67,7 +69,20 @@ namespace Invector.vCharacterController.vActions
                 // enable movement using root motion
                 transform.rotation = tpInput.cc.animator.rootRotation;
             }
+
+            float targetDis = Vector3.Distance(Vector3.Scale(new Vector3(1, 0, 1), transform.position),
+                Vector3.Scale(new Vector3(1, 0, 1), ladderActionTemp.matchTarget.transform.position));
+            if (tpInput.cc.baseLayerInfo.IsName("Push") && targetDis > 1.05f)
+            {
+                return;
+            }
+            if (isTouchingPushObject)
+            {
+                return;
+            }
             transform.position = tpInput.cc.animator.rootPosition;
+
+            
         }//****************************************************//
 
         void EnterLadderInput()
