@@ -8,6 +8,7 @@ public class Interactable_PressurepadTrigger : Interactable_Trigger
 	{
 		if (collision.collider.CompareTag("Player1") || collision.collider.CompareTag("Player2"))
 		{
+			collision.collider.transform.parent = transform;
 			OnInteractDown(collision.collider.gameObject);
 		}
 	}
@@ -16,6 +17,7 @@ public class Interactable_PressurepadTrigger : Interactable_Trigger
 	{
 		if (collision.collider.CompareTag("Player1") || collision.collider.CompareTag("Player2"))
 		{
+			collision.collider.transform.parent = null;
 			OnInteractUp(collision.collider.gameObject);
 		}
 	}
