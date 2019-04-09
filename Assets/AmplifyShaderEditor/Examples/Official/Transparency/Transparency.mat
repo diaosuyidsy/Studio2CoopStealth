@@ -112,9 +112,9 @@ Material:
     - _OcclusionStrength: 1
     - _Op: 1
     - _Opa: 1
-    - _Opacity: 0.394
+    - _Opacity: 0.111
     - _Parallax: 0.02
-    - _Smoothness: 1
+    - _Smoothness: 0.565
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
