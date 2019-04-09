@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8182265481597418739}
   - component: {fileID: 8182265481597418749}
   - component: {fileID: 8182265481597418748}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: SavingPoint (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,6 +59,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   P1SpawnOffset: {x: -1.96, y: 0, z: 0}
   P2SpawnOffset: {x: 1.34, y: 0, z: 0}
+  CameraHeight: 0
+  CameraFollowPlayer: 0
+  CamPosition: {fileID: 0}
+  CamFOV: 0
 --- !u!1 &8182265481887736912
 GameObject:
   m_ObjectHideFlags: 0
@@ -70,7 +74,7 @@ GameObject:
   - component: {fileID: 8182265481887736913}
   - component: {fileID: 8182265481887736914}
   - component: {fileID: 8182265481887736915}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: SavingPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,6 +122,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   P1SpawnOffset: {x: -6.84, y: 0, z: 0}
   P2SpawnOffset: {x: 5.12, y: 0, z: 0}
+  CameraHeight: 0
+  CameraFollowPlayer: 0
+  CamPosition: {fileID: 0}
+  CamFOV: 0
 --- !u!1 &8182265482447463890
 GameObject:
   m_ObjectHideFlags: 0
@@ -129,7 +137,7 @@ GameObject:
   - component: {fileID: 8182265482447463891}
   - component: {fileID: 8182265482447463901}
   - component: {fileID: 8182265482447463900}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: SavingPoint (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,6 +185,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   P1SpawnOffset: {x: 0, y: 0, z: 2.49}
   P2SpawnOffset: {x: 0, y: 0, z: 0}
+  CameraHeight: 0
+  CameraFollowPlayer: 0
+  CamPosition: {fileID: 0}
+  CamFOV: 0
 --- !u!1 &8182265482562029616
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,7 +200,7 @@ GameObject:
   - component: {fileID: 8182265482562029617}
   - component: {fileID: 8182265482562029619}
   - component: {fileID: 8182265482562029618}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: SavingPoint (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236,6 +248,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   P1SpawnOffset: {x: 0.02, y: 0, z: -3.71}
   P2SpawnOffset: {x: 0, y: 0, z: 1.04}
+  CameraHeight: 0
+  CameraFollowPlayer: 0
+  CamPosition: {fileID: 0}
+  CamFOV: 0
 --- !u!1 &8182265482860923468
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,7 +262,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8182265482860923469}
   - component: {fileID: 8182265482860923470}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: SavingManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -296,7 +312,7 @@ GameObject:
   - component: {fileID: 8182265483174652968}
   - component: {fileID: 8182265483174652970}
   - component: {fileID: 8182265483174652969}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: SavingPoint (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -344,6 +360,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   P1SpawnOffset: {x: 5.59, y: 0, z: 0}
   P2SpawnOffset: {x: -7.23, y: 0, z: 0}
+  CameraHeight: 0
+  CameraFollowPlayer: 0
+  CamPosition: {fileID: 0}
+  CamFOV: 0
 --- !u!1 &8182265483193678668
 GameObject:
   m_ObjectHideFlags: 0
@@ -355,7 +375,7 @@ GameObject:
   - component: {fileID: 8182265483193678669}
   - component: {fileID: 8182265483193678671}
   - component: {fileID: 8182265483193678670}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: SavingPoint (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -403,3 +423,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   P1SpawnOffset: {x: -2.56, y: 0, z: 0}
   P2SpawnOffset: {x: 1.48, y: 0, z: 0}
+  CameraHeight: 0
+  CameraFollowPlayer: 0
+  CamPosition: {fileID: 0}
+  CamFOV: 0
