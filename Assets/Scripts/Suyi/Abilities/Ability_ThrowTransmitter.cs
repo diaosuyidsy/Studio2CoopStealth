@@ -26,6 +26,17 @@ public class Ability_ThrowTransmitter : Ability
 	private float lineStepPerTime = 0.1f;
 	private float lineMaxTime = 10f;
 	private Vector3 _startVelocityCache;
+	private Vector3 _bodyCenter
+	{
+		get
+		{
+			var coll = GetComponent<Collider>();
+			Debug.Assert(coll != null);
+			var pos = transform.position;
+			pos.y += coll.bounds.extents.y;
+			return pos;
+		}
+	}
 	//private Vector3 StartVelocity
 	//{
 	//	get
@@ -129,7 +140,7 @@ public class Ability_ThrowTransmitter : Ability
 		RaycastHit hit;
 		if (Physics.Raycast(newPosition + new Vector3(0, 20f), Vector3.down, out hit, 100f, ThrowMarkLandMask))
 			newPosition.y = hit.point.y;
-		Vector3 centerPosition = transform.position;
+		Vector3 centerPosition = _bodyCenter;
 		float distance = Vector3.Distance(new Vector3(newPosition.x, 0f, newPosition.z), new Vector3(centerPosition.x, 0f, centerPosition.z));
 
 		if (distance > Range)
@@ -173,7 +184,7 @@ public class Ability_ThrowTransmitter : Ability
 		coolDownTimeLeft = BaseCoolDown;
 		TeleportTransmitter.gameObject.SetActive(true);
 		TeleportTransmitter.parent = null;
-		TeleportTransmitter.position = transform.position + new Vector3(0f, 0f, 0f);
+		TeleportTransmitter.position = _bodyCenter;
 		TeleportTransmitter.GetComponent<Rigidbody>().velocity = StartVelocity;
 		EventManager.TriggerEvent($"Player{PlayerID}InAbility");
 		OnLiftUpAbility();
@@ -191,7 +202,7 @@ public class Ability_ThrowTransmitter : Ability
 
 	private void DrawTrajectory()
 	{
-		var points = GetTrajectoryPoints(transform.position, StartVelocity, lineStepPerTime, lineMaxTime);
+		var points = GetTrajectoryPoints(_bodyCenter, StartVelocity, lineStepPerTime, lineMaxTime);
 		if (lineRenderer)
 		{
 			if (!lineRenderer.enabled) lineRenderer.enabled = true;
