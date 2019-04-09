@@ -25,6 +25,6 @@ Material:
     - _Opacity: 0
     - _TransitionDistance: 0
     - _TransitionFalloff: 300
-    - _Transparency: 0.7
+    - _Transparency: 0.3
     - __dirty: 0
     m_Colors: []
