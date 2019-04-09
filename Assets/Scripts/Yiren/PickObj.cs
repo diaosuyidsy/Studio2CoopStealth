@@ -14,8 +14,7 @@ public class PickObj : MonoBehaviour
     private void Start()
     {
         ikAnimation = GameObject.Find("Player_Big").GetComponent<IKAnimation>();
-        HoldingPos = GameObject.Find("Player_Big").transform.Find("RigPelvis").Find("RigSpine1").Find("RigSpine2")
-            .Find("HoldingPos");
+        HoldingPos = GameObject.Find("Player_Big").transform.Find("Armature").Find("hip").Find("HoldingPos");
     }
 
 

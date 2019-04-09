@@ -9,8 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Material
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: _ALPHABLEND_ON _DETAIL_MULX2 _NORMALMAP
-  m_LightmapFlags: 5
+  m_ShaderKeywords: _ALPHABLEND_ON _DETAIL_MULX2 _EMISSION _NORMALMAP
+  m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 3000
@@ -59,16 +59,20 @@ Material:
     m_Floats:
     - _BumpScale: 1
     - _Cutoff: 0.5
-    - _DetailNormalMapScale: 0.5
+    - _DetailNormalMapScale: 0
     - _DstBlend: 10
-    - _Glossiness: 0.836
-    - _Metallic: 1
+    - _GlossMapScale: 1
+    - _Glossiness: 0.77
+    - _GlossyReflections: 1
+    - _Metallic: 0.7
     - _Mode: 2
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
     - _SrcBlend: 5
     - _UVSec: 0
     - _ZWrite: 0
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 0.641}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _Color: {r: 0.13207549, g: 0.13207549, b: 0.13207549, a: 0.641}
+    - _EmissionColor: {r: 0.02296189, g: 0.023470247, b: 0.03773582, a: 1}
