@@ -21,10 +21,17 @@ Material:
     m_TexEnvs: []
     m_Floats:
     - _Distance: 95.2
-    - _Float0: 3
+    - _Falloff: -0.5
+    - _Float0: 0
+    - _Float1: 300
+    - _Float2: 1
     - _Opacity: 0
+    - _TransDis: 0
+    - _TransitionDis: 0.5
     - _TransitionDistance: 0
     - _TransitionFalloff: 300
-    - _Transparency: 0.3
+    - _Transparency: 0
     - __dirty: 0
-    m_Colors: []
+    m_Colors:
+    - _FoundColor: {r: 1, g: 0.14622623, b: 0.14622623, a: 1}
+    - _VisionColor: {r: 1, g: 0.998481, b: 0.7311321, a: 1}
