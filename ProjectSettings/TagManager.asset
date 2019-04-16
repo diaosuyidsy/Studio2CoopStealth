@@ -38,6 +38,7 @@ TagManager:
   - TeleportTransmitter
   - Mech
   - PushTrigger
+  - TriggerInteractable
   layers:
   - Default
   - TransparentFX
