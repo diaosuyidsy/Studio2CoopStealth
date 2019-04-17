@@ -33,7 +33,10 @@ public class ObjectGenerator : MonoBehaviour
 	public void SpawnObjectWorldPosition(Vector3 position)
 	{
 		if (OnlyAllowOnceInstanceInWorld && SpawnedObject != null)
-			Destroy(SpawnedObject);
+		{
+			SpawnedObject.transform.position = Vector3.zero;
+			Destroy(SpawnedObject, 0.1f);
+		}
 		SpawnedObject = Instantiate(SpawnedObjectPrefab, position, Quaternion.identity);
 	}
 
