@@ -2,26 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(LineRenderer))]
 [RequireComponent(typeof(Light))]
 public class EnemyShootVisual : MonoBehaviour
 {
 	public float timeBetweenBullets = 0.3f;        // The time between each shot.
 	public float range = Mathf.Infinity;            // The distance the gun can fire.
+	public float BulletSpeed = 500f;
+	public GameObject BulletPrefab;
 
 	float timer;                                    // A timer to determine when to fire.
 	Ray shootRay;                                   // A ray from the gun end forwards.
 	RaycastHit shootHit;                            // A raycast hit to get information about what was hit.
 	public LayerMask shootableMask;                              // A layer mask so the raycast only hits things on the shootable layer.
-	LineRenderer gunLine;                           // Reference to the line renderer.
 	Light gunLight;                                 // Reference to the light component.
 	float effectsDisplayTime = 1f;                // The proportion of the timeBetweenBullets that the effects will display for.
+	private GameObject _bulletInstance;
+	private Vector3 _bulletTargetLocation;
 
 	void Awake()
 	{
 		// Set up the references.
-		gunLine = GetComponent<LineRenderer>();
 		gunLight = GetComponent<Light>();
+		_bulletTargetLocation = Vector3.zero;
 	}
 
 	void Update()
@@ -29,25 +31,28 @@ public class EnemyShootVisual : MonoBehaviour
 		// Add the time since Update was last called to the timer.
 		timer += Time.deltaTime;
 
-		// If the Fire1 button is being press and it's time to fire...
-		//if (Input.GetButton("Fire1") && timer >= timeBetweenBullets)
-		//{
-		//	// ... shoot the gun.
-		//	Shoot();
-		//}
-
 		// If the timer has exceeded the proportion of timeBetweenBullets that the effects should be displayed for...
-		if (timer >= timeBetweenBullets * effectsDisplayTime)
+		if (timer >= timeBetweenBullets)
 		{
 			// ... disable the effects.
 			DisableEffects();
+		}
+
+		if (_bulletInstance != null && _bulletTargetLocation != Vector3.zero)
+		{
+			_bulletInstance.transform.position = Vector3.MoveTowards(_bulletInstance.transform.position, _bulletTargetLocation, Time.deltaTime * BulletSpeed);
+			if (Vector3.Magnitude(_bulletInstance.transform.position - _bulletTargetLocation) < 0.1f)
+			{
+				Destroy(_bulletInstance);
+				_bulletInstance = null;
+				_bulletTargetLocation = Vector3.zero;
+			}
 		}
 	}
 
 	public void DisableEffects()
 	{
 		// Disable the line renderer and the light.
-		gunLine.enabled = false;
 		gunLight.enabled = false;
 	}
 
@@ -63,25 +68,23 @@ public class EnemyShootVisual : MonoBehaviour
 		gunLight.enabled = true;
 
 
-		// Enable the line renderer and set it's first position to be the end of the gun.
-		gunLine.enabled = true;
-		gunLine.SetPosition(0, transform.position);
-
 		// Set the shootRay so that it starts at the end of the gun and points forward from the barrel.
 		shootRay.origin = transform.position;
 		shootRay.direction = transform.forward;
+
+		_bulletInstance = Instantiate(BulletPrefab, transform.position, Quaternion.identity);
 
 		// Perform the raycast against gameobjects on the shootable layer and if it hits something...
 		if (Physics.Raycast(shootRay, out shootHit, range, shootableMask))
 		{
 			// Set the second position of the line renderer to the point the raycast hit.
-			gunLine.SetPosition(1, shootHit.point);
+			_bulletTargetLocation = shootHit.point;
 		}
 		// If the raycast didn't hit anything on the shootable layer...
 		else
 		{
 			// ... set the second position of the line renderer to the fullest extent of the gun's range.
-			gunLine.SetPosition(1, shootRay.origin + shootRay.direction * range);
+			_bulletTargetLocation = shootRay.origin + shootRay.direction * range;
 		}
 	}
 }
