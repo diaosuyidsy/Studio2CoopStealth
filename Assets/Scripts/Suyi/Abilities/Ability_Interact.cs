@@ -12,6 +12,8 @@ public class Ability_Interact : Ability
 	private Collider _coll;
 	private bool _isInteracting;
 	private Interactable _temp;
+	private Interactable _scannedInt;
+	private Interactable _scannedTemp;
 
 	public override void Awake()
 	{
@@ -22,9 +24,45 @@ public class Ability_Interact : Ability
 
 	private void Update()
 	{
+		_checkScanOutline();
 		if (_player.GetButtonDown(ButtonName)) OnPressedDownAbility();
 		if (_player.GetButton(ButtonName)) OnHoldAbility();
 		if (_player.GetButtonUp(ButtonName)) OnLiftUpAbility();
+	}
+
+	/// <summary>
+	/// This function checks if there are any interactable within range
+	/// If so, outline them
+	/// </summary>
+	private void _checkScanOutline()
+	{
+		if (_scanInteractable(out _scannedTemp))
+		{
+			if (!_playerCanInteractWithInteractable(_scannedTemp)) return;
+			_scannedInt = _scannedTemp;
+			var ol = _scannedTemp.GetComponent<cakeslice.Outline>();
+			if (ol == null) return;
+			ol.EnableOutline();
+		}
+		else
+		{
+			if (_scannedInt == null) return;
+			if (!_playerCanInteractWithInteractable(_scannedInt)) return;
+			var ol = _scannedInt.GetComponent<cakeslice.Outline>();
+			if (ol == null) return;
+			ol.DisableOutline();
+			_scannedInt = null;
+		}
+	}
+
+	/// <summary>
+	/// Check if player can interact with the interactable
+	/// </summary>
+	/// <param name="_int"></param>
+	/// <returns></returns>
+	private bool _playerCanInteractWithInteractable(Interactable _int)
+	{
+		return ((_int.CanInteractPlayerNumber << 0) ^ ((PlayerID + 1) << 0)) != 3;
 	}
 
 	/// <summary>
@@ -44,7 +82,6 @@ public class Ability_Interact : Ability
 		for (int i = 0; i < hitcolliders.Length; i++)
 		{
 			var hit = hitcolliders[i].gameObject;
-			print(hit.name);
 			var dist = Vector3.Distance(hit.transform.position, _coll.bounds.center);
 			//if (dist < minDist && hit.GetComponent<Interactable>() && !Physics.Linecast(transform.position, hit.transform.position, 1 << LayerMask.NameToLayer("Default")))
 			if (dist < minDist && hit.GetComponent<Interactable>())
@@ -53,7 +90,6 @@ public class Ability_Interact : Ability
 				minDist = dist;
 			}
 		}
-		print(smallestGO.name);
 		if (!smallestGO) return false;
 		_int = smallestGO.GetComponent<Interactable>();
 		return true;
