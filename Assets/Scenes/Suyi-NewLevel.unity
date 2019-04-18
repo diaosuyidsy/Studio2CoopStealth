@@ -5196,6 +5196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6760c30d74db1664ba7eeccd60480f2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanInteractPlayerNumber: 3
   DTAnimationID: Down
   Object: {fileID: 0}
 --- !u!65 &194219617
@@ -6098,6 +6099,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6760c30d74db1664ba7eeccd60480f2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanInteractPlayerNumber: 3
   DTAnimationID: Down
   Object: {fileID: 0}
 --- !u!65 &216630228
@@ -7406,6 +7408,38 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!84 &273712061
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 818
+  m_Height: 460
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 7
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 1
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &273900031
 GameObject:
   m_ObjectHideFlags: 0
@@ -8419,6 +8453,79 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 318811865}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &323453675
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 323453677}
+  - component: {fileID: 323453676}
+  m_Layer: 0
+  m_Name: Outline Camera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!20 &323453676
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 323453675}
+  m_Enabled: 0
+  serializedVersion: 2
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_projectionMatrixMode: 1
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_GateFitMode: 2
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 13
+  m_Depth: -1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 0
+  m_RenderingPath: 1
+  m_TargetTexture: {fileID: 1800790318}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 0
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 1
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!4 &323453677
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 323453675}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 557739019}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &323556512
 GameObject:
   m_ObjectHideFlags: 0
@@ -13878,6 +13985,7 @@ GameObject:
   - component: {fileID: 557739021}
   - component: {fileID: 557739023}
   - component: {fileID: 557739022}
+  - component: {fileID: 557739024}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -13945,7 +14053,8 @@ Transform:
   m_LocalRotation: {x: 0.38761806, y: -0.28519592, z: 0.12746365, w: 0.86727655}
   m_LocalPosition: {x: 36, y: 27.426155, z: -26.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 323453677}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14064,6 +14173,36 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!114 &557739024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557739016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a78da3f00f3328541b4526c0b0b5ec5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lineThickness: 1
+  lineIntensity: 1.1
+  fillAmount: 0
+  lineColor0: {r: 1, g: 1, b: 1, a: 1}
+  lineColor1: {r: 0, g: 1, b: 0, a: 1}
+  lineColor2: {r: 0, g: 0, b: 1, a: 1}
+  additiveRendering: 0
+  backfaceCulling: 1
+  cornerOutlines: 1
+  addLinesBetweenColors: 0
+  scaleWithScreenSize: 1
+  alphaCutoff: 0.5
+  flipY: 0
+  sourceCamera: {fileID: 557739018}
+  outlineCamera: {fileID: 323453676}
+  outlineShaderMaterial: {fileID: 0}
+  renderTexture: {fileID: 1800790318}
+  extraRenderTexture: {fileID: 273712061}
 --- !u!1001 &560323290
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36221,6 +36360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b3ad5eb52b0f2a4a906460a7a602b3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanInteractPlayerNumber: 3
   MoveSpeed: 10
   PadCenter: {x: 61.5, y: 18.2, z: 6.2}
   PadMovementSize: {x: 10.25, y: 0, z: 57.45}
@@ -43161,7 +43301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   P1SpawnOffset: {x: 4.18, y: 0, z: 1.99}
-  P2SpawnOffset: {x: -5.54, y: 0, z: -2.56}
+  P2SpawnOffset: {x: 3.65, y: 0, z: -2.56}
   CameraHeight: 0
   CameraFollowPlayer: 0
   CamPosition: {fileID: 0}
@@ -45743,7 +45883,9 @@ GameObject:
   - component: {fileID: 1748930388}
   - component: {fileID: 1748930387}
   - component: {fileID: 1748930386}
-  m_Layer: 0
+  - component: {fileID: 1748930390}
+  - component: {fileID: 1748930389}
+  m_Layer: 19
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45822,6 +45964,35 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1748930384}
   m_Mesh: {fileID: 43667824352301626, guid: 556d8ca7907559e4bb2a2f576372423f, type: 3}
+--- !u!114 &1748930389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1748930384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf3575480402db40813e763382412fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: 0
+  eraseRenderer: 0
+  originalLayer: 0
+  originalMaterials: []
+--- !u!114 &1748930390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1748930384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f722a236513ad944817e5d0783089f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanInteractPlayerNumber: 1
 --- !u!1001 &1749920292
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46420,6 +46591,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6760c30d74db1664ba7eeccd60480f2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanInteractPlayerNumber: 3
   DTAnimationID: Down
   Object: {fileID: 0}
 --- !u!65 &1787277065
@@ -46684,6 +46856,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1796994011}
   m_CullTransparentMesh: 0
+--- !u!84 &1800790318
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 818
+  m_Height: 460
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 7
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 1
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &1801064597
 GameObject:
   m_ObjectHideFlags: 0
@@ -56856,6 +57060,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14fe7af564076b747ad2def5d0694985, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanInteractPlayerNumber: 3
   DTAnimationID: Down
   Object: {fileID: 1339450542}
 --- !u!33 &3264990553370883014

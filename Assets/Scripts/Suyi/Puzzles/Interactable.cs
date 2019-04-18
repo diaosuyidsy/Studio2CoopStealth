@@ -5,6 +5,11 @@ using UnityEngine;
 public abstract class Interactable : MonoBehaviour
 {
 	public bool IsOccupied { get; protected set; }
+	/// <summary>
+	/// 1 can only be interacted by big player, 2 can be interacted by small
+	/// 3 can be interacted by both
+	/// </summary>
+	public byte CanInteractPlayerNumber = 3;
 
 	protected InteractableState state;
 	/// <summary>
