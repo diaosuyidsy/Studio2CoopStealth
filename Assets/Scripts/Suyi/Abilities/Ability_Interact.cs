@@ -41,7 +41,7 @@ public class Ability_Interact : Ability
 			if (!_playerCanInteractWithInteractable(_scannedTemp)) return;
 			_scannedInt = _scannedTemp;
 			var ol = _scannedTemp.GetComponent<cakeslice.Outline>();
-			Debug.Assert(ol != null);
+			if (ol == null) return;
 			ol.EnableOutline();
 		}
 		else
@@ -49,7 +49,7 @@ public class Ability_Interact : Ability
 			if (_scannedInt == null) return;
 			if (!_playerCanInteractWithInteractable(_scannedInt)) return;
 			var ol = _scannedInt.GetComponent<cakeslice.Outline>();
-			Debug.Assert(ol != null);
+			if (ol == null) return;
 			ol.DisableOutline();
 			_scannedInt = null;
 		}
