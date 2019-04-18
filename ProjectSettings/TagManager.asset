@@ -61,7 +61,7 @@ TagManager:
   - NoCollisionToPlayer
   - Interactable
   - SavingManager
-  - 
+  - YuME_TileMap
   - 
   - 
   - 
