@@ -3,8 +3,9 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -27,13 +28,13 @@ MonoBehaviour:
   destinationFolder: Assets/Yuponic/YuME/PrototypeTiles
   meshFolder: Assets/Yuponic/YuME/Models/Meshes
   appendName: 
-  c_name: 
+  c_name: The Lab
   c_tileStatic: 1
-  c_scale: 0.05
-  c_offset: {x: 0, y: -0.5, z: 0}
+  c_scale: 0.53
+  c_offset: {x: -0.03, y: -0.53, z: -0.03}
   c_shadowCastingMode: 1
   c_receiveShadows: 1
   c_bypassCollisionSetup: 0
-  c_destinationFolder: 
-  c_sourceFolder: 
+  c_destinationFolder: Assets/Resources/YumePrefabs
+  c_sourceFolder: Assets/Env Prefabs/The Lab
   c_appendName: 
