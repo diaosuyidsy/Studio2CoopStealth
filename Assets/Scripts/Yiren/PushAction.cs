@@ -71,12 +71,8 @@ namespace Invector.vCharacterController.vActions
             }
 
             float targetDis = Vector3.Distance(Vector3.Scale(new Vector3(1, 0, 1), transform.position),
-                Vector3.Scale(new Vector3(1, 0, 1), ladderActionTemp.matchTarget.transform.position));
-            if (tpInput.cc.baseLayerInfo.IsName("Push") && targetDis > 1.05f)
-            {
-                return;
-            }
-            if (isTouchingPushObject)
+                Vector3.Scale(new Vector3(1, 0, 1), ladderActionTemp.transform.parent.position));
+            if (tpInput.cc.baseLayerInfo.IsName("Push") && targetDis < GetComponent<Collider>().bounds.extents.x + ladderActionTemp.transform.parent.GetComponent<Collider>().bounds.extents.x -0.1f )
             {
                 return;
             }
@@ -154,6 +150,7 @@ namespace Invector.vCharacterController.vActions
                     if (debugMode) Debug.Log("Match Target...");
                     // use match target to match the Y and Z target 
                     tpInput.cc.MatchTarget(ladderActionTemp.matchTarget.transform.position, ladderActionTemp.matchTarget.transform.rotation, AvatarTarget.Root, new MatchTargetWeightMask(new Vector3(1, 1, 1), 0), ladderActionTemp.startMatchTarget, ladderActionTemp.endMatchTarget);
+                    
                 }
             }
 
@@ -167,11 +164,11 @@ namespace Invector.vCharacterController.vActions
             }*/
         }
 
-        void ExitLadderInput()
+        public void ExitLadderInput()
         {
             if (!isUsingLadder) return;
             //if (tpInput.cc.baseLayerInfo.IsName("EnterLadderTop") || tpInput.cc.baseLayerInfo.IsName("EnterLadderBottom")) return; 
-            if (transform.Find("push") != null)
+           /*if (transform.Find("push") != null)
             {
                 if (tpInput.cc.baseLayerInfo.IsName("Push") && (transform.Find("push").transform.position - transform.position).magnitude >5)
                 {
@@ -179,10 +176,16 @@ namespace Invector.vCharacterController.vActions
                     RemovePushObjFromParent();
                     ResetPlayerSettings();
                 }
+            }*/
+            
+            
+            if (tpInput.cc.baseLayerInfo.IsName("Push") && ladderActionTemp.transform.parent.GetComponent<PushObj>().isFall)
+            {
+                if (debugMode) Debug.Log("Quick Exit");
+                RemovePushObjFromParent();
+                ResetPlayerSettings();
+                
             }
-            
-            
-            
             
             if (tpInput.cc.baseLayerInfo.IsName("Push") && exitInput.GetButtonDown())
             {
