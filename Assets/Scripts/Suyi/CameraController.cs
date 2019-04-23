@@ -65,16 +65,28 @@ public class CameraController : MonoBehaviour
 	IEnumerator transition(float time)
 	{
 		_cameraState = CState.transitioning;
+		// First calculate the actual position of camera
+		_setTarget();
+		var xdiff = _followTarget.x - _desiredRoomCenter.position.x;
+		var zdiff = _followTarget.z - _desiredRoomCenter.position.z;
+		var _dPosition = new Vector3(_desiredPosition.x + xdiff, _desiredPosition.y, _desiredPosition.z + zdiff);
+		var _clampedPosition = new Vector3(Mathf.Clamp(_dPosition.x, _desiredPosition.x - _wiggleX, _desiredPosition.x + _wiggleX),
+			_dPosition.y,
+			Mathf.Clamp(_dPosition.z, _desiredPosition.z - _wiggleZ, _desiredPosition.z + _wiggleZ)
+			);
+		// End calculation
 		float elapsedTime = 0f;
+		Vector3 initialPosition = transform.position;
+		Vector3 initialEularRotation = transform.rotation.eulerAngles;
 		while (elapsedTime < time)
 		{
-			elapsedTime += Time.deltaTime;
-			transform.position = Vector3.Lerp(transform.position, _desiredPosition, elapsedTime / time);
+			transform.position = Vector3.Lerp(initialPosition, _clampedPosition, elapsedTime / time);
 			transform.eulerAngles = new Vector3(
-				Mathf.Lerp(transform.rotation.eulerAngles.x, _desiredRotation.x, elapsedTime / time),
-				Mathf.Lerp(transform.rotation.eulerAngles.y, _desiredRotation.y, elapsedTime / time),
-				Mathf.Lerp(transform.rotation.eulerAngles.z, _desiredRotation.z, elapsedTime / time)
+				Mathf.Lerp(initialEularRotation.x, _desiredRotation.x, elapsedTime / time),
+				Mathf.Lerp(initialEularRotation.y, _desiredRotation.y, elapsedTime / time),
+				Mathf.Lerp(initialEularRotation.z, _desiredRotation.z, elapsedTime / time)
 				);
+			elapsedTime += Time.deltaTime;
 			yield return new WaitForEndOfFrame();
 		}
 		_cameraState = CState.dynamic;
