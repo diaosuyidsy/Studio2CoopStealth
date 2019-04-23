@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Rewired;
+using System.Linq;
 
 public class SavingManager : MonoBehaviour
 {
@@ -14,7 +15,12 @@ public class SavingManager : MonoBehaviour
 	private void Awake()
 	{
 		SM = this;
-		SavingPoints = GetComponentsInChildren<Transform>();
+		var temp = GetComponentsInChildren<SavingPoint>();
+		SavingPoints = new Transform[temp.Length];
+		for (int i = 0; i < temp.Length; i++)
+		{
+			SavingPoints[i] = temp[i].transform;
+		}
 		Player1 = GameObject.FindGameObjectWithTag("Player1");
 		Player2 = GameObject.FindGameObjectWithTag("Player2");
 		SavingIndex = 0;

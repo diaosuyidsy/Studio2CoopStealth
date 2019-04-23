@@ -6,11 +6,12 @@ public class SavingPoint : MonoBehaviour
 {
 	public Vector3 P1SpawnOffset;
 	public Vector3 P2SpawnOffset;
-	public float CameraHeight;
+	//public float CameraHeight;
+	public float CameraTransitionTime = 1f;
 
-	public bool CameraFollowPlayer;
-	public Transform CamPosition;
-	public float CamFOV;
+	//public bool CameraFollowPlayer;
+	private Transform _camPosition;
+	//public float CamFOV;
 
 	public Vector3 Player1SpawnPoint
 	{
@@ -33,10 +34,14 @@ public class SavingPoint : MonoBehaviour
 	private bool recorded;
 
 	private int thisSavingIndex;
+	private CameraController _mainCamControl;
 
 	private void Awake()
 	{
 		thisSavingIndex = transform.GetSiblingIndex();
+		_mainCamControl = Camera.main.GetComponent<CameraController>();
+		_camPosition = transform.GetChild(0);
+		Debug.Assert(_camPosition != null);
 	}
 
 	private void OnTriggerEnter(Collider other)
@@ -46,8 +51,9 @@ public class SavingPoint : MonoBehaviour
 		if (!recorded && P1Entered && P2Entered)
 		{
 			recorded = true;
-			SavingManager.SM.SavingIndex = thisSavingIndex + 1;
-			Camera.main.transform.GetComponent<CameraController>().AdjustHeight = CameraHeight;
+			SavingManager.SM.SavingIndex = thisSavingIndex;
+			//Camera.main.transform.GetComponent<CameraController>().AdjustHeight = CameraHeight;
+			_mainCamControl.SetCameraPosRot(_camPosition, transform.GetChild(1), CameraTransitionTime);
 		}
 	}
 
