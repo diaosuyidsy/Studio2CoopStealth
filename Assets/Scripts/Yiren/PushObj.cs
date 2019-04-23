@@ -48,7 +48,7 @@ public class PushObj : MonoBehaviour
         if (isPushing)
         {
             pushRigidbody.MovePosition(Vector3.Scale(playerPos.position, new Vector3(1,0,1)) + new Vector3(0, transform.position.y, 0) + playerDis);
-            Ray forwardRay  = new Ray(transform.position + new Vector3(0,0.3f,0) , playerDis.normalized);
+            Ray forwardRay  = new Ray(transform.position + new Vector3(0,0.3f,0) , playerDis.normalized);            
             float forwardRaycastDist = GetComponent<Collider>().bounds.extents.x + 0.2f;
             Debug.DrawRay(forwardRay.origin, forwardRay.direction * forwardRaycastDist, Color.green);
             RaycastHit forwardRayHit = new RaycastHit();
