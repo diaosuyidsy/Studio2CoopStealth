@@ -40,13 +40,14 @@ public class PushObj : MonoBehaviour
     {
         yield return new WaitForSeconds(0.3f);
         isPushing = true;
+        print(playerDis);
     }
 
     private void Update()
     {
         if (isPushing)
         {
-            pushRigidbody.MovePosition(Vector3.Scale(playerPos.position, new Vector3(1,0,1)) + playerDis);
+            pushRigidbody.MovePosition(Vector3.Scale(playerPos.position, new Vector3(1,0,1)) + new Vector3(0, transform.position.y, 0) + playerDis);
             Ray forwardRay  = new Ray(transform.position + new Vector3(0,0.3f,0) , playerDis.normalized);
             float forwardRaycastDist = GetComponent<Collider>().bounds.extents.x + 0.2f;
             Debug.DrawRay(forwardRay.origin, forwardRay.direction * forwardRaycastDist, Color.green);
