@@ -39,6 +39,8 @@ public class Ability_Interact : Ability
 		if (_scanInteractable(out _scannedTemp))
 		{
 			if (!_playerCanInteractWithInteractable(_scannedTemp)) return;
+			if (_scannedInt != null && _scannedInt.GetComponent<cakeslice.Outline>() != null)
+				_scannedInt.GetComponent<cakeslice.Outline>().DisableOutline();
 			_scannedInt = _scannedTemp;
 			var ol = _scannedTemp.GetComponent<cakeslice.Outline>();
 			if (ol == null) return;
