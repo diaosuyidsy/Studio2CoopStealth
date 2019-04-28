@@ -7,7 +7,7 @@ public class Ability_Swap : Ability
 {
 	public float Range = Mathf.Infinity;
 	public LayerMask TransportObstacleMask;
-
+	public GameObject SwapLine;
 	private GameObject _otherPlayer;
 	private Vector3 _otherPlayerBodyCenter
 	{
@@ -52,6 +52,8 @@ public class Ability_Swap : Ability
 			Vector3 temp = transform.position;
 			transform.position = _otherPlayer.transform.position;
 			_otherPlayer.transform.position = temp;
+
+			SwapLine.GetComponent<EGA_Laser>().Swap();
 		}
 	}
 
@@ -63,5 +65,14 @@ public class Ability_Swap : Ability
 			if (_player.GetButtonDown(ButtonName)) OnPressedDownAbility();
 		}
 		else CoolDown();
+
+		if (!Physics.Linecast(_otherPlayerBodyCenter, _playerBodyCenter, TransportObstacleMask))
+		{
+			SwapLine.GetComponent<EGA_Laser>().Connect();
+		}
+		else
+		{
+			SwapLine.GetComponent<EGA_Laser>().Disconnect();
+		}
 	}
 }

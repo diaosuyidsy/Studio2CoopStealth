@@ -54,7 +54,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5528740679895364569}
   m_LocalRotation: {x: 0.00000005760116, y: 0.7071068, z: -0.00000005760116, w: 0.7071068}
-  m_LocalPosition: {x: 0.0031568962, y: 0.012725234, z: 0.3112194}
+  m_LocalPosition: {x: 0.0031568962, y: 0.012725234, z: 0.259}
   m_LocalScale: {x: 0.20082587, y: 0.20082621, z: 0.20082587}
   m_Children: []
   m_Father: {fileID: 8142834473789447078}
@@ -812,9 +812,9 @@ MonoBehaviour:
   rightHandObj: {fileID: 0}
   leftHandObj: {fileID: 0}
   ikRightHandPositionAmount: 0.51
-  ikRightHandRotationAmount: 0
+  ikRightHandRotationAmount: 0.7
   ikLeftHandPositionAmount: 0.51
-  ikLeftHandRotationAmount: 0
+  ikLeftHandRotationAmount: 0.7
   rightElbowObj: {fileID: 0}
   leftElbowObj: {fileID: 0}
   ikRightElbowPositionAmount: 0
