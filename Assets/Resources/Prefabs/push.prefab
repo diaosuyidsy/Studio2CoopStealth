@@ -859,6 +859,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3ef7928c5bbc444c8ff29e1ca4e1aa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Meshes:
+  - {fileID: 0}
   isFall: 0
 --- !u!54 &8003346292756770818
 Rigidbody:

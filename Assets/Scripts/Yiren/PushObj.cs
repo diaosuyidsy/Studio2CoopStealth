@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using cakeslice;
 using Invector.vCharacterController.vActions;
 using UnityEngine;
 
 public class PushObj : MonoBehaviour
 {
+    public List<GameObject> Meshes;
     private Transform playerPos;
     private bool isPushing = false;
     private Rigidbody pushRigidbody;
@@ -89,6 +91,31 @@ public class PushObj : MonoBehaviour
         isPushing = false;
         StopAllCoroutines();
         //transform.parent = null;
+    }
+
+    public void SetOutline(bool isOutline)
+    {
+        if (isOutline)
+        {
+            foreach (var mesh in Meshes)
+            {
+                if (mesh.GetComponents<Outline>() != null)
+                {
+                    mesh.GetComponent<Outline>().EnableOutline();
+                }
+            }
+        }
+        else
+        {
+            foreach (var mesh in Meshes)
+            {
+                if (mesh.GetComponents<Outline>() != null)
+                {
+                    mesh.GetComponent<Outline>().DisableOutline();
+                }
+            }
+        }
+       
     }
 
 }

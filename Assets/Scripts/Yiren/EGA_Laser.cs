@@ -25,13 +25,14 @@ public class EGA_Laser : MonoBehaviour
     private ParticleSystem[] Effects;
     
     private ParticleSystem[] Hit;
+    private ParticleSystem[] HitPlayer;
     private Transform player;
     private Transform otherPlayer;
     public bool isConnecting = true;
     public bool isWithdrawing = false;
-    public bool isDisconnecting = false;
     public bool isSwapping = false;
     public bool isMoveTowardBig = false;
+    public bool isTransmitting = false;
     private Vector3 endPos;
     private Vector3 startPos;
     
@@ -44,6 +45,7 @@ public class EGA_Laser : MonoBehaviour
         Laser = GetComponent<LineRenderer>();
         Effects = GetComponentsInChildren<ParticleSystem>();
         Hit = EffectBig.GetComponentsInChildren<ParticleSystem>();
+        HitPlayer = EffectSmall.GetComponentsInChildren<ParticleSystem>();
         if (Laser.material.HasProperty("_SpeedMainTexUVNoiseZW")) LaserStartSpeed = Laser.material.GetVector("_SpeedMainTexUVNoiseZW");
         //Save [1] and [3] textures speed
         LaserSpeed = LaserStartSpeed;
@@ -57,12 +59,12 @@ public class EGA_Laser : MonoBehaviour
         {
             //move small
             
-            startPos =  Vector3.MoveTowards(startPos, playerCenterPos(), 260f * Time.deltaTime);           
+            startPos =  Vector3.MoveTowards(startPos, playerCenterPos(), 70f * Time.deltaTime);           
             Laser.SetPosition(0, startPos);
             EffectSmall.transform.position = startPos;
             EffectSmall.transform.rotation = Quaternion.identity;
             //move big
-            endPos = Vector3.MoveTowards(endPos, otherPlayerCenterPos(), 260f * Time.deltaTime);
+            endPos = Vector3.MoveTowards(endPos, otherPlayerCenterPos(), 70f * Time.deltaTime);
             Laser.SetPosition(1, endPos);            
             EffectBig.transform.position = endPos;
             EffectBig.transform.rotation = Quaternion.identity;
@@ -79,10 +81,33 @@ public class EGA_Laser : MonoBehaviour
                 {
                     AllPs.Stop();
                 }
-
+                player.GetComponent<Ability_Swap>().isSwapingPhase2 = true;
                 isSwapping = false;
                 isConnecting = true;
-
+                
+            }
+        }
+        else if(isTransmitting)
+        {
+            startPos =  Vector3.MoveTowards(startPos, otherPlayerCenterPos(), 70f * Time.deltaTime);           
+            Laser.SetPosition(0, startPos);
+            EffectSmall.transform.position = startPos;
+            EffectSmall.transform.rotation = Quaternion.identity;
+            endPos = otherPlayerCenterPos();
+            Laser.SetPosition(1, endPos);
+            foreach (var AllPs in HitPlayer)
+            {
+                if (!AllPs.isPlaying) AllPs.Play();
+            }
+            if (Vector3.Distance(startPos, endPos) < 0.1f)
+            {
+                foreach (var AllPs in HitPlayer)
+                {
+                    AllPs.Stop();
+                }
+                player.GetComponent<Ability_Teleport>().isTransmittingPhase2 = true;
+                isTransmitting= false;
+                Connect();
             }
         }
         else if (isConnecting)
@@ -121,7 +146,7 @@ public class EGA_Laser : MonoBehaviour
         {
             startPos = playerCenterPos();
             Laser.SetPosition(0, startPos);
-            endPos = Vector3.MoveTowards(endPos, startPos, 160f * Time.deltaTime);
+            endPos = Vector3.MoveTowards(endPos, startPos, 70f * Time.deltaTime);
             Laser.SetPosition(1, endPos);
             EffectBig.transform.position = endPos;
             //Hit effect zero rotation
@@ -144,7 +169,7 @@ public class EGA_Laser : MonoBehaviour
         {
             startPos = playerCenterPos();
             Laser.SetPosition(0, startPos);
-            endPos = Vector3.MoveTowards(endPos, otherPlayerCenterPos(), 160f * Time.deltaTime);
+            endPos = Vector3.MoveTowards(endPos, otherPlayerCenterPos(), 70f * Time.deltaTime);
             Laser.SetPosition(1, endPos);
             EffectBig.transform.position = endPos;
             //Hit effect zero rotation
@@ -237,5 +262,18 @@ public class EGA_Laser : MonoBehaviour
         isConnecting = false;
         isSwapping = true;
         EffectSmall.transform.position = otherPlayerCenterPos();
+    }
+
+    public void Transmit()
+    {
+        if (isTransmitting)
+        {
+            return;
+        }
+        isWithdrawing = false;
+        isMoveTowardBig = false;
+        isConnecting = false;
+        isSwapping = false;
+        isTransmitting = true;
     }
 }

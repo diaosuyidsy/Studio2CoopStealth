@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Invector.vCharacterController.vActions;
+using cakeslice;
 using UnityEngine;
 
 public class PickObj : MonoBehaviour
 {
+    public List<GameObject> Meshes;
     private Transform HoldingPos; //holding pos on player
     public Transform[] pickUpTriggers;
     public Transform holdPosOnObj; 
@@ -101,5 +103,29 @@ public class PickObj : MonoBehaviour
                 GetComponent<Rigidbody>().isKinematic = true;
             }
         }*/
+    }
+    public void SetOutline(bool isOutline)
+    {
+        if (isOutline)
+        {
+            foreach (var mesh in Meshes)
+            {
+                if (mesh.GetComponents<Outline>() != null)
+                {
+                    mesh.GetComponent<Outline>().EnableOutline();
+                }
+            }
+        }
+        else
+        {
+            foreach (var mesh in Meshes)
+            {
+                if (mesh.GetComponents<Outline>() != null)
+                {
+                    mesh.GetComponent<Outline>().DisableOutline();
+                }
+            }
+        }
+       
     }
 }
