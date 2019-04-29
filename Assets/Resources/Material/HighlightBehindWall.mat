@@ -100,10 +100,14 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _Range: 3.323185
+    - _Slice: -3
     - _Smoothness: 0.9
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
+    - _Speed: 2
     - _SrcBlend: 1
+    - _Thickness: 0.39
     - _TransAmbient: 0.2
     - _TransDirect: 1
     - _TransNormalDistortion: 0.1
@@ -111,6 +115,7 @@ Material:
     - _TransShadow: 0.9
     - _Translucency: 1
     - _UVSec: 0
+    - _VertOffsetStrength: 0.55
     - _XRayBias: 0.11
     - _XRayIntensity: 0.32
     - _XRayPower: 1.92
@@ -121,4 +126,5 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Color0: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 3.6845045, g: 0.15641758, b: 0.17612767, a: 0}
+    - _GlowColor: {r: 10.432951, g: 1.1470782, b: 1.7937698, a: 1}
     - _XRayColor: {r: 0.9433962, g: 0.38714847, b: 0.52452457, a: 1}
