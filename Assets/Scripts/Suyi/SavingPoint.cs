@@ -1,16 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class SavingPoint : MonoBehaviour
 {
 	public Vector3 P1SpawnOffset;
 	public Vector3 P2SpawnOffset;
-	public float CameraHeight;
+	public float CameraTransitionTime = 1f;
+	[Tooltip("Used to set Camera Wiggle Room in X Direction")]
+	public float XOffset = 2f;
+	[Tooltip("Used to set Camera Wiggle Room in Z Direction")]
+	public float ZOffset = 2f;
 
-	public bool CameraFollowPlayer;
-	public Transform CamPosition;
-	public float CamFOV;
+	private Transform _camPosition;
 
 	public Vector3 Player1SpawnPoint
 	{
@@ -33,10 +36,14 @@ public class SavingPoint : MonoBehaviour
 	private bool recorded;
 
 	private int thisSavingIndex;
+	private CameraController _mainCamControl;
 
 	private void Awake()
 	{
 		thisSavingIndex = transform.GetSiblingIndex();
+		_mainCamControl = Camera.main.GetComponent<CameraController>();
+		_camPosition = transform.GetChild(0);
+		Debug.Assert(_camPosition != null);
 	}
 
 	private void OnTriggerEnter(Collider other)
@@ -46,8 +53,9 @@ public class SavingPoint : MonoBehaviour
 		if (!recorded && P1Entered && P2Entered)
 		{
 			recorded = true;
-			SavingManager.SM.SavingIndex = thisSavingIndex + 1;
-			Camera.main.transform.GetComponent<CameraController>().AdjustHeight = CameraHeight;
+			SavingManager.SM.SavingIndex = thisSavingIndex;
+			//Camera.main.transform.GetComponent<CameraController>().AdjustHeight = CameraHeight;
+			_mainCamControl.SetCameraPosRot(_camPosition, transform.GetChild(1), CameraTransitionTime, XOffset, ZOffset);
 		}
 	}
 
@@ -57,5 +65,16 @@ public class SavingPoint : MonoBehaviour
 		Gizmos.DrawSphere(transform.position + P1SpawnOffset, 1);
 		Gizmos.color = Color.red;
 		Gizmos.DrawSphere(transform.position + P2SpawnOffset, 1);
+	}
+}
+
+[CustomEditor(typeof(SavingPoint))]
+public class DrawWireRectangle : Editor
+{
+	private void OnSceneGUI()
+	{
+		Handles.color = Color.yellow;
+		SavingPoint AA = (SavingPoint)target;
+		Handles.DrawWireCube(AA.transform.GetChild(0).position, new Vector3(AA.XOffset * 2f, 0.5f, AA.ZOffset * 2f));
 	}
 }
