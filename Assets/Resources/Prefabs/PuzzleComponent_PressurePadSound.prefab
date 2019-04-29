@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Range: 5
+  SoundRippleEffectPrefab: {fileID: 2571236328782052573, guid: b252485be2232fc47a93936c688f5cf7,
+    type: 3}
 --- !u!82 &91100562
 AudioSource:
   m_ObjectHideFlags: 0
@@ -373,10 +375,10 @@ MonoBehaviour:
   updateType: 0
   isSpeedBased: 1
   hasOnStart: 0
-  hasOnPlay: 1
+  hasOnPlay: 0
   hasOnUpdate: 0
   hasOnStepComplete: 0
-  hasOnComplete: 0
+  hasOnComplete: 1
   hasOnTweenCreated: 0
   hasOnRewind: 0
   onStart:
@@ -412,7 +414,18 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   onComplete:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5515209028984009651}
+        m_MethodName: EmitSound
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 5
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   onTweenCreated:

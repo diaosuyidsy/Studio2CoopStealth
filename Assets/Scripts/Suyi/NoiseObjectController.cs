@@ -5,6 +5,7 @@ using BehaviorDesigner.Runtime;
 public class NoiseObjectController : MonoBehaviour
 {
 	public float Range = 5f;
+	public GameObject SoundRippleEffectPrefab;
 	private AudioSource _as;
 
 	private void Awake()
@@ -36,6 +37,11 @@ public class NoiseObjectController : MonoBehaviour
 		if (_as != null)
 		{
 			_as.Play();
+		}
+		if (SoundRippleEffectPrefab != null)
+		{
+			GameObject particle = Instantiate(SoundRippleEffectPrefab, transform.position, SoundRippleEffectPrefab.transform.rotation);
+			particle.GetComponent<ParticleSystem>().startSize = Range * 3f;
 		}
 	}
 }
