@@ -29,17 +29,27 @@ public class CameraController : MonoBehaviour
 		_players[1] = GameObject.FindGameObjectWithTag("Player2");
 	}
 
-	public void SetCameraPosRot(Vector3 _pos, Vector3 _rot, Transform _rc, float _time)
+	public void SetCameraPosRot(Vector3 _pos, Vector3 _rot, Transform _rc, float _time, float _xOffset = 2f, float _zOffset = 2f)
 	{
 		_desiredRotation = _rot;
 		_desiredPosition = _pos;
 		_desiredRoomCenter = _rc;
+		_wiggleX = _xOffset;
+		_wiggleZ = _zOffset;
 		StartCoroutine(transition(_time));
 	}
 
-	public void SetCameraPosRot(Transform _tran, Transform _rc, float _time)
+	/// <summary>
+	/// This function is called from Saving Point, when both players enter the next saving point
+	/// </summary>
+	/// <param name="_tran"></param>
+	/// <param name="_rc"></param>
+	/// <param name="_time"></param>
+	/// <param name="_xOffset"></param>
+	/// <param name="zOffset"></param>
+	public void SetCameraPosRot(Transform _tran, Transform _rc, float _time, float _xOffset = 2f, float _zOffset = 2f)
 	{
-		SetCameraPosRot(_tran.position, _tran.eulerAngles, _rc, _time);
+		SetCameraPosRot(_tran.position, _tran.eulerAngles, _rc, _time, _xOffset, _zOffset);
 	}
 
 	private void Update()

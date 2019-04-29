@@ -1,17 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class SavingPoint : MonoBehaviour
 {
 	public Vector3 P1SpawnOffset;
 	public Vector3 P2SpawnOffset;
-	//public float CameraHeight;
 	public float CameraTransitionTime = 1f;
+	[Tooltip("Used to set Camera Wiggle Room in X Direction")]
+	public float XOffset = 2f;
+	[Tooltip("Used to set Camera Wiggle Room in Z Direction")]
+	public float ZOffset = 2f;
 
-	//public bool CameraFollowPlayer;
 	private Transform _camPosition;
-	//public float CamFOV;
 
 	public Vector3 Player1SpawnPoint
 	{
@@ -53,7 +55,7 @@ public class SavingPoint : MonoBehaviour
 			recorded = true;
 			SavingManager.SM.SavingIndex = thisSavingIndex;
 			//Camera.main.transform.GetComponent<CameraController>().AdjustHeight = CameraHeight;
-			_mainCamControl.SetCameraPosRot(_camPosition, transform.GetChild(1), CameraTransitionTime);
+			_mainCamControl.SetCameraPosRot(_camPosition, transform.GetChild(1), CameraTransitionTime, XOffset, ZOffset);
 		}
 	}
 
@@ -63,5 +65,16 @@ public class SavingPoint : MonoBehaviour
 		Gizmos.DrawSphere(transform.position + P1SpawnOffset, 1);
 		Gizmos.color = Color.red;
 		Gizmos.DrawSphere(transform.position + P2SpawnOffset, 1);
+	}
+}
+
+[CustomEditor(typeof(SavingPoint))]
+public class DrawWireRectangle : Editor
+{
+	private void OnSceneGUI()
+	{
+		Handles.color = Color.yellow;
+		SavingPoint AA = (SavingPoint)target;
+		Handles.DrawWireCube(AA.transform.GetChild(0).position, new Vector3(AA.XOffset * 2f, 0.5f, AA.ZOffset * 2f));
 	}
 }
