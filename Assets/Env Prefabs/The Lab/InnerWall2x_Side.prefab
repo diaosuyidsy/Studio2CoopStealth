@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 2445422649006381135}
   - component: {fileID: 7645140211952788902}
   - component: {fileID: 82961234437203590}
-  m_Layer: 0
+  - component: {fileID: 8390979816194186572}
+  m_Layer: 17
   m_Name: Glass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2445422649006381135
 Transform:
@@ -49,7 +50,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 21577870755647310}
+  - {fileID: 2100000, guid: e323a62068140c2408d5601877e8de2c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -77,6 +78,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4166278823952890762}
   m_Mesh: {fileID: 43947844054854236}
+--- !u!65 &8390979816194186572
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4166278823952890762}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.8, y: 6.3, z: 0.2}
+  m_Center: {x: 0, y: -0.35000002, z: 0}
 --- !u!1 &7924140097239410284
 GameObject:
   m_ObjectHideFlags: 0
@@ -88,13 +102,13 @@ GameObject:
   - component: {fileID: 1798672617553262582}
   - component: {fileID: 7508863274327772465}
   - component: {fileID: 7840407672801277716}
-  - component: {fileID: 3977913985438161501}
+  - component: {fileID: 1219048049925768371}
   m_Layer: 0
   m_Name: Model 0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1798672617553262582
 Transform:
@@ -155,8 +169,8 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7924140097239410284}
   m_Mesh: {fileID: 43709412381255386}
---- !u!65 &3977913985438161501
-BoxCollider:
+--- !u!64 &1219048049925768371
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -165,9 +179,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 7.6, y: 9.6, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 43709412381255386}
 --- !u!1 &8587031580453956029
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,7 +193,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1023725520029980225}
   m_Layer: 0
-  m_Name: InnerWall2x
+  m_Name: InnerWall2x_Side
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -399,7 +414,7 @@ Texture2D:
   m_Name: Model 0
   m_ImageContentsHash:
     serializedVersion: 2
-    Hash: 00000000000000000000000000000000
+    Hash: d7519b3b8423e4f6473042e78fbb0484
   m_ForcedFallbackFormat: 4
   m_DownscaleFallback: 0
   serializedVersion: 2

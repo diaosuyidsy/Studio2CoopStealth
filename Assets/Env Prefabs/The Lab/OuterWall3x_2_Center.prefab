@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6305576341141256390}
   m_Layer: 0
-  m_Name: OuterWall3x_2
+  m_Name: OuterWall3x_2_Center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,7 +48,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4205719509840259801
 Transform:
@@ -206,7 +206,7 @@ Texture2D:
   m_Name: Model 0
   m_ImageContentsHash:
     serializedVersion: 2
-    Hash: 00000000000000000000000000000000
+    Hash: 61f7a2726d94e114be5d37edbb388eb5
   m_ForcedFallbackFormat: 4
   m_DownscaleFallback: 0
   serializedVersion: 2

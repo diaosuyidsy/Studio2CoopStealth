@@ -56,12 +56,13 @@ GameObject:
   - component: {fileID: 3664132932645582024}
   - component: {fileID: 3635035214113826496}
   - component: {fileID: 7315590313694825197}
-  m_Layer: 0
+  - component: {fileID: 697657992434041591}
+  m_Layer: 17
   m_Name: Glass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &3664132932645582024
 Transform:
@@ -122,6 +123,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5186518424719850502}
   m_Mesh: {fileID: 43947844054854236, guid: 924de114df15eb84e877ae0ee310aa96, type: 3}
+--- !u!65 &697657992434041591
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5186518424719850502}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.8, y: 6.3, z: 0.2}
+  m_Center: {x: 0, y: -0.35000002, z: 0}
 --- !u!1 &6193379163434989539
 GameObject:
   m_ObjectHideFlags: 0
@@ -164,13 +178,13 @@ GameObject:
   - component: {fileID: 5823569492502312294}
   - component: {fileID: 7612420345333624484}
   - component: {fileID: 2294471992656560455}
-  - component: {fileID: 2988060755130992360}
+  - component: {fileID: 5622184258224070599}
   m_Layer: 0
   m_Name: Model 0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5823569492502312294
 Transform:
@@ -231,8 +245,8 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8361528194536006764}
   m_Mesh: {fileID: 43709412381255386, guid: 924de114df15eb84e877ae0ee310aa96, type: 3}
---- !u!65 &2988060755130992360
-BoxCollider:
+--- !u!64 &5622184258224070599
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -241,9 +255,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 7.6, y: 9.6, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 43709412381255386, guid: 924de114df15eb84e877ae0ee310aa96, type: 3}
 --- !u!1 &8771448867940349118
 GameObject:
   m_ObjectHideFlags: 0

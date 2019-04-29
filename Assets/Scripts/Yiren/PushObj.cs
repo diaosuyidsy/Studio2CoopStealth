@@ -45,6 +45,20 @@ public class PushObj : MonoBehaviour
         print(playerDis);
     }
 
+    public void DoNotPush()
+    {
+        isPushing = false;
+    }
+    private void OnEnable()
+    {
+        EventManager.StartListening("PlayerDied", DoNotPush);
+    }
+    
+    private void OnDisable()
+    {
+        EventManager.StopListening("PlayerDied", DoNotPush);
+    }
+
     private void Update()
     {
         if (isPushing)
