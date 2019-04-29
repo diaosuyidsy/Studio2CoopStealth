@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using cakeslice;
 using Invector.vCharacterController.vActions;
 using UnityEngine;
 
 public class PushObj : MonoBehaviour
 {
+    public List<GameObject> Meshes;
     private Transform playerPos;
     private bool isPushing = false;
     private Rigidbody pushRigidbody;
@@ -40,14 +42,29 @@ public class PushObj : MonoBehaviour
     {
         yield return new WaitForSeconds(0.3f);
         isPushing = true;
+        print(playerDis);
+    }
+
+    public void DoNotPush()
+    {
+        isPushing = false;
+    }
+    private void OnEnable()
+    {
+        EventManager.StartListening("PlayerDied", DoNotPush);
+    }
+    
+    private void OnDisable()
+    {
+        EventManager.StopListening("PlayerDied", DoNotPush);
     }
 
     private void Update()
     {
         if (isPushing)
         {
-            pushRigidbody.MovePosition(Vector3.Scale(playerPos.position, new Vector3(1,0,1)) + playerDis);
-            Ray forwardRay  = new Ray(transform.position + new Vector3(0,0.3f,0) , playerDis.normalized);
+            pushRigidbody.MovePosition(Vector3.Scale(playerPos.position, new Vector3(1,0,1)) + new Vector3(0, transform.position.y, 0) + playerDis);
+            Ray forwardRay  = new Ray(transform.position + new Vector3(0,0.3f,0) , playerDis.normalized);            
             float forwardRaycastDist = GetComponent<Collider>().bounds.extents.x + 0.2f;
             Debug.DrawRay(forwardRay.origin, forwardRay.direction * forwardRaycastDist, Color.green);
             RaycastHit forwardRayHit = new RaycastHit();
@@ -88,6 +105,31 @@ public class PushObj : MonoBehaviour
         isPushing = false;
         StopAllCoroutines();
         //transform.parent = null;
+    }
+
+    public void SetOutline(bool isOutline)
+    {
+        if (isOutline)
+        {
+            foreach (var mesh in Meshes)
+            {
+                if (mesh.GetComponents<Outline>() != null)
+                {
+                    mesh.GetComponent<Outline>().EnableOutline();
+                }
+            }
+        }
+        else
+        {
+            foreach (var mesh in Meshes)
+            {
+                if (mesh.GetComponents<Outline>() != null)
+                {
+                    mesh.GetComponent<Outline>().DisableOutline();
+                }
+            }
+        }
+       
     }
 
 }

@@ -1,5 +1,6 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 using UnityEngine.Events;
 
 
@@ -72,10 +73,22 @@ namespace Invector.vCharacterController.vActions
 
             float targetDis = Vector3.Distance(Vector3.Scale(new Vector3(1, 0, 1), transform.position),
                 Vector3.Scale(new Vector3(1, 0, 1), ladderActionTemp.transform.parent.position));
-            if (tpInput.cc.baseLayerInfo.IsName("Push") && targetDis < GetComponent<Collider>().bounds.extents.x + ladderActionTemp.transform.parent.GetComponent<Collider>().bounds.extents.x -0.1f )
+            Vector3 targetDir = ladderActionTemp.transform.parent.position - transform.position;
+            if (Mathf.Abs(targetDir.x) > Mathf.Abs(targetDir.z))
             {
-                return;
+                if (tpInput.cc.baseLayerInfo.IsName("Push") && targetDis < GetComponent<Collider>().bounds.extents.x + ladderActionTemp.transform.parent.GetComponent<Collider>().bounds.extents.x -0.1f )
+                {
+                    return;
+                }
             }
+            else
+            {
+                if (tpInput.cc.baseLayerInfo.IsName("Push") && targetDis < GetComponent<Collider>().bounds.extents.z + ladderActionTemp.transform.parent.GetComponent<Collider>().bounds.extents.z -0.1f )
+                {
+                    return;
+                }
+            }
+            
             transform.position = tpInput.cc.animator.rootPosition;
 
             

@@ -37,7 +37,8 @@ public class FlipPadState : MonoBehaviour
 	IEnumerator flip()
 	{
 		yield return new WaitForSeconds(0.5f);
-		if (GetComponentInChildren<Interactable_FlipPad>().enteredplayernum != 0) yield break;
+		var temp = GetComponentInChildren<Interactable_FlipPad>();
+		if (temp != null && temp.enteredplayernum != 0) yield break;
 		if (!_flipped) _dta.DOPlayForward();
 		else _dta.DOPlayBackwards();
 		_flipped = !_flipped;
