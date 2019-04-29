@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Range: 5
+  SoundRippleEffectPrefab: {fileID: 2571236328782052573, guid: b252485be2232fc47a93936c688f5cf7,
+    type: 3}
 --- !u!82 &91100562
 AudioSource:
   m_ObjectHideFlags: 0
