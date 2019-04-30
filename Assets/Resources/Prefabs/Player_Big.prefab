@@ -893,6 +893,7 @@ MonoBehaviour:
   BaseCoolDown: 0.1
   Range: 2
   Angle: 60
+  playAnimation: KillEnemy
   EnemyMask:
     serializedVersion: 2
     m_Bits: 512

@@ -51,6 +51,10 @@ public class EGA_Laser : MonoBehaviour
         LaserSpeed = LaserStartSpeed;
         player = GameObject.FindGameObjectWithTag("Player2").transform;
         otherPlayer = GameObject.FindGameObjectWithTag("Player1").transform;
+        foreach (var AllPs in Effects)
+        {
+            if (AllPs.isPlaying) AllPs.Stop();
+        }
     }
 
     void Update()
@@ -191,7 +195,22 @@ public class EGA_Laser : MonoBehaviour
             }
         }
     }
-
+    public void DoNotPlayParticle()
+    {
+        if (Effects != null)
+        {
+            foreach (var AllPs in Effects)
+            {
+                if (AllPs.isPlaying) AllPs.Stop();
+            }
+        }
+        
+    }
+    private void OnEnable()
+    {
+        DoNotPlayParticle();
+    }
+    
     private Vector3 playerCenterPos()
     {
         return player.position + new Vector3(0, player.GetComponent<Collider>().bounds.extents.y, 0);

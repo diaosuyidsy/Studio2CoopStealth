@@ -116,6 +116,8 @@ public class CameraController : MonoBehaviour
 				length++;
 			}
 		}
+
+		if (length == 0) return;
 		total /= (length == 0 ? 1 : length);
 		_followTarget = total;
 	}

@@ -140,7 +140,7 @@ namespace Invector.vCharacterController.vActions
             Vector3 objDir = (pushParent.position - ladderActionTemp.transform.position).normalized;
             Vector3 moveDir = new Vector3(tpInput.cc.input.x,0,tpInput.cc.input.y);
             speed = Vector3.Dot(moveDir, objDir);
-            speed = Mathf.Clamp(speed, 0f, 1f);
+            speed = Mathf.Clamp(speed, -1f, 1f);
             //speed = Mathf.Clamp(tpInput.cc.input.y, -1f, 1f);
             tpInput.cc.animator.SetFloat("InputVertical", speed * pushSpeed, 0.25f, Time.deltaTime);
             
