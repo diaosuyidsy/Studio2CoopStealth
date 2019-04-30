@@ -260,6 +260,7 @@ public class Ability_ThrowTransmitter : Ability
 	public override void OnDisable()
 	{
 		base.OnDisable();
+		OnLiftUpAbility();
 		EventManager.StopListening($"Player{PlayerID}InAbility",
 			() =>
 			{
