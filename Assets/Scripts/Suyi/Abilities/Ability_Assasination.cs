@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Invector.vCharacterController;
 using UnityEngine;
 using Rewired;
 using UnityEditor;
@@ -8,10 +9,15 @@ public class Ability_Assasination : Ability
 {
 	public float Range = 1.5f;
 	public float Angle = 60f;
-
+	private bool isPlayingAnimation = false; 
+	public string playAnimation;
+	protected vThirdPersonInput tpInput;
 	[SerializeField] private LayerMask EnemyMask;
 	private GameObject _interactableObject;
-
+	private void Start()
+	{
+		tpInput = GetComponent<vThirdPersonInput>();
+	}
 	private void Update()
 	{
 		// First Get the nearby enemy, decide which one to interact
@@ -24,15 +30,60 @@ public class Ability_Assasination : Ability
 		}
 		else CoolDown();
 	}
+	
+	void ApplyPlayerSettings()
+	{		
+		
+			tpInput.cc._rigidbody.useGravity = false;               // disable gravity of the player
+			tpInput.cc._rigidbody.velocity = Vector3.zero;
+			tpInput.cc.isGrounded = true;                           // ground the character so that we can run the root motion without any issues
+			tpInput.cc.animator.SetBool("IsGrounded", true);        // also ground the character on the animator so that he won't float after finishes the climb animation
+			tpInput.cc.animator.SetInteger("ActionState", 1);       // set actionState 1 to avoid falling transitions     
+			tpInput.cc._capsuleCollider.isTrigger = true;           // disable the collision of the player if necessary 
+		
+			tpInput.enabled = false;
+			tpInput.cc.enabled = false;
+	}
+
+	void ResetPlayerSettings()
+	{
+			tpInput.enabled = true;
+			tpInput.cc.enabled = true;
+			tpInput.cc.EnableGravityAndCollision(0f);             // enable again the gravity and collision
+			tpInput.cc.animator.SetInteger("ActionState", 0);     // set actionState 1 to avoid falling transitions
+
+	}
+	void OnAnimatorMove()
+	{            
+		if (!isPlayingAnimation) return;
+		if (!tpInput.cc.customAction)
+		{
+			// enable movement using root motion
+			transform.rotation = tpInput.cc.animator.rootRotation;
+		}
+		transform.position = tpInput.cc.animator.rootPosition;
+	}
 
 	public override void OnPressedDownAbility()
 	{
 		if (_isUsingOtherAbility) return;
 		nextReadyTime = BaseCoolDown + Time.time;
 		coolDownTimeLeft = BaseCoolDown;
-		if (_interactableObject != null) _interactableObject.SetActive(false);
+		                                                
+		tpInput.cc.animator.CrossFadeInFixedTime(playAnimation, 0.1f);
+		ApplyPlayerSettings();
+		isPlayingAnimation = true;
+		StartCoroutine(waitKill());
+
 	}
 
+	IEnumerator waitKill()
+	{
+		yield return new WaitForSeconds(1.0f);
+		if (_interactableObject != null) _interactableObject.SetActive(false);
+		isPlayingAnimation = false;
+		ResetPlayerSettings();
+	}
 	/// <summary>
 	/// Get nearby enemy that is facing the same direction as player and return it into _interactableObject
 	/// </summary>
