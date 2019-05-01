@@ -154,7 +154,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &9132737601276076726
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -458,7 +458,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openCloseEvents: 0
-  openCloseWindow: 0
+  openCloseWindow: 1
   selectedToolbar: 0
   playerId: 0
   lockInput: 0
@@ -1025,6 +1025,7 @@ MonoBehaviour:
   ThrowThrust: 14.72
   FetchRadius: 1.5
   ThrowMarkMoveSpeed: 20
+  ThrowMarkGravityScale: 1
   ThrowMark: {fileID: 5528740680967196866}
   ShadowThrowMark: {fileID: 813518729}
   TeleportTransmitter: {fileID: 5528740679930312620}

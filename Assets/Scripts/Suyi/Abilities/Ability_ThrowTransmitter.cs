@@ -10,6 +10,7 @@ public class Ability_ThrowTransmitter : Ability
 	public float ThrowThrust = 10f;
 	public float FetchRadius = 1.5f;
 	public float ThrowMarkMoveSpeed = 0.5f;
+	public float ThrowMarkGravityScale = 1f;
 	public Transform ThrowMark;
 	public Transform ShadowThrowMark;
 	public Transform TeleportTransmitter;
@@ -19,7 +20,13 @@ public class Ability_ThrowTransmitter : Ability
 	[Range(10f, 89f)]
 	private float ThrowAngle = 45f;
 	private float firingAngle = 45f;
-	private float gravity = 25f;
+	private Vector3 _throwMarkGravity
+	{
+		get
+		{
+			return Physics.gravity * ThrowMarkGravityScale;
+		}
+	}
 	private LineRenderer lineRenderer;
 	private float HRAxis;
 	private float VRAxis;
@@ -76,7 +83,7 @@ public class Ability_ThrowTransmitter : Ability
 	{
 		get
 		{
-			return Mathf.Pow(ThrowThrust, 2) / -Physics.gravity.y - 1f;
+			return Mathf.Pow(ThrowThrust, 2) / -_throwMarkGravity.y - 1f;
 		}
 	}
 
@@ -105,6 +112,11 @@ public class Ability_ThrowTransmitter : Ability
 				OnLiftUpAbility();
 		}
 		else CoolDown();
+	}
+
+	private void FixedUpdate()
+	{
+		TeleportTransmitter.GetComponent<Rigidbody>().AddForce(Vector3.down * Physics.gravity.y * (1f - ThrowMarkGravityScale));
 	}
 
 	/// <summary>
@@ -151,7 +163,7 @@ public class Ability_ThrowTransmitter : Ability
 			ShadowThrowMark.position = newPosition;
 		}
 		else ShadowThrowMark.position = newPosition;
-		ThrowAngle = 90f - Mathf.Asin(-Physics.gravity.y * distance / (ThrowThrust * ThrowThrust)) * Mathf.Rad2Deg / 2f;
+		ThrowAngle = 90f - Mathf.Asin(-_throwMarkGravity.y * distance / (ThrowThrust * ThrowThrust)) * Mathf.Rad2Deg / 2f;
 		// End Move
 
 		//ThrowAngle += VLAxis * ThrowMarkMoveSpeed * Time.deltaTime;
@@ -241,7 +253,7 @@ public class Ability_ThrowTransmitter : Ability
 
 	private Vector3 PlotTrajectoryAtTime(Vector3 start, Vector3 startVelocity, float time)
 	{
-		return start + startVelocity * time + Physics.gravity * time * time * 0.5f;
+		return start + startVelocity * time + _throwMarkGravity * time * time * 0.5f;
 	}
 
 	public override void OnEnable()
@@ -279,7 +291,7 @@ public class DrawWireArc : Editor
 	{
 		Handles.color = Color.red;
 		Ability_ThrowTransmitter AA = (Ability_ThrowTransmitter)target;
-		Handles.DrawWireArc(AA.transform.position - new Vector3(0f, 1f, 0f), AA.transform.up, AA.transform.forward, 360f, Mathf.Pow(AA.ThrowThrust, 2f) / -Physics.gravity.y);
+		Handles.DrawWireArc(AA.transform.position - new Vector3(0f, 1f, 0f), AA.transform.up, AA.transform.forward, 360f, Mathf.Pow(AA.ThrowThrust, 2f) / -Physics.gravity.y * AA.ThrowMarkGravityScale);
 		Handles.DrawWireArc(AA.transform.position - new Vector3(0f, 1f, 0f), AA.transform.up, AA.transform.forward, 360f, AA.FetchRadius);
 	}
 }
