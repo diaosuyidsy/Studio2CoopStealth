@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.Events;
 
 public class SavingPoint : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class SavingPoint : MonoBehaviour
 	public float XOffset = 2f;
 	[Tooltip("Used to set Camera Wiggle Room in Z Direction")]
 	public float ZOffset = 2f;
+	public UnityEvent OnEnterSavingPoint;
 
 	private Transform _camPosition;
 
@@ -55,6 +57,7 @@ public class SavingPoint : MonoBehaviour
 			recorded = true;
 			SavingManager.SM.SavingIndex = thisSavingIndex;
 			//Camera.main.transform.GetComponent<CameraController>().AdjustHeight = CameraHeight;
+			OnEnterSavingPoint.Invoke();
 			_mainCamControl.SetCameraPosRot(_camPosition, transform.GetChild(1), CameraTransitionTime, XOffset, ZOffset);
 		}
 	}
