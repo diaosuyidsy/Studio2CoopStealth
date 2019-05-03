@@ -12,6 +12,7 @@ public abstract class Ability : MonoBehaviour
 {
 	public string ButtonName;
 	public float BaseCoolDown = 1f;
+	public int EnergyCost = 1;
 
 	protected float coolDownTimeLeft = 0f;
 	protected float nextReadyTime;
@@ -45,6 +46,14 @@ public abstract class Ability : MonoBehaviour
 	public virtual void CoolDown()
 	{
 		coolDownTimeLeft -= Time.deltaTime;
+	}
+
+	/// <summary>
+	/// On Use Ability, Spend Energy
+	/// </summary>
+	public virtual bool SpendEnergy()
+	{
+		return EnergyManager.instance.CanUseEnergy(EnergyCost);
 	}
 
 	public virtual void OnEnable()

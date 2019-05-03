@@ -9,7 +9,7 @@ public class Ability_Assasination : Ability
 {
 	public float Range = 1.5f;
 	public float Angle = 60f;
-	private bool isPlayingAnimation = false; 
+	private bool isPlayingAnimation = false;
 	public string playAnimation;
 	protected vThirdPersonInput tpInput;
 	[SerializeField] private LayerMask EnemyMask;
@@ -30,31 +30,31 @@ public class Ability_Assasination : Ability
 		}
 		else CoolDown();
 	}
-	
+
 	void ApplyPlayerSettings()
-	{		
-		
-			tpInput.cc._rigidbody.useGravity = false;               // disable gravity of the player
-			tpInput.cc._rigidbody.velocity = Vector3.zero;
-			tpInput.cc.isGrounded = true;                           // ground the character so that we can run the root motion without any issues
-			tpInput.cc.animator.SetBool("IsGrounded", true);        // also ground the character on the animator so that he won't float after finishes the climb animation
-			tpInput.cc.animator.SetInteger("ActionState", 1);       // set actionState 1 to avoid falling transitions     
-			tpInput.cc._capsuleCollider.isTrigger = true;           // disable the collision of the player if necessary 
-		
-			tpInput.enabled = false;
-			tpInput.cc.enabled = false;
+	{
+
+		tpInput.cc._rigidbody.useGravity = false;               // disable gravity of the player
+		tpInput.cc._rigidbody.velocity = Vector3.zero;
+		tpInput.cc.isGrounded = true;                           // ground the character so that we can run the root motion without any issues
+		tpInput.cc.animator.SetBool("IsGrounded", true);        // also ground the character on the animator so that he won't float after finishes the climb animation
+		tpInput.cc.animator.SetInteger("ActionState", 1);       // set actionState 1 to avoid falling transitions     
+		tpInput.cc._capsuleCollider.isTrigger = true;           // disable the collision of the player if necessary 
+
+		tpInput.enabled = false;
+		tpInput.cc.enabled = false;
 	}
 
 	void ResetPlayerSettings()
 	{
-			tpInput.enabled = true;
-			tpInput.cc.enabled = true;
-			tpInput.cc.EnableGravityAndCollision(0f);             // enable again the gravity and collision
-			tpInput.cc.animator.SetInteger("ActionState", 0);     // set actionState 1 to avoid falling transitions
+		tpInput.enabled = true;
+		tpInput.cc.enabled = true;
+		tpInput.cc.EnableGravityAndCollision(0f);             // enable again the gravity and collision
+		tpInput.cc.animator.SetInteger("ActionState", 0);     // set actionState 1 to avoid falling transitions
 
 	}
 	void OnAnimatorMove()
-	{            
+	{
 		if (!isPlayingAnimation) return;
 		if (!tpInput.cc.customAction)
 		{
@@ -69,7 +69,8 @@ public class Ability_Assasination : Ability
 		if (_isUsingOtherAbility) return;
 		nextReadyTime = BaseCoolDown + Time.time;
 		coolDownTimeLeft = BaseCoolDown;
-		                                                
+		if (!SpendEnergy()) return;
+
 		tpInput.cc.animator.CrossFadeInFixedTime(playAnimation, 0.1f);
 		ApplyPlayerSettings();
 		isPlayingAnimation = true;
@@ -80,7 +81,10 @@ public class Ability_Assasination : Ability
 	IEnumerator waitKill()
 	{
 		yield return new WaitForSeconds(1.0f);
-		if (_interactableObject != null) _interactableObject.SetActive(false);
+		if (_interactableObject != null)
+		{
+			_interactableObject.SetActive(false);
+		}
 		isPlayingAnimation = false;
 		ResetPlayerSettings();
 	}

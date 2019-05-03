@@ -24,7 +24,7 @@ public class Ability_Teleport : Ability
 		if (_player.GetButtonDown(ButtonName))
 		{
 			OnPressedDownAbility();
-			
+
 		}
 
 		if (TeleportTransmitter.activeSelf)
@@ -40,11 +40,11 @@ public class Ability_Teleport : Ability
 			{
 				GetComponent<Ability_Swap>().SwapLine.GetComponent<EGA_Laser>().Transmit();
 				isTransmittingPhase1 = false;
-						
-				
+
+
 			}
 		}
-		else if(isTransmittingPhase2)
+		else if (isTransmittingPhase2)
 		{
 			transform.position = TeleportTransmitter.transform.position;
 			TeleportTransmitter.SetActive(false);
@@ -66,9 +66,9 @@ public class Ability_Teleport : Ability
 		//if (collider != null)
 		//	transform.position = TeleportTransmitter.transform.position + collider.bounds.extents;
 		//else
+		if (!SpendEnergy()) return;
 		isTransmittingPhase1 = true;
 		GetComponent<vThirdPersonInput>().enabled = false;
-		GetComponent<vThirdPersonInput>().cc.enabled = false;  
-		
+		GetComponent<vThirdPersonInput>().cc.enabled = false;
 	}
 }
