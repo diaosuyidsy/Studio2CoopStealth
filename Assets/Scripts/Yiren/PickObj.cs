@@ -12,7 +12,7 @@ public class PickObj : MonoBehaviour
     public Transform holdPosOnObj; 
     private bool isFalling = false;
     private IKAnimation ikAnimation;
-
+    private float fallTime = 0; 
     private void Start()
     {
         ikAnimation = GameObject.Find("Player_Big").GetComponent<IKAnimation>();
@@ -50,8 +50,8 @@ public class PickObj : MonoBehaviour
         StartCoroutine(waitForDrop());
         //transform.rotation = Quaternion.Euler(Vector3.Scale(transform.rotation.eulerAngles,new Vector3(0,1,0)));
         GetComponent<Rigidbody>().isKinematic = false;
-        GetComponent<Rigidbody>().AddForce(8000 * Vector3.Scale(HoldingPos.position - GameObject.Find("Player_Big").transform.position , new Vector3(1,0,1)));
-        GetComponent<Rigidbody>().velocity = Vector3.down * 4;
+        GetComponent<Rigidbody>().AddForce(3000 * Vector3.Scale(HoldingPos.position - GameObject.Find("Player_Big").transform.position , new Vector3(1,0,1)));
+        GetComponent<Rigidbody>().velocity = Vector3.down * 5;
         transform.Find("putdown").GetComponent<vTriggerGenericAction>().enabled = false;
         transform.Find("putdown").GetComponent<Collider>().enabled = false;
         foreach (var trigger in pickUpTriggers)
@@ -75,7 +75,7 @@ public class PickObj : MonoBehaviour
 
         if (isFalling)
         {
-            Ray ray  = new Ray(transform.position, Vector3.down);
+            /*Ray ray  = new Ray(transform.position, Vector3.down);
             float raycastDist = 0.05f;
             Debug.DrawRay(ray.origin, ray.direction * raycastDist, Color.yellow);
             RaycastHit rayHit = new RaycastHit();
@@ -88,7 +88,21 @@ public class PickObj : MonoBehaviour
                 }
 
 
+            }*/
+            /*if (GetComponent<Rigidbody>().velocity.magnitude < 0.05f)
+            {
+                fallTime += Time.deltaTime;
+                if (fallTime >= 1.0f)
+                {
+                    GetComponent<Rigidbody>().isKinematic = true;
+                    isFalling = false;
+                    fallTime = 0;
+                }
             }
+            else
+            {
+                fallTime = 0;
+            }*/
         }
     }
 
