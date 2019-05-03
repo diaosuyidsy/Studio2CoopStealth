@@ -87,7 +87,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1564268354689771318}
   m_Layer: 0
-  m_Name: InnerGate
+  m_Name: InnerGate_Side
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -512,7 +512,7 @@ Texture2D:
   m_Name: Model 0
   m_ImageContentsHash:
     serializedVersion: 2
-    Hash: 00000000000000000000000000000000
+    Hash: 420b5ae6565708bfe714a55dc49f0fd4
   m_ForcedFallbackFormat: 4
   m_DownscaleFallback: 0
   serializedVersion: 2
@@ -552,7 +552,7 @@ Texture2D:
   m_Name: Model 2
   m_ImageContentsHash:
     serializedVersion: 2
-    Hash: 00000000000000000000000000000000
+    Hash: 3b8e7567f73f4df20f9d95082dc467f7
   m_ForcedFallbackFormat: 4
   m_DownscaleFallback: 0
   serializedVersion: 2
@@ -592,7 +592,7 @@ Texture2D:
   m_Name: Model 1
   m_ImageContentsHash:
     serializedVersion: 2
-    Hash: 00000000000000000000000000000000
+    Hash: 0f2843dffcb5a4472e96ce77b7079c37
   m_ForcedFallbackFormat: 4
   m_DownscaleFallback: 0
   serializedVersion: 2
