@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Invector.vCharacterController.vActions;
 using cakeslice;
+using Invector.vCharacterController;
 using UnityEngine;
 
 public class PickObj : MonoBehaviour
@@ -13,10 +14,13 @@ public class PickObj : MonoBehaviour
     private bool isFalling = false;
     private IKAnimation ikAnimation;
     private float fallTime = 0; 
+    protected vThirdPersonInput tpInput;
+    private bool isPutDown;
     private void Start()
     {
         ikAnimation = GameObject.Find("Player_Big").GetComponent<IKAnimation>();
         HoldingPos = GameObject.Find("Player_Big").transform.Find("hip").Find("HoldingPos");
+        tpInput = GameObject.FindGameObjectWithTag("Player1").GetComponent<vThirdPersonInput>(); 
     }
 
 
@@ -41,17 +45,23 @@ public class PickObj : MonoBehaviour
         ikAnimation.setHandPos(holdPosOnObj.Find("RightHandPos"),holdPosOnObj.Find("LeftHandPos"));
         ikAnimation.SetIKOn();
         transform.localRotation = Quaternion.Euler(Vector3.Scale(transform.localEulerAngles , new Vector3(0,1,0)));
+        
+        
     }
     
     public void PutDown()
     {
+        tpInput.cc.animator.SetInteger("ActionState", 0);
+        tpInput.cc.stopMove = true;
+        isPutDown = true;
+        
         transform.parent = null;
         //transform.position = HoldingPos.position;
         StartCoroutine(waitForDrop());
-        //transform.rotation = Quaternion.Euler(Vector3.Scale(transform.rotation.eulerAngles,new Vector3(0,1,0)));
+        transform.rotation = Quaternion.Euler(Vector3.Scale(transform.rotation.eulerAngles,new Vector3(0,1,0)));
         GetComponent<Rigidbody>().isKinematic = false;
-        GetComponent<Rigidbody>().AddForce(3000 * Vector3.Scale(HoldingPos.position - GameObject.Find("Player_Big").transform.position , new Vector3(1,0,1)));
-        GetComponent<Rigidbody>().velocity = Vector3.down * 5;
+        //GetComponent<Rigidbody>().AddForce(3000 * Vector3.Scale(HoldingPos.position - GameObject.Find("Player_Big").transform.position , new Vector3(1,0,1)));
+        GetComponent<Rigidbody>().velocity = Vector3.down * 10;
         transform.Find("putdown").GetComponent<vTriggerGenericAction>().enabled = false;
         transform.Find("putdown").GetComponent<Collider>().enabled = false;
         foreach (var trigger in pickUpTriggers)
@@ -68,27 +78,31 @@ public class PickObj : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         isFalling = true;
         transform.GetComponent<Collider>().isTrigger = false;
+        isPutDown = false;
     }
 
     private void Update()
     {
-
+        if (isPutDown)
+        {
+            tpInput.cc.stopMove = true;
+        }
         if (isFalling)
         {
-            /*Ray ray  = new Ray(transform.position, Vector3.down);
+            Ray ray  = new Ray(transform.position, Vector3.down);
             float raycastDist = 0.05f;
             Debug.DrawRay(ray.origin, ray.direction * raycastDist, Color.yellow);
             RaycastHit rayHit = new RaycastHit();
             if (Physics.Raycast(ray, out rayHit,raycastDist))
             {
-                if (!rayHit.transform.tag.Contains("Player"))
+                if (!rayHit.transform.tag.Contains("Player") && rayHit.transform.gameObject.layer != LayerMask.NameToLayer("Interactable"))
                 {
                     GetComponent<Rigidbody>().isKinematic = true;
                     isFalling = false;
                 }
 
 
-            }*/
+            }
             /*if (GetComponent<Rigidbody>().velocity.magnitude < 0.05f)
             {
                 fallTime += Time.deltaTime;
