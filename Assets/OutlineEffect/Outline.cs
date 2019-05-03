@@ -86,7 +86,7 @@ namespace cakeslice
 			//{
 			//	effect.AddOutline(this);
 			//}
-			EventManager.StartListening("OnPlayerDied", DisableOutline);
+			EventManager.StartListening("PlayerDied", DisableOutline);
 		}
 
 		void OnDisable()
@@ -99,7 +99,7 @@ namespace cakeslice
 			//{
 			//	effect.RemoveOutline(this);
 			//}
-			EventManager.StopListening("OnPlayerDied", DisableOutline);
+			EventManager.StopListening("PlayerDied", DisableOutline);
 		}
 	}
 }

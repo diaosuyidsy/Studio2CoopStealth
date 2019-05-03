@@ -24,6 +24,7 @@ public class SavingManager : MonoBehaviour
 		Player1 = GameObject.FindGameObjectWithTag("Player1");
 		Player2 = GameObject.FindGameObjectWithTag("Player2");
 		SavingIndex = 0;
+		Tinylytics.AnalyticsManager.LogCustomMetric("Open Level", "");
 	}
 
 	IEnumerator Revive(float time)
