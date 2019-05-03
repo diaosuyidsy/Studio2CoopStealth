@@ -12,7 +12,7 @@ public class UILookAtCamera : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		transform.rotation = Quaternion.LookRotation(transform.position- _cam.transform.position);
+		transform.rotation = Quaternion.LookRotation(transform.position - _cam.transform.position);
 		transform.localRotation = Quaternion.Euler(transform.localEulerAngles.x, transform.localEulerAngles.y, 0);
 	}
 }

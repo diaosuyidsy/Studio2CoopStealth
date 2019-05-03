@@ -59,13 +59,12 @@ public class Ability_Swap : Ability
 		if (Vector3.Distance(transform.position, _otherPlayer.transform.position) < Range
 			&& !Physics.Linecast(_otherPlayerBodyCenter, _playerBodyCenter, TransportObstacleMask))
 		{
-
+			if (!SpendEnergy()) return;
 			GetComponent<vThirdPersonInput>().enabled = false;
-			GetComponent<vThirdPersonInput>().cc.enabled = false;  
+			GetComponent<vThirdPersonInput>().cc.enabled = false;
 			_otherPlayer.GetComponent<vThirdPersonInput>().enabled = false;
-			_otherPlayer.GetComponent<vThirdPersonInput>().cc.enabled = false;  
+			_otherPlayer.GetComponent<vThirdPersonInput>().cc.enabled = false;
 			isSwapingPhase1 = true;
-			
 		}
 	}
 
@@ -104,16 +103,16 @@ public class Ability_Swap : Ability
 				isSwapingPhase1 = false;
 			}
 		}
-		else if(isSwapingPhase2)
+		else if (isSwapingPhase2)
 		{
-			
+
 			_slicePlayer -= 20 * Time.deltaTime;
 			_playerRenderer.material.SetFloat("_Slice", _slicePlayer);
 			_otherPlayerRenderer.material.SetFloat("_Slice", _slicePlayer);
 			if (_slicePlayer <= -3)
 			{
 				GetComponent<vThirdPersonInput>().enabled = true;
-				GetComponent<vThirdPersonInput>().cc.enabled = true;  
+				GetComponent<vThirdPersonInput>().cc.enabled = true;
 				_otherPlayer.GetComponent<vThirdPersonInput>().enabled = true;
 				_otherPlayer.GetComponent<vThirdPersonInput>().cc.enabled = true;
 				isSwapingPhase2 = false;

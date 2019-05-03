@@ -25,6 +25,7 @@
 using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
+using UnityEngine.Events;
 
 namespace cakeslice
 {
@@ -36,6 +37,8 @@ namespace cakeslice
 
 		public int color;
 		public bool eraseRenderer;
+		public UnityEvent OnEnableOutline;
+		public UnityEvent OnDisableOutline;
 
 		[HideInInspector]
 		public int originalLayer;
@@ -57,6 +60,7 @@ namespace cakeslice
 			{
 				effect.AddOutline(this);
 			}
+			OnEnableOutline.Invoke();
 		}
 
 		public void DisableOutline()
@@ -69,6 +73,7 @@ namespace cakeslice
 			{
 				effect.RemoveOutline(this);
 			}
+			OnDisableOutline.Invoke();
 		}
 
 		void OnEnable()
