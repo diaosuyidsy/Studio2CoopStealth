@@ -85,8 +85,8 @@ public class Ability_Interact : Ability
 		{
 			var hit = hitcolliders[i].gameObject;
 			var dist = Vector3.Distance(hit.transform.position, _coll.bounds.center);
-			//if (dist < minDist && hit.GetComponent<Interactable>() && !Physics.Linecast(transform.position, hit.transform.position, 1 << LayerMask.NameToLayer("Default")))
-			if (dist < minDist && hit.GetComponent<Interactable>())
+			if (dist < minDist && hit.GetComponent<Interactable>() && !Physics.Linecast(_coll.bounds.center, hit.transform.position, 1 << LayerMask.NameToLayer("Default") | 1 << LayerMask.NameToLayer("Obstacle")))
+			//if (dist < minDist && hit.GetComponent<Interactable>())
 			{
 				smallestGO = hit.gameObject;
 				minDist = dist;

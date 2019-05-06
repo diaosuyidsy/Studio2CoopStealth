@@ -58,6 +58,7 @@ public class SavingPoint : MonoBehaviour
 			SavingManager.SM.SavingIndex = thisSavingIndex;
 			//Camera.main.transform.GetComponent<CameraController>().AdjustHeight = CameraHeight;
 			OnEnterSavingPoint.Invoke();
+			Tinylytics.AnalyticsManager.LogCustomMetric("Current Level", (thisSavingIndex + 1).ToString());
 			_mainCamControl.SetCameraPosRot(_camPosition, transform.GetChild(1), CameraTransitionTime, XOffset, ZOffset);
 		}
 	}
