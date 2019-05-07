@@ -67,9 +67,10 @@ public class Ability_Assasination : Ability
 	public override void OnPressedDownAbility()
 	{
 		if (_isUsingOtherAbility) return;
+		if (!SpendEnergy()) return;
 		nextReadyTime = BaseCoolDown + Time.time;
 		coolDownTimeLeft = BaseCoolDown;
-		if (!SpendEnergy()) return;
+
 
 		tpInput.cc.animator.CrossFadeInFixedTime(playAnimation, 0.1f);
 		ApplyPlayerSettings();

@@ -5,6 +5,8 @@ using Invector.vItemManager;
 using Invector.vShooter;
 using UnityEngine;
 using Rewired;
+using UnityEngine.UI;
+using DG.Tweening;
 
 [RequireComponent(typeof(vShooterMeleeInput))]
 [RequireComponent(typeof(vThirdPersonController))]
@@ -13,17 +15,22 @@ public abstract class Ability : MonoBehaviour
 	public string ButtonName;
 	public float BaseCoolDown = 1f;
 	public int EnergyCost = 1;
+	public string UIFillName;
 
 	protected float coolDownTimeLeft = 0f;
 	protected float nextReadyTime;
 	protected Player _player;
 	protected bool _isUsingOtherAbility;
 	protected int PlayerID;
+	protected Image UIFill;
 
 	public virtual void Awake()
 	{
 		PlayerID = GetComponent<vShooterMeleeInput>().playerId;
 		_player = ReInput.players.GetPlayer(PlayerID);
+		GameObject temp = GameObject.Find(UIFillName);
+		if (temp != null)
+			UIFill = temp.GetComponent<Image>();
 	}
 	/// <summary>
 	/// Pressed Down the Button
@@ -46,6 +53,17 @@ public abstract class Ability : MonoBehaviour
 	public virtual void CoolDown()
 	{
 		coolDownTimeLeft -= Time.deltaTime;
+		float percentage = coolDownTimeLeft / BaseCoolDown;
+		if (UIFill != null)
+		{
+			UIFill.fillAmount = 1 - percentage;
+			if (coolDownTimeLeft < 0.1f)
+			{
+				UIFill.fillAmount = 1f;
+				UIFill.transform.parent.parent.GetComponent<DOTweenAnimation>().DOPlayById("OnCoolDown");
+				nextReadyTime = Time.time - 0.1f;
+			}
+		}
 	}
 
 	/// <summary>

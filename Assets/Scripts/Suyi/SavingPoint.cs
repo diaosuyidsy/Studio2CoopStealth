@@ -33,8 +33,8 @@ public class SavingPoint : MonoBehaviour
 		}
 	}
 
-	private bool P1Entered;
-	private bool P2Entered;
+	public bool P1Entered;
+	public bool P2Entered;
 	private bool recorded;
 
 	private int thisSavingIndex;
