@@ -28,13 +28,13 @@ MonoBehaviour:
   destinationFolder: Assets/Yuponic/YuME/PrototypeTiles
   meshFolder: Assets/Yuponic/YuME/Models/Meshes
   appendName: 
-  c_name: The Lab
+  c_name: Factory
   c_tileStatic: 1
-  c_scale: 0.53
-  c_offset: {x: -0.03, y: -0.53, z: -0.03}
+  c_scale: 0.52637
+  c_offset: {x: -0.0265, y: -0.53, z: -0.0265}
   c_shadowCastingMode: 1
   c_receiveShadows: 1
   c_bypassCollisionSetup: 0
-  c_destinationFolder: Assets/Resources/YumePrefabs
-  c_sourceFolder: Assets/Env Prefabs/The Lab
+  c_destinationFolder: Assets/Resources/YumePrefabs/Factory
+  c_sourceFolder: Assets/Env Prefabs/Factory
   c_appendName: 

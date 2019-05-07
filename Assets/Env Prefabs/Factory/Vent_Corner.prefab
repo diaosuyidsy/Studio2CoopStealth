@@ -17,7 +17,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &612179855937316744
 Transform:
@@ -106,7 +106,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &3061142682388267584
 Transform:
@@ -142,7 +142,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &3190468476527468006
 Transform:
@@ -234,7 +234,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &340235692280137263
 Transform:
@@ -543,7 +543,7 @@ Texture2D:
   m_Name: Model 1
   m_ImageContentsHash:
     serializedVersion: 2
-    Hash: 00000000000000000000000000000000
+    Hash: d0582071556738a7919f632df8b4bc85
   m_ForcedFallbackFormat: 4
   m_DownscaleFallback: 0
   serializedVersion: 2
@@ -583,7 +583,7 @@ Texture2D:
   m_Name: Model 2
   m_ImageContentsHash:
     serializedVersion: 2
-    Hash: 00000000000000000000000000000000
+    Hash: 0d230e3cff825459a22e190a1b613031
   m_ForcedFallbackFormat: 4
   m_DownscaleFallback: 0
   serializedVersion: 2
@@ -623,7 +623,7 @@ Texture2D:
   m_Name: Model 0
   m_ImageContentsHash:
     serializedVersion: 2
-    Hash: 00000000000000000000000000000000
+    Hash: 729435e4893fabb9af42139808e6e619
   m_ForcedFallbackFormat: 4
   m_DownscaleFallback: 0
   serializedVersion: 2

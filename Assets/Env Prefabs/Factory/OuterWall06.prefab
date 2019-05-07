@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8929093956617891963
 Transform:
@@ -49,7 +49,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7216512582710710050
 Transform:
@@ -141,7 +141,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4723358825840418627
 Transform:
@@ -375,7 +375,7 @@ Texture2D:
   m_Name: Model 0
   m_ImageContentsHash:
     serializedVersion: 2
-    Hash: 00000000000000000000000000000000
+    Hash: f17eb01cabeaf235abd0e4c11d9e61a0
   m_ForcedFallbackFormat: 4
   m_DownscaleFallback: 0
   serializedVersion: 2
@@ -415,7 +415,7 @@ Texture2D:
   m_Name: Model 1
   m_ImageContentsHash:
     serializedVersion: 2
-    Hash: 00000000000000000000000000000000
+    Hash: 928c770e3f723754cfc384dd025b77f6
   m_ForcedFallbackFormat: 4
   m_DownscaleFallback: 0
   serializedVersion: 2
