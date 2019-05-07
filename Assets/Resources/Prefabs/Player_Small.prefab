@@ -586,6 +586,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ButtonName: X
   BaseCoolDown: 5
+  EnergyCost: 1
+  UIFillName: swapFill
   Range: Infinity
   TransportObstacleMask:
     serializedVersion: 2
@@ -607,6 +609,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ButtonName: Y
   BaseCoolDown: 1
+  EnergyCost: 1
+  UIFillName: teleportFill
   isTransmittingPhase1: 0
   isTransmittingPhase2: 0
 --- !u!114 &59234584415198760
@@ -623,6 +627,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ButtonName: B
   BaseCoolDown: 1
+  EnergyCost: 1
+  UIFillName: 
   Range: 5
   _curCharge: 1
 --- !u!114 &59234583749507692
@@ -639,6 +645,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ButtonName: A
   BaseCoolDown: 0
+  EnergyCost: 1
+  UIFillName: 
   Range: 2
   InteractableMask:
     serializedVersion: 2

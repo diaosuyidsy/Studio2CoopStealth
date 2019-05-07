@@ -52,6 +52,7 @@ public class Ability_Swap : Ability
 	public override void OnPressedDownAbility()
 	{
 		if (_isUsingOtherAbility) return;
+		if (!SpendEnergy()) return;
 		nextReadyTime = BaseCoolDown + Time.time;
 		coolDownTimeLeft = BaseCoolDown;
 
@@ -59,7 +60,6 @@ public class Ability_Swap : Ability
 		if (Vector3.Distance(transform.position, _otherPlayer.transform.position) < Range
 			&& !Physics.Linecast(_otherPlayerBodyCenter, _playerBodyCenter, TransportObstacleMask))
 		{
-			if (!SpendEnergy()) return;
 			GetComponent<vThirdPersonInput>().enabled = false;
 			GetComponent<vThirdPersonInput>().cc.enabled = false;
 			_otherPlayer.GetComponent<vThirdPersonInput>().enabled = false;

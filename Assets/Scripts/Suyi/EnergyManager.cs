@@ -2,16 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class EnergyManager : MonoBehaviour
 {
 	public static EnergyManager instance;
-	public int MaxEnergy = 6;
+	public int MaxEnergy = 3;
 	public GameObject EnergyPrefab;
 
 	private Transform EnergyBar;
 	public int _currentEnergy;
 	private List<GameObject> Energies;
+	public RectTransform Kuang;
+	public DOTweenAnimation Mask;
 
 	private void Awake()
 	{
@@ -28,7 +31,7 @@ public class EnergyManager : MonoBehaviour
 		_currentEnergy = MaxEnergy;
 		EnergyBar = transform.GetChild(0).GetChild(0);
 		Energies = new List<GameObject>();
-		for (int i = 0; i < _currentEnergy; i++)
+		for (int i = 0; i < MaxEnergy; i++)
 		{
 			Energies.Add(Instantiate(EnergyPrefab, EnergyBar));
 		}
@@ -38,6 +41,7 @@ public class EnergyManager : MonoBehaviour
 	{
 		if (_currentEnergy - _energy < 0) return false;
 		if (!EnergyBar.gameObject.activeSelf) EnergyBar.gameObject.SetActive(true);
+		Mask.DOPlayForward();
 		_useEnergy(_energy);
 		return true;
 	}
@@ -62,6 +66,21 @@ public class EnergyManager : MonoBehaviour
 				Energies[i].GetComponentInChildren<DOTweenAnimation>().DOPlayBackwards();
 			}
 		}
+	}
+
+	public void AddMaxEnergy(int _energyAmt)
+	{
+		// Restore all current energy
+		_useEnergy(_currentEnergy - MaxEnergy);
+		// Change the size of maxEnergy
+		for (int i = 0; i < _energyAmt; i++)
+		{
+			Energies.Add(Instantiate(EnergyPrefab, EnergyBar));
+		}
+		MaxEnergy += _energyAmt;
+		_currentEnergy = MaxEnergy;
+		// Change the size of the Frame
+		Kuang.sizeDelta = new Vector2(90f + 30f * MaxEnergy, Kuang.sizeDelta.y);
 	}
 
 }

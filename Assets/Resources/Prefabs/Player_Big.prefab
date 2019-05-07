@@ -891,6 +891,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ButtonName: X
   BaseCoolDown: 0.1
+  EnergyCost: 1
+  UIFillName: attackFill
   Range: 2
   Angle: 60
   playAnimation: KillEnemy
@@ -911,6 +913,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ButtonName: Y
   BaseCoolDown: 1
+  EnergyCost: 1
+  UIFillName: 
   StoneForm: {fileID: 5528740680156052604}
   PlayerModel: {fileID: 8142834473017616153}
 --- !u!120 &5528740680766719007
@@ -1021,6 +1025,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ButtonName: LT
   BaseCoolDown: 5
+  EnergyCost: 1
+  UIFillName: locatorFill
   SecondaryButtonName: RT
   ThrowThrust: 14.72
   FetchRadius: 1.5
@@ -1049,6 +1055,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ButtonName: B
   BaseCoolDown: 1
+  EnergyCost: 1
+  UIFillName: 
   Range: 5
   _curCharge: 1
 --- !u!114 &5528740679563701638
@@ -1065,6 +1073,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ButtonName: A
   BaseCoolDown: 0
+  EnergyCost: 1
+  UIFillName: 
   Range: 2
   InteractableMask:
     serializedVersion: 2
