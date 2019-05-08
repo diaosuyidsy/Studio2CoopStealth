@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8243036}
   - component: {fileID: 19901348}
   - component: {fileID: 19849278}
+  - component: {fileID: 6450800222446949393}
   m_Layer: 0
   m_Name: RedSpherev2Impact
   m_TagString: Untagged
@@ -4766,6 +4767,18 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &6450800222446949393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 957b6729cd1faeb4e94ec6927275647c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &152630
 GameObject:
   m_ObjectHideFlags: 0
@@ -4776,7 +4789,6 @@ GameObject:
   m_Component:
   - component: {fileID: 473818}
   - component: {fileID: 10889134}
-  - component: {fileID: 11449888}
   m_Layer: 0
   m_Name: Point light
   m_TagString: Untagged
@@ -4809,8 +4821,8 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 0, b: 0.12941177, a: 1}
-  m_Intensity: 8
-  m_Range: 12
+  m_Intensity: 4
+  m_Range: 4
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -4836,20 +4848,6 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &11449888
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 152630}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24ff3199a15f84e469258023a00cc54f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  life: 0.2
-  killAfterLife: 1
 --- !u!1 &167864
 GameObject:
   m_ObjectHideFlags: 0

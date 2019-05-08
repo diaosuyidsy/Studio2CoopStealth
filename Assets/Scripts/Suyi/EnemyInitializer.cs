@@ -39,4 +39,19 @@ public class EnemyInitializer : MonoBehaviour
 		KillableImage.SetActive(t);
 	}
 
+	private void _unlockplayer()
+	{
+		_bt.SetVariableValue("PlayerLocked", false);
+	}
+
+	private void OnEnable()
+	{
+		EventManager.StartListening("PlayerDied", _unlockplayer);
+	}
+
+	private void OnDisable()
+	{
+		EventManager.StopListening("PlayerDied", _unlockplayer);
+	}
+
 }

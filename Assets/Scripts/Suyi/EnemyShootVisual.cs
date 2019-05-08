@@ -9,6 +9,8 @@ public class EnemyShootVisual : MonoBehaviour
 	public float range = Mathf.Infinity;            // The distance the gun can fire.
 	public float BulletSpeed = 500f;
 	public GameObject BulletPrefab;
+	public GameObject BulletPreShootEffectPrefab;
+	public GameObject BulletPostHitEffectPrefab;
 
 	float timer;                                    // A timer to determine when to fire.
 	Ray shootRay;                                   // A ray from the gun end forwards.
@@ -54,6 +56,32 @@ public class EnemyShootVisual : MonoBehaviour
 	{
 		// Disable the line renderer and the light.
 		gunLight.enabled = false;
+	}
+
+	IEnumerator _shoot(float time, Transform targetLoc)
+	{
+		float elapsedTime = 0f;
+		var tar = targetLoc.transform.position;
+		tar.y += targetLoc.GetComponent<Collider>().bounds.extents.y;
+		GameObject _bullet = Instantiate(BulletPrefab, transform.position, BulletPrefab.transform.rotation);
+		Vector3 rot = transform.rotation.eulerAngles;
+		rot.y += 180f;
+		GameObject _preshootvfx = Instantiate(BulletPreShootEffectPrefab, transform.position, Quaternion.Euler(rot));
+		while (elapsedTime < time)
+		{
+			_bullet.transform.position = Vector3.Lerp(transform.position, tar, elapsedTime / time);
+			elapsedTime += Time.deltaTime;
+			yield return new WaitForEndOfFrame();
+		}
+		Destroy(_bullet);
+		Instantiate(BulletPostHitEffectPrefab, tar, BulletPostHitEffectPrefab.transform.rotation);
+		targetLoc.gameObject.SetActive(false);
+		EventManager.TriggerEvent("PlayerDied");
+	}
+
+	public void Shoot(float _time, Transform _tar)
+	{
+		StartCoroutine(_shoot(_time, _tar));
 	}
 
 	public void Shoot()

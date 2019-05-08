@@ -142,7 +142,10 @@ MonoBehaviour:
   timeBetweenBullets: 0.1
   range: 1000
   BulletSpeed: 50
-  BulletPrefab: {fileID: 8027961389375893988, guid: 2752bef6da3c8fa47936a6c1e849e75f,
+  BulletPrefab: {fileID: 120950, guid: 28895578afbbb3243b3becbe919e3274, type: 3}
+  BulletPreShootEffectPrefab: {fileID: 198538, guid: b740dbea58ef93448811620f3225414d,
+    type: 3}
+  BulletPostHitEffectPrefab: {fileID: 101568, guid: 49096c11344e91749b9177f23770f3ce,
     type: 3}
   shootableMask:
     serializedVersion: 2
