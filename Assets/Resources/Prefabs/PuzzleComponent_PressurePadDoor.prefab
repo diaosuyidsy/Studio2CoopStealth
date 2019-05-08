@@ -452,7 +452,7 @@ MonoBehaviour:
   targetGO: {fileID: 0}
   tweenTargetIsTargetGO: 1
   delay: 0
-  duration: 1.2
+  duration: 0.1
   easeType: 5
   easeCurve:
     serializedVersion: 2
@@ -914,7 +914,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8990851399295964836}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2.2000005, y: 0.3, z: 2.3000004}
