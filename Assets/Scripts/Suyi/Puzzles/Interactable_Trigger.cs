@@ -17,14 +17,16 @@ public class Interactable_Trigger : Interactable
 	public override void OnInteractDown(Object param)
 	{
 		base.OnInteractDown(param);
-		_dta.DOPlayForwardById(DTAnimationID);
+		if (_dta != null)
+			_dta.DOPlayForwardById(DTAnimationID);
 		if (Object != null) Object.OnInteractDown(param);
 	}
 
 	public override void OnInteractUp(Object param)
 	{
 		base.OnInteractUp(param);
-		_dta.DOPlayBackwardsById(DTAnimationID);
+		if (_dta != null)
+			_dta.DOPlayBackwardsById(DTAnimationID);
 		if (Object != null) Object.OnInteractUp(param);
 	}
 }
