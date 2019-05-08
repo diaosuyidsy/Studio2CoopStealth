@@ -4,6 +4,7 @@ using Invector.vCharacterController;
 using UnityEngine;
 using Rewired;
 using UnityEditor;
+using DestroyIt;
 
 public class Ability_Assasination : Ability
 {
@@ -84,6 +85,18 @@ public class Ability_Assasination : Ability
 		yield return new WaitForSeconds(1.0f);
 		if (_interactableObject != null)
 		{
+			Destructible destObj = _interactableObject.GetComponentInChildren<Destructible>();
+			if (destObj != null)
+			{
+				ImpactDamage meleeImpact = new ImpactDamage()
+				{
+					DamageAmount = 50,
+					AdditionalForce = 0f,
+					AdditionalForcePosition = transform.position,
+					AdditionalForceRadius = 0f
+				};
+				destObj.ApplyDamage(meleeImpact);
+			}
 			_interactableObject.SetActive(false);
 		}
 		isPlayingAnimation = false;

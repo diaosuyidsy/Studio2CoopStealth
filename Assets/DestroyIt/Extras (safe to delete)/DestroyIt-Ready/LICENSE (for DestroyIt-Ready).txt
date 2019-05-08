@@ -1,0 +1,9 @@
+Extended Permissions from ModelShark Studio:
+
+1) Permission is granted to include the DestructibleStub and TagItStub scripts in your Unity assets for commercial or non-commercial use.
+
+2) Permission is also granted to modify the DestructibleStub and TagItStub scripts so long as they do not include other code from our DestroyIt products.
+
+The purpose of this permission is to allow you to sell DestroyIt-Ready assets without needing to include DestroyIt code dependencies.
+
+All other scripts and assets fall under the regular Unity Asset Store terms and conditions.

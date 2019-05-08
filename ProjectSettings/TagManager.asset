@@ -39,6 +39,7 @@ TagManager:
   - Mech
   - PushTrigger
   - TriggerInteractable
+  - ClingPoint
   layers:
   - Default
   - TransparentFX
@@ -63,7 +64,7 @@ TagManager:
   - SavingManager
   - YuME_TileMap
   - Robot_Shield
-  - 
+  - DestroyItDebris
   - 
   - 
   - 
