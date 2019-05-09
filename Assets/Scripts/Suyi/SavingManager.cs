@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Rewired;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class SavingManager : MonoBehaviour
 {
@@ -41,6 +42,31 @@ public class SavingManager : MonoBehaviour
 
 		Player1.SetActive(true);
 		Player2.SetActive(true);
+	}
+
+	private void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.R))
+		{
+			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+		}
+		if (Input.GetKeyDown(KeyCode.Alpha0))
+		{
+			SceneManager.LoadScene(0);
+		}
+		if (Input.GetKeyDown(KeyCode.Alpha1))
+		{
+			SceneManager.LoadScene(1);
+		}
+		if (Input.GetKeyDown(KeyCode.Alpha2))
+		{
+			SceneManager.LoadScene(2);
+		}
+	}
+
+	public void LoadNextScene()
+	{
+		SceneManager.LoadScene(2);
 	}
 
 	private void OnEnable()
