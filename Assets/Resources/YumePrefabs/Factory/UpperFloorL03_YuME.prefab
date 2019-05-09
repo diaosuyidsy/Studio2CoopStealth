@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6101703954856190347}
   m_Layer: 0
   m_Name: UpperFloorL03(Clone)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 4531161818497308963}
   m_Layer: 0
   m_Name: Model 0
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
