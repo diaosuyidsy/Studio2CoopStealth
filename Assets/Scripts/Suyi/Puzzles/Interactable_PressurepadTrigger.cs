@@ -5,11 +5,14 @@ using UnityEngine;
 public class Interactable_PressurepadTrigger : Interactable_Trigger
 {
 
+	private int num = 0;
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.CompareTag("Player1") || other.CompareTag("Player2") || other.CompareTag("TriggerInteractable"))
 		{
-			OnInteractDown(other.gameObject);
+			num++;
+			if (num == 1)
+				OnInteractDown(other.gameObject);
 		}
 	}
 
@@ -17,7 +20,9 @@ public class Interactable_PressurepadTrigger : Interactable_Trigger
 	{
 		if (other.CompareTag("Player1") || other.CompareTag("Player2") || other.CompareTag("TriggerInteractable"))
 		{
-			OnInteractUp(other.gameObject);
+			num--;
+			if (num == 0)
+				OnInteractUp(other.gameObject);
 		}
 	}
 

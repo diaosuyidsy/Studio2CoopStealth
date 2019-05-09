@@ -452,9 +452,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.2
-  m_Height: 2
+  m_Height: 1.5080492
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: -0.24597538, z: 0}
 --- !u!54 &8565927628593454097
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -649,7 +649,7 @@ MonoBehaviour:
     m_Bits: 256
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 131073
   visibleTargets: []
   meshResolution: 3
   edgeResolveIterations: 4
