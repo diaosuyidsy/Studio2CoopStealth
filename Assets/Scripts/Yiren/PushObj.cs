@@ -14,6 +14,7 @@ public class PushObj : MonoBehaviour
 
     private Transform target;
     public bool isFall = false;
+    public bool isBlocked;
     private void Start()
     {
         playerPos = GameObject.Find("Player_Big").transform;
@@ -64,18 +65,75 @@ public class PushObj : MonoBehaviour
         if (isPushing)
         {
             pushRigidbody.MovePosition(Vector3.Scale(playerPos.position, new Vector3(1,0,1)) + new Vector3(0, transform.position.y, 0) + playerDis);
-            Ray forwardRay  = new Ray(transform.position + new Vector3(0,0.3f,0) , playerDis.normalized);            
-            float forwardRaycastDist = GetComponent<Collider>().bounds.extents.x + 0.2f;
-            Debug.DrawRay(forwardRay.origin, forwardRay.direction * forwardRaycastDist, Color.green);
-            RaycastHit forwardRayHit = new RaycastHit();
-            if (Physics.Raycast(forwardRay, out forwardRayHit,forwardRaycastDist))
+            
+            Ray forwardRay1;
+            Ray forwardRay2;
+            if (Mathf.Abs(playerDis.x) > Mathf.Abs(playerDis.z))
             {
-                if (!forwardRayHit.transform.tag.Contains("Player"))
+                if (playerDis.x < 0)
                 {
-                    isPushing = false;
+                    forwardRay1 =
+                        new Ray(
+                            transform.position + new Vector3(-GetComponent<Collider>().bounds.extents.x, 0.3f,
+                                GetComponent<Collider>().bounds.extents.z), playerDis.normalized);
+                    forwardRay2 =
+                        new Ray(
+                            transform.position + new Vector3(-GetComponent<Collider>().bounds.extents.x, 0.3f,
+                                -GetComponent<Collider>().bounds.extents.z), playerDis.normalized);
                 }
+                else
+                {
+                    forwardRay1 =
+                        new Ray(
+                            transform.position + new Vector3(GetComponent<Collider>().bounds.extents.x, 0.3f,
+                                GetComponent<Collider>().bounds.extents.z), playerDis.normalized);
+                    forwardRay2 =
+                        new Ray(
+                            transform.position + new Vector3(GetComponent<Collider>().bounds.extents.x, 0.3f,
+                                -GetComponent<Collider>().bounds.extents.z), playerDis.normalized);
+                }
+                
+            }
+            else
+            {
+                if (playerDis.z < 0)
+                {
+                    forwardRay1 =
+                        new Ray(
+                            transform.position + new Vector3(GetComponent<Collider>().bounds.extents.x, 0.3f,
+                                -GetComponent<Collider>().bounds.extents.z), playerDis.normalized);
+                    forwardRay2 =
+                        new Ray(
+                            transform.position + new Vector3(-GetComponent<Collider>().bounds.extents.x, 0.3f,
+                                -GetComponent<Collider>().bounds.extents.z), playerDis.normalized);
+                }
+                else
+                {
+                    forwardRay1 =
+                        new Ray(
+                            transform.position + new Vector3(GetComponent<Collider>().bounds.extents.x, 0.3f,
+                                GetComponent<Collider>().bounds.extents.z), playerDis.normalized);
+                    forwardRay2 =
+                        new Ray(
+                            transform.position + new Vector3(-GetComponent<Collider>().bounds.extents.x, 0.3f,
+                                GetComponent<Collider>().bounds.extents.z), playerDis.normalized);
+                }
+                
+            }
+                       
+            float forwardRaycastDist = 0.3f;
+            Debug.DrawRay(forwardRay1.origin, forwardRay1.direction * forwardRaycastDist, Color.green);
+            Debug.DrawRay(forwardRay2.origin, forwardRay2.direction * forwardRaycastDist, Color.green);
+            RaycastHit forwardRayHit = new RaycastHit();
+            if (Physics.Raycast(forwardRay1, out forwardRayHit,forwardRaycastDist) || Physics.Raycast(forwardRay2, out forwardRayHit,forwardRaycastDist))
+            {
 
+                    isBlocked = true;
 
+            }
+            else
+            {
+                    isBlocked = false;
             }
         }
         

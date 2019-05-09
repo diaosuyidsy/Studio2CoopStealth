@@ -52,7 +52,20 @@ namespace Invector.vCharacterController.vActions
             enterInput.playerID = tpInput.playerId;
             exitInput.playerID = tpInput.playerId;
         }
+        public virtual void OnRewind()
+        {
+            ResetPlayerSettings();
+        }
 
+        protected virtual void OnEnable()
+        {
+            EventManager.StartListening("OnRewind", OnRewind);
+        }
+
+        protected virtual void OnDisable()
+        {
+            EventManager.StopListening("OnRewind", OnRewind);
+        }
 
         void Update()
         {
@@ -142,7 +155,22 @@ namespace Invector.vCharacterController.vActions
             speed = Vector3.Dot(moveDir, objDir);
             speed = Mathf.Clamp(speed, -1f, 1f);
             //speed = Mathf.Clamp(tpInput.cc.input.y, -1f, 1f);
-            tpInput.cc.animator.SetFloat("InputVertical", speed * pushSpeed, 0.25f, Time.deltaTime);
+            if (pushParent.GetComponent<PushObj>().isBlocked)
+            {
+                if (speed < 0)
+                {
+                    tpInput.cc.animator.SetFloat("InputVertical", speed * pushSpeed, 0.25f, Time.deltaTime);
+                }
+                else
+                {
+                    tpInput.cc.animator.SetFloat("InputVertical", 0f, 0.25f, Time.deltaTime);
+                }
+            }
+            else
+            {
+                tpInput.cc.animator.SetFloat("InputVertical", speed * pushSpeed, 0.25f, Time.deltaTime);
+            }
+            
             
             
             // enter ladder behaviour           
