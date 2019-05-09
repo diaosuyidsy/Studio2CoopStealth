@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2599152055068864624}
   m_Layer: 0
   m_Name: Model 0
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 8732932863409139760}
   m_Layer: 0
   m_Name: UpperFloorL03
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
