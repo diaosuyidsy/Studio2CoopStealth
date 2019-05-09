@@ -69,6 +69,7 @@ public class Ability_Assasination : Ability
 	{
 		if (_isUsingOtherAbility) return;
 		if (!SpendEnergy()) return;
+		if(_interactableObject == null) return;
 		nextReadyTime = BaseCoolDown + Time.time;
 		coolDownTimeLeft = BaseCoolDown;
 
