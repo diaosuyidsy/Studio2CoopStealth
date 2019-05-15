@@ -138,7 +138,7 @@ public class PushObj : MonoBehaviour
         }
         
             
-        Ray ray  = new Ray(transform.position - new Vector3(0,-0.1f,0) - playerDis.normalized * 0.6f, Vector3.down);
+        /*Ray ray  = new Ray(transform.position - new Vector3(0,-0.1f,0) - playerDis.normalized * 0.6f, Vector3.down);
         float raycastDist = 0.3f;
         Debug.DrawRay(ray.origin, ray.direction * raycastDist, Color.yellow);
         RaycastHit rayHit = new RaycastHit();
@@ -154,7 +154,7 @@ public class PushObj : MonoBehaviour
         else
         {
             isFall = true;
-        }
+        }*/
         
     }
 

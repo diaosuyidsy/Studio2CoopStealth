@@ -284,6 +284,7 @@ public class Ability_ThrowTransmitter : Ability
 	}
 }
 
+#if UNITY_EDITOR
 [CustomEditor(typeof(Ability_ThrowTransmitter))]
 public class DrawWireArc : Editor
 {
@@ -295,3 +296,4 @@ public class DrawWireArc : Editor
 		Handles.DrawWireArc(AA.transform.position - new Vector3(0f, 1f, 0f), AA.transform.up, AA.transform.forward, 360f, AA.FetchRadius);
 	}
 }
+#endif

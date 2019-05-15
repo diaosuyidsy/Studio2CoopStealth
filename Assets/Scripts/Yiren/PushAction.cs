@@ -52,19 +52,10 @@ namespace Invector.vCharacterController.vActions
             enterInput.playerID = tpInput.playerId;
             exitInput.playerID = tpInput.playerId;
         }
-        public virtual void OnRewind()
+
+        private void OnEnable()
         {
             ResetPlayerSettings();
-        }
-
-        protected virtual void OnEnable()
-        {
-            EventManager.StartListening("OnRewind", OnRewind);
-        }
-
-        protected virtual void OnDisable()
-        {
-            EventManager.StopListening("OnRewind", OnRewind);
         }
 
         void Update()
@@ -263,12 +254,16 @@ namespace Invector.vCharacterController.vActions
             OnExitLadder.Invoke();
             triggerExitOnce = false;
             triggerEnterOnce = false;
-            tpInput.cc._capsuleCollider.isTrigger = false;
-            tpInput.cc._rigidbody.useGravity = true;            
-            tpInput.cc.animator.SetInteger("ActionState", 0);            
-            tpInput.cc.enabled = true;
-            tpInput.enabled = true;
-            tpInput.cc.gameObject.transform.eulerAngles = new Vector3(0f, tpInput.cc.gameObject.transform.localEulerAngles.y, 0f);
+            if (tpInput != null)
+            {
+                tpInput.cc._capsuleCollider.isTrigger = false;
+                tpInput.cc._rigidbody.useGravity = true;            
+                tpInput.cc.animator.SetInteger("ActionState", 0);            
+                tpInput.cc.enabled = true;
+                tpInput.enabled = true;
+                tpInput.cc.gameObject.transform.eulerAngles = new Vector3(0f, tpInput.cc.gameObject.transform.localEulerAngles.y, 0f);
+            }
+            
         }
 
         public override void OnActionStay(Collider other)

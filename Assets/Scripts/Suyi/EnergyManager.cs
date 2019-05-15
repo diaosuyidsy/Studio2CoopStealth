@@ -22,12 +22,12 @@ public class EnergyManager : MonoBehaviour
 		{
 			instance = this;
 		}
-		else if (instance != this)
+		/*else if (instance != this)
 		{
 			Destroy(gameObject);
 		}
 
-		DontDestroyOnLoad(gameObject);
+		DontDestroyOnLoad(gameObject);*/
 		_currentEnergy = MaxEnergy;
 		EnergyBar = transform.GetChild(0).GetChild(0);
 		Energies = new List<GameObject>();

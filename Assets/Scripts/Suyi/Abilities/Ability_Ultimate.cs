@@ -65,6 +65,7 @@ public class Ability_Ultimate : Ability
 	}
 }
 
+#if UNITY_EDITOR
 [CustomEditor(typeof(Ability_Ultimate))]
 public class DrawUltimateWireArc : Editor
 {
@@ -75,3 +76,4 @@ public class DrawUltimateWireArc : Editor
 		Handles.DrawWireArc(AA.transform.position - new Vector3(0f, 1f, 0f), AA.transform.up, AA.transform.forward, 360f, AA.Range);
 	}
 }
+#endif
