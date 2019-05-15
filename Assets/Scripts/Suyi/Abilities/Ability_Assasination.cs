@@ -68,8 +68,8 @@ public class Ability_Assasination : Ability
 	public override void OnPressedDownAbility()
 	{
 		if (_isUsingOtherAbility) return;
-		if (!SpendEnergy()) return;
 		if(_interactableObject == null) return;
+		if (!SpendEnergy()) return;
 		nextReadyTime = BaseCoolDown + Time.time;
 		coolDownTimeLeft = BaseCoolDown;
 
@@ -133,6 +133,7 @@ public class Ability_Assasination : Ability
 	}
 }
 
+#if UNITY_EDITOR
 [CustomEditor(typeof(Ability_Assasination))]
 public class DrawSolidArc : Editor
 {
@@ -144,3 +145,4 @@ public class DrawSolidArc : Editor
 		Handles.DrawSolidArc(AA.transform.position - new Vector3(0f, 0.5f, 0f), AA.transform.up, AA.transform.forward, -AA.Angle, AA.Range);
 	}
 }
+#endif

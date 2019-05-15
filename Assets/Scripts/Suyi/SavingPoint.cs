@@ -71,7 +71,7 @@ public class SavingPoint : MonoBehaviour
 		Gizmos.DrawSphere(transform.position + P2SpawnOffset, 1);
 	}
 }
-
+#if UNITY_EDITOR
 [CustomEditor(typeof(SavingPoint))]
 public class DrawWireRectangle : Editor
 {
@@ -82,3 +82,4 @@ public class DrawWireRectangle : Editor
 		Handles.DrawWireCube(AA.transform.GetChild(0).position, new Vector3(AA.XOffset * 2f, 0.5f, AA.ZOffset * 2f));
 	}
 }
+#endif
