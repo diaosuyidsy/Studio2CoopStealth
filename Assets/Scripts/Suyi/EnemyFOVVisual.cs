@@ -134,9 +134,25 @@ public class EnemyFOVVisual : MonoBehaviour
 		viewMesh.triangles = triangles;
 		// TO Create UVs on the newly created meshes
 		Vector2[] uvs = new Vector2[vertices.Length];
+		float uvWidth = 0;
+		for (int i = 0; i < vertices.Length; i++)
+		{
+			if (Mathf.Abs(vertices[i].x) > uvWidth)
+			{
+				uvWidth = Mathf.Abs(vertices[i].x);
+			}
+
+			if (Mathf.Abs(vertices[i].z) > uvWidth)
+			{
+				uvWidth = Mathf.Abs(vertices[i].z);
+			}
+		}
+
+		uvWidth *= 2;
+		uvs[0] = new Vector2(0.5f,0.5f);
 		for (int i = 0; i < uvs.Length; i++)
 		{
-			uvs[i] = new Vector2(vertices[i].x, vertices[i].z);
+			uvs[i] = new Vector2(0.5f +vertices[i].x/ uvWidth, 0.5f + vertices[i].z/uvWidth);
 		}
 		viewMesh.uv = uvs;
 
