@@ -91,12 +91,12 @@ public class PickObj : MonoBehaviour
         
         if (pushAction.isUnlockAssasin)
         {
-            GetComponent<Ability_Assasination>().enabled = true;
+            PlayerBig.GetComponent<Ability_Assasination>().enabled = true;
         }
 
         if (pushAction.isUnlockThrowTransmitter)
         {
-            GetComponent<Ability_ThrowTransmitter>().enabled = true;
+            PlayerBig.GetComponent<Ability_ThrowTransmitter>().enabled = true;
         }
         yield return new WaitForSeconds(0.1f);
         isFalling = true;
