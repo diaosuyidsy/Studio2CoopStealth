@@ -11,6 +11,7 @@ public class Collectable : MonoBehaviour
 		Swap,
 		Teleport,
 		Assasin,
+		ThrowTransmitter,
 	}
 	public Abilities _unlockAbility;
 	[Tooltip("Is it used for energy regen?")]
@@ -57,8 +58,10 @@ public class Collectable : MonoBehaviour
 				break;
 
 			case Abilities.Teleport:
-				_player1.GetComponent<Ability_Teleport>().enabled = true;
-				_player2.GetComponent<Ability_ThrowTransmitter>().enabled = true;
+				_player2.GetComponent<Ability_Teleport>().enabled = true;
+				break;
+			case Abilities.ThrowTransmitter:
+				_player1.GetComponent<Ability_ThrowTransmitter>().enabled = true;
 				break;
 		}
 	}
