@@ -50,7 +50,10 @@ namespace Invector.vCharacterController.vActions
             enterInput.playerID = tpInput.playerId;
             exitInput.playerID = tpInput.playerId;
         }
-
+        private void OnEnable()
+        {
+            ResetPlayerSettings();
+        }
         void Update()
         {
             AutoEnterLadder();
@@ -95,7 +98,7 @@ namespace Invector.vCharacterController.vActions
             ladderAction.OnDoAction.Invoke();
 
             ladderActionTemp = ladderAction;
-
+            EventManager.TriggerEvent("Player1InAbility");
             if (!string.IsNullOrEmpty(ladderAction.playAnimation))
                 tpInput.cc.animator.CrossFadeInFixedTime(ladderAction.playAnimation, 0.1f);     // trigger the action animation clip                           
         }
@@ -207,12 +210,17 @@ namespace Invector.vCharacterController.vActions
             OnExitLadder.Invoke();
             triggerExitOnce = false;
             triggerEnterOnce = false;
-            tpInput.cc._capsuleCollider.isTrigger = false;
-            tpInput.cc._rigidbody.useGravity = true;            
-            tpInput.cc.animator.SetInteger("ActionState", 0);            
-            tpInput.cc.enabled = true;
-            tpInput.enabled = true;
-            tpInput.cc.gameObject.transform.eulerAngles = new Vector3(0f, tpInput.cc.gameObject.transform.localEulerAngles.y, 0f);
+            if (tpInput != null)
+            {
+                tpInput.cc._capsuleCollider.isTrigger = false;
+                tpInput.cc._rigidbody.useGravity = true;            
+                tpInput.cc.animator.SetInteger("ActionState", 0);            
+                tpInput.cc.enabled = true;
+                tpInput.enabled = true;
+                tpInput.cc.gameObject.transform.eulerAngles = new Vector3(0f, tpInput.cc.gameObject.transform.localEulerAngles.y, 0f);
+            }
+            
+            EventManager.TriggerEvent("Player1Free");
         }
 
         public override void OnActionStay(Collider other)
