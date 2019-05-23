@@ -11,7 +11,7 @@ public class Ability_Assasination : Ability
 {
 	public float Range = 1.5f;
 	public float Angle = 60f;
-	private bool isPlayingAnimation = false;
+	public bool isPlayingAnimation = false;
 	public string playAnimation;
 	protected vThirdPersonInput tpInput;
 	[SerializeField] private LayerMask EnemyMask;

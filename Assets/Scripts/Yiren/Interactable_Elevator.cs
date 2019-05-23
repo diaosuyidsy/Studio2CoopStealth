@@ -7,6 +7,8 @@ public class Interactable_Elevator : MonoBehaviour
 {
     public bool P1Entered;
     public bool P2Entered;
+
+    public GameObject Door;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +27,12 @@ public class Interactable_Elevator : MonoBehaviour
         if (P1Entered && P2Entered)
         {
             GetComponent<DOTweenAnimation>().DOPlayBackwards();
+            Door.GetComponent<DOTweenAnimation>().DOPlayBackwards();
+            GameObject player1 = GameObject.FindGameObjectWithTag("Player1");
+            GameObject player2 = GameObject.FindGameObjectWithTag("Player2");
+            
+            player1.transform.parent = transform;
+            player2.transform.parent = transform;
         }
         
         

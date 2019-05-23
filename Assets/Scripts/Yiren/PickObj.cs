@@ -16,11 +16,13 @@ public class PickObj : MonoBehaviour
     private float fallTime = 0; 
     protected vThirdPersonInput tpInput;
     private bool isPutDown;
+    private GameObject PlayerBig;
     private void Start()
     {
-        ikAnimation = GameObject.Find("Player_Big").GetComponent<IKAnimation>();
-        HoldingPos = GameObject.Find("Player_Big").transform.Find("hip").Find("HoldingPos");
-        tpInput = GameObject.FindGameObjectWithTag("Player1").GetComponent<vThirdPersonInput>(); 
+        PlayerBig = GameObject.FindGameObjectWithTag("Player1");
+        ikAnimation = PlayerBig.GetComponent<IKAnimation>();
+        HoldingPos = PlayerBig.transform.Find("hip").Find("HoldingPos");
+        tpInput = PlayerBig.GetComponent<vThirdPersonInput>(); 
     }
 
 
@@ -45,7 +47,7 @@ public class PickObj : MonoBehaviour
         ikAnimation.setHandPos(holdPosOnObj.Find("RightHandPos"),holdPosOnObj.Find("LeftHandPos"));
         ikAnimation.SetIKOn();
         transform.localRotation = Quaternion.Euler(Vector3.Scale(transform.localEulerAngles , new Vector3(0,1,0)));
-        
+        StartCoroutine(waitForPick());
         
     }
     
@@ -69,12 +71,24 @@ public class PickObj : MonoBehaviour
             trigger.GetComponent<Collider>().enabled = true;
         }
         ikAnimation.SetIKOff();
+        
 
     }
-    
+
+    IEnumerator waitForPick()
+    {
+        yield return new WaitForSeconds(0.6f);
+        PlayerBig.GetComponent<Ability_Assasination>().enabled = false;
+        PlayerBig.GetComponent<Ability_Interact>().enabled = false;
+        PlayerBig.GetComponent<Ability_ThrowTransmitter>().enabled = false;
+
+    }
 
     IEnumerator waitForDrop()
     {
+        PlayerBig.GetComponent<Ability_Assasination>().enabled = true;
+        PlayerBig.GetComponent<Ability_Interact>().enabled = true;
+        PlayerBig.GetComponent<Ability_ThrowTransmitter>().enabled = true;
         yield return new WaitForSeconds(0.1f);
         isFalling = true;
         transform.GetComponent<Collider>().isTrigger = false;
@@ -86,6 +100,7 @@ public class PickObj : MonoBehaviour
         if (isPutDown)
         {
             tpInput.cc.stopMove = true;
+            
         }
         if (isFalling)
         {
