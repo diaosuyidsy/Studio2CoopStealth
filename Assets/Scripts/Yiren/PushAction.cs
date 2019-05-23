@@ -288,7 +288,9 @@ namespace Invector.vCharacterController.vActions
             }
             
             
-            EventManager.TriggerEvent("Player0Free");
+            GetComponent<Ability_Assasination>().enabled = true;
+            GetComponent<Ability_Interact>().enabled = true;
+            GetComponent<Ability_ThrowTransmitter>().enabled = true;
             
         }
 
