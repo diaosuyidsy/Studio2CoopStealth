@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.Events;
+using UnityEngine.AI;
 
 public class Rewindable : MonoBehaviour
 {
 	public int NextSavePointIndex;
 	public UnityEvent OnRewindEvents;
+	public bool NavmeshAgent = false;
 
 	protected Vector3 OriginalPosition;
 	protected Vector3 OriginalRotation;
@@ -27,9 +29,13 @@ public class Rewindable : MonoBehaviour
 		transform.position = OriginalPosition;
 		transform.eulerAngles = OriginalRotation;
 		transform.localScale = OriginalScale;
-
 		// Next rewind the DoTween if we have
 		if (OnRewindEvents != null) OnRewindEvents.Invoke();
+		if (NavmeshAgent)
+		{
+			GetComponent<NavMeshAgent>().Warp(OriginalPosition);
+			transform.eulerAngles = OriginalRotation;
+		}
 	}
 
 	protected virtual void OnEnable()
@@ -37,7 +43,7 @@ public class Rewindable : MonoBehaviour
 		EventManager.StartListening("OnRewind", OnRewind);
 	}
 
-    protected virtual void OnDisable()
+	protected virtual void OnDisable()
 	{
 		EventManager.StopListening("OnRewind", OnRewind);
 	}

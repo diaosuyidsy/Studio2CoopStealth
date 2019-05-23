@@ -62,6 +62,7 @@ public class Ability_Teleport : Ability
 	public override void OnPressedDownAbility()
 	{
 		if (!TeleportTransmitter.activeSelf) return;
+		if (_isUsingOtherAbility) return;
 		//var collider = GetComponent<Collider>();
 		//if (collider != null)
 		//	transform.position = TeleportTransmitter.transform.position + collider.bounds.extents;
