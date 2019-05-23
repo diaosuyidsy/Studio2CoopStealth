@@ -65,8 +65,8 @@ public class PushObj : MonoBehaviour
         if (isPushing)
         {
             pushRigidbody.MovePosition(Vector3.Scale(playerPos.position, new Vector3(1,0,1)) + new Vector3(0, transform.position.y, 0) + playerDis);
-            
-            Ray forwardRay1;
+            //Raycast before object
+            /*Ray forwardRay1;
             Ray forwardRay2;
             if (Mathf.Abs(playerDis.x) > Mathf.Abs(playerDis.z))
             {
@@ -134,6 +134,55 @@ public class PushObj : MonoBehaviour
             else
             {
                     isBlocked = false;
+            }*/
+            Vector3 SpherePosition1;
+            Vector3 SpherePosition2;
+            if (Mathf.Abs(playerDis.x) > Mathf.Abs(playerDis.z))
+            {
+                if (playerDis.x < 0)
+                {
+                    SpherePosition1 = new Vector3(-GetComponent<Collider>().bounds.extents.x, 0.3f,
+                                GetComponent<Collider>().bounds.extents.z);
+                    SpherePosition2 =new Vector3(-GetComponent<Collider>().bounds.extents.x, 0.3f,
+                                -GetComponent<Collider>().bounds.extents.z);
+                }
+                else
+                {
+                    SpherePosition1  =new Vector3(GetComponent<Collider>().bounds.extents.x, 0.3f,
+                                GetComponent<Collider>().bounds.extents.z);
+                    SpherePosition2=new Vector3(GetComponent<Collider>().bounds.extents.x, 0.3f,
+                                -GetComponent<Collider>().bounds.extents.z);
+                }
+                
+            }
+            else
+            {
+                if (playerDis.z < 0)
+                {
+                    SpherePosition1  =new Vector3(GetComponent<Collider>().bounds.extents.x, 0.3f,
+                                -GetComponent<Collider>().bounds.extents.z);
+                    SpherePosition2 =new Vector3(-GetComponent<Collider>().bounds.extents.x, 0.3f,
+                                -GetComponent<Collider>().bounds.extents.z);
+                }
+                else
+                {
+                    SpherePosition1  =new Vector3(GetComponent<Collider>().bounds.extents.x, 0.3f,
+                                GetComponent<Collider>().bounds.extents.z);
+                    SpherePosition2 =new Vector3(-GetComponent<Collider>().bounds.extents.x, 0.3f,
+                                GetComponent<Collider>().bounds.extents.z);
+                }
+                
+            }
+            RaycastHit forwardRayHit = new RaycastHit();
+            if (Physics.SphereCast(SpherePosition1, 0.3f, playerDis.normalized, out forwardRayHit, 10) || Physics.SphereCast(SpherePosition2, 0.3f, playerDis.normalized, out forwardRayHit, 10))
+            {
+
+                isBlocked = true;
+
+            }
+            else
+            {
+                isBlocked = false;
             }
         }
         
@@ -189,5 +238,10 @@ public class PushObj : MonoBehaviour
         }
        
     }
-
+    void OnDrawGizmosSelected()
+    {
+        // Draw a yellow sphere at the transform's position
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(transform.position, 1);
+    }
 }
