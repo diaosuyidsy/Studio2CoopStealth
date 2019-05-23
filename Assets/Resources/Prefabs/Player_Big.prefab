@@ -890,10 +890,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonName: X
-  BaseCoolDown: 0.1
+  BaseCoolDown: 1
   EnergyCost: 1
   UIFillName: attackFill
-  Range: 2
+  Range: 3
   Angle: 60
   playAnimation: KillEnemy
   EnemyMask:

@@ -164,6 +164,7 @@ GameObject:
   - component: {fileID: 2067822390206653157}
   - component: {fileID: 2067822390206653156}
   - component: {fileID: 3575489663196589059}
+  - component: {fileID: 5057394604514274693}
   m_Layer: 0
   m_Name: pSphere6
   m_TagString: Untagged
@@ -323,6 +324,32 @@ MonoBehaviour:
   useFallbackParticle: 1
   centerPointOverride: {x: 0, y: 0, z: 0}
   sinkWhenDestroyed: 0
+--- !u!114 &5057394604514274693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2067822390206653158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf3575480402db40813e763382412fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: 0
+  eraseRenderer: 0
+  OnEnableOutline:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnDisableOutline:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  originalLayer: 0
+  originalMaterials: []
 --- !u!1 &2067822390350911683
 GameObject:
   m_ObjectHideFlags: 0
@@ -2069,7 +2096,7 @@ MonoBehaviour:
     m_Bits: 256
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 131073
+    m_Bits: 16908289
   visibleTargets: []
   meshResolution: 3
   edgeResolveIterations: 4

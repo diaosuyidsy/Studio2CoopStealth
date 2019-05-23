@@ -92,6 +92,10 @@ public abstract class Ability : MonoBehaviour
 				_isUsingOtherAbility = false;
 			}
 		);
+		EventManager.StartListening("OnRewind", () =>
+		{
+			EventManager.TriggerEvent($"Player{PlayerID}Free");
+		});
 	}
 
 	public virtual void OnDisable()
@@ -112,5 +116,9 @@ public abstract class Ability : MonoBehaviour
 				_isUsingOtherAbility = false;
 			}
 		);
+		EventManager.StopListening("OnRewind", () =>
+		{
+			EventManager.TriggerEvent($"Player{PlayerID}Free");
+		});
 	}
 }

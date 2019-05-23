@@ -5,6 +5,7 @@ using UnityEngine;
 using Rewired;
 using UnityEditor;
 using DestroyIt;
+using cakeslice;
 
 public class Ability_Assasination : Ability
 {
@@ -68,11 +69,11 @@ public class Ability_Assasination : Ability
 	public override void OnPressedDownAbility()
 	{
 		if (_isUsingOtherAbility) return;
-		if(_interactableObject == null) return;
+		if (_interactableObject == null) return;
 		if (!SpendEnergy()) return;
 		nextReadyTime = BaseCoolDown + Time.time;
 		coolDownTimeLeft = BaseCoolDown;
-
+		EventManager.TriggerEvent($"Player{PlayerID}InAbility");
 
 		tpInput.cc.animator.CrossFadeInFixedTime(playAnimation, 0.1f);
 		ApplyPlayerSettings();
@@ -86,6 +87,8 @@ public class Ability_Assasination : Ability
 		yield return new WaitForSeconds(1.0f);
 		if (_interactableObject != null)
 		{
+			//GameObject substitude = Instantiate(_interactableObject, _interactableObject.transform.position, _interactableObject.transform.rotation);
+
 			Destructible destObj = _interactableObject.GetComponentInChildren<Destructible>();
 			if (destObj != null)
 			{
@@ -98,9 +101,15 @@ public class Ability_Assasination : Ability
 				};
 				destObj.ApplyDamage(meleeImpact);
 			}
+			//substitude.SetActive(false);
+			//substitude = null;
+			if (_interactableObject.GetComponentInChildren<Outline>() != null)
+				_interactableObject.GetComponentInChildren<Outline>().DisableOutline();
 			_interactableObject.SetActive(false);
+			_interactableObject = null;
 		}
 		isPlayingAnimation = false;
+		EventManager.TriggerEvent($"Player{PlayerID}Free");
 		ResetPlayerSettings();
 	}
 	/// <summary>
@@ -121,7 +130,9 @@ public class Ability_Assasination : Ability
 				smallestGO = hit;
 			}
 		}
+		if (_interactableObject != null && smallestGO != _interactableObject && _interactableObject.GetComponentInChildren<Outline>() != null) _interactableObject.GetComponentInChildren<Outline>().DisableOutline();
 		_interactableObject = smallestGO;
+		if (_interactableObject != null && _interactableObject.GetComponentInChildren<Outline>() != null) _interactableObject.GetComponentInChildren<Outline>().EnableOutline();
 
 	}
 
