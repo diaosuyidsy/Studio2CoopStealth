@@ -86,6 +86,9 @@ public class PickObj : MonoBehaviour
 
     IEnumerator waitForDrop()
     {
+        PlayerBig.GetComponent<Ability_Assasination>().enabled = true;
+        PlayerBig.GetComponent<Ability_Interact>().enabled = true;
+        PlayerBig.GetComponent<Ability_ThrowTransmitter>().enabled = true;
         yield return new WaitForSeconds(0.1f);
         isFalling = true;
         transform.GetComponent<Collider>().isTrigger = false;
@@ -97,7 +100,7 @@ public class PickObj : MonoBehaviour
         if (isPutDown)
         {
             tpInput.cc.stopMove = true;
-            EventManager.TriggerEvent("Player0Free");
+            
         }
         if (isFalling)
         {

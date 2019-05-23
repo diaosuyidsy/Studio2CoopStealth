@@ -284,8 +284,9 @@ namespace Invector.vCharacterController.vActions
                 tpInput.enabled = true;
                 tpInput.cc.gameObject.transform.eulerAngles = new Vector3(0f, tpInput.cc.gameObject.transform.localEulerAngles.y, 0f);
                 otherPlayer.GetComponent<Ability_Swap>().enabled = true;
+                GetComponent<Ability_Assasination>().isPlayingAnimation = false;
             }
-
+            
             
             EventManager.TriggerEvent("Player0Free");
             
