@@ -19,7 +19,8 @@ namespace Invector.vCharacterController.vActions
         public RewiredInputWrapper enterInput = new RewiredInputWrapper("Jump");
         public RewiredInputWrapper exitInput = new RewiredInputWrapper("B");     
         public bool debugMode;
-
+        public bool isUnlockThrowTransmitter;
+        public bool isUnlockAssasin;
         public UnityEvent OnEnterLadder;
         public UnityEvent OnExitLadder;
 
@@ -283,14 +284,24 @@ namespace Invector.vCharacterController.vActions
                 tpInput.cc.enabled = true;
                 tpInput.enabled = true;
                 tpInput.cc.gameObject.transform.eulerAngles = new Vector3(0f, tpInput.cc.gameObject.transform.localEulerAngles.y, 0f);
-                otherPlayer.GetComponent<Ability_Swap>().enabled = true;
+                if (otherPlayer.GetComponent<vLadderAction>().isUnlockSwap)
+                {
+                    otherPlayer.GetComponent<Ability_Swap>().enabled = true;
+                }
+
                 GetComponent<Ability_Assasination>().isPlayingAnimation = false;
             }
-            
-            
-            GetComponent<Ability_Assasination>().enabled = true;
             GetComponent<Ability_Interact>().enabled = true;
-            GetComponent<Ability_ThrowTransmitter>().enabled = true;
+            if (isUnlockAssasin)
+            {
+                GetComponent<Ability_Assasination>().enabled = true;
+            }
+
+            if (isUnlockThrowTransmitter)
+            {
+                GetComponent<Ability_ThrowTransmitter>().enabled = true;
+            }
+            
             
         }
 

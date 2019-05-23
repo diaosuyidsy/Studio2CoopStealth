@@ -86,9 +86,18 @@ public class PickObj : MonoBehaviour
 
     IEnumerator waitForDrop()
     {
-        PlayerBig.GetComponent<Ability_Assasination>().enabled = true;
         PlayerBig.GetComponent<Ability_Interact>().enabled = true;
-        PlayerBig.GetComponent<Ability_ThrowTransmitter>().enabled = true;
+        PushAction pushAction = PlayerBig.GetComponent<PushAction>();
+        
+        if (pushAction.isUnlockAssasin)
+        {
+            GetComponent<Ability_Assasination>().enabled = true;
+        }
+
+        if (pushAction.isUnlockThrowTransmitter)
+        {
+            GetComponent<Ability_ThrowTransmitter>().enabled = true;
+        }
         yield return new WaitForSeconds(0.1f);
         isFalling = true;
         transform.GetComponent<Collider>().isTrigger = false;

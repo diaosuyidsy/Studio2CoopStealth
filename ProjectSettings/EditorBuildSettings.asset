@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Suyi-Milestone3.unity
     guid: b124ed37d8ee8d44a8ef71a25ef29b8b
   - enabled: 1
-    path: Assets/Scenes/YirenLevelScene.unity
-    guid: 0bd218b682feadc48922437827ee4968
+    path: Assets/Scenes/Dan/Lv2_light.unity
+    guid: 7e454d6d2fb33584f8bdd5d552e8f1df
   m_configObjects: {}
