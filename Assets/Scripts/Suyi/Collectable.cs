@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Invector.vCharacterController.vActions;
 using UnityEngine;
 using UnityEngine.Events;
 using Rewired;
@@ -50,18 +51,22 @@ public class Collectable : MonoBehaviour
 		{
 			case Abilities.Assasin:
 				_player1.GetComponent<Ability_Assasination>().enabled = true;
+				_player1.GetComponent<PushAction>().isUnlockAssasin = true;
 				break;
 
 			case Abilities.Swap:
 				_player2.GetComponent<Ability_Swap>().enabled = true;
 				_player2.GetComponent<Ability_Swap>().SwapLine.SetActive(true);
+				_player2.GetComponent<vLadderAction>().isUnlockSwap= true;
 				break;
 
 			case Abilities.Teleport:
 				_player2.GetComponent<Ability_Teleport>().enabled = true;
+				_player2.GetComponent<vLadderAction>().isUnlockTeleport = true;
 				break;
 			case Abilities.ThrowTransmitter:
 				_player1.GetComponent<Ability_ThrowTransmitter>().enabled = true;
+				_player1.GetComponent<PushAction>().isUnlockThrowTransmitter = true;
 				break;
 		}
 	}

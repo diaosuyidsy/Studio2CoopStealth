@@ -21,7 +21,8 @@ namespace Invector.vCharacterController.vActions
 
         public UnityEvent OnEnterLadder;
         public UnityEvent OnExitLadder;
-
+        public bool isUnlockSwap;
+        public bool isUnlockTeleport;
         #endregion
 
         #region protected variables    
