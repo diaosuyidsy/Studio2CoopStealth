@@ -377,6 +377,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  NavmeshAgent: 0
 --- !u!1 &6797110165321769899
 GameObject:
   m_ObjectHideFlags: 0
@@ -1380,6 +1381,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Trigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 8741555620406727350, guid: 61ac63e641802f647aa96be6e637cc70,
+        type: 3}
+      propertyPath: m_Layer
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 7749362378618787811, guid: 61ac63e641802f647aa96be6e637cc70,
         type: 3}

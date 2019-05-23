@@ -26,4 +26,22 @@ public class Interactable_PressurepadTrigger : Interactable_Trigger
 		}
 	}
 
+	private void OnEnable()
+	{
+		EventManager.StartListening("OnRewind", () =>
+		{
+			num = 0;
+			OnInteractUp(null);
+		});
+	}
+
+	private void OnDisable()
+	{
+		EventManager.StopListening("OnRewind", () =>
+		{
+			num = 0;
+			OnInteractUp(null);
+		});
+	}
+
 }

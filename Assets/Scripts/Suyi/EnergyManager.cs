@@ -83,4 +83,19 @@ public class EnergyManager : MonoBehaviour
 		Kuang.sizeDelta = new Vector2(90f + 30f * MaxEnergy, Kuang.sizeDelta.y);
 	}
 
+	private void OnEnable()
+	{
+		EventManager.StartListening("PlayerDied", () =>
+		{
+			AddMaxEnergy(0);
+		});
+	}
+
+	private void OnDisable()
+	{
+		EventManager.StopListening("PlayerDied", () =>
+		{
+			AddMaxEnergy(0);
+		});
+	}
 }

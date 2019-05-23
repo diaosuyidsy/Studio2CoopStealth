@@ -19,7 +19,10 @@ public class Interactable_Trigger : Interactable
 		base.OnInteractDown(param);
 		if (_dta != null)
 			_dta.DOPlayForwardById(DTAnimationID);
-		if (Object != null) Object.OnInteractDown(param);
+		if (Object != null)
+		{
+			Object.OnInteractDown(param);
+		}
 	}
 
 	public override void OnInteractUp(Object param)

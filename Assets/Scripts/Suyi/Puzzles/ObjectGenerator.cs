@@ -52,4 +52,9 @@ public class ObjectGenerator : MonoBehaviour
 		pos += offset;
 		SpawnObjectWorldPosition(pos);
 	}
+
+	public void DeSpawnObject()
+	{
+		if (SpawnedObject != null) Destroy(SpawnedObject);
+	}
 }
