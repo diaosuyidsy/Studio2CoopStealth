@@ -821,7 +821,7 @@ GameObject:
   - component: {fileID: 8003346292756770819}
   - component: {fileID: 8003346292756770818}
   - component: {fileID: 8003346292756770816}
-  m_Layer: 0
+  m_Layer: 24
   m_Name: push
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -862,6 +862,14 @@ MonoBehaviour:
   Meshes:
   - {fileID: 0}
   isFall: 0
+  isBlocked: 0
+  isBlockedBackwards: 0
+  pushLayerMask:
+    serializedVersion: 2
+    m_Bits: 15726359
+  pushBackwardsLayerMask:
+    serializedVersion: 2
+    m_Bits: 15726103
 --- !u!54 &8003346292756770818
 Rigidbody:
   m_ObjectHideFlags: 0

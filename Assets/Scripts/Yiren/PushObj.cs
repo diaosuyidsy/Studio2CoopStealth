@@ -15,6 +15,13 @@ public class PushObj : MonoBehaviour
     private Transform target;
     public bool isFall = false;
     public bool isBlocked;
+    public bool isBlockedBackwards;
+    Vector3 SpherePosition1;
+    Vector3 SpherePosition2;
+    Vector3 SpherePosition3;
+    public LayerMask pushLayerMask;
+    public LayerMask pushBackwardsLayerMask;
+    
     private void Start()
     {
         playerPos = GameObject.Find("Player_Big").transform;
@@ -64,7 +71,9 @@ public class PushObj : MonoBehaviour
     {
         if (isPushing)
         {
-            pushRigidbody.MovePosition(Vector3.Scale(playerPos.position, new Vector3(1,0,1)) + new Vector3(0, transform.position.y, 0) + playerDis);
+            pushRigidbody.MovePosition(Vector3.Scale(playerPos.position, new Vector3(1, 0, 1)) +
+                                       new Vector3(0, transform.position.y, 0) + playerDis);
+
             //Raycast before object
             /*Ray forwardRay1;
             Ray forwardRay2;
@@ -135,46 +144,59 @@ public class PushObj : MonoBehaviour
             {
                     isBlocked = false;
             }*/
-            Vector3 SpherePosition1;
-            Vector3 SpherePosition2;
-            if (Mathf.Abs(playerDis.x) > Mathf.Abs(playerDis.z))
+            
+            if (Mathf.Abs(playerDis.x) > Mathf.Abs(playerDis.z)) 
             {
-                if (playerDis.x < 0)
+                if (playerDis.x < 0) 
                 {
-                    SpherePosition1 = new Vector3(-GetComponent<Collider>().bounds.extents.x, 0.3f,
+                    SpherePosition1 = transform.position + new Vector3(-GetComponent<Collider>().bounds.extents.x, 0.4f,
                                 GetComponent<Collider>().bounds.extents.z);
-                    SpherePosition2 =new Vector3(-GetComponent<Collider>().bounds.extents.x, 0.3f,
+                    SpherePosition2 = transform.position + new Vector3(-GetComponent<Collider>().bounds.extents.x, 0.4f,
                                 -GetComponent<Collider>().bounds.extents.z);
+                    SpherePosition3 = transform.position + new Vector3(-GetComponent<Collider>().bounds.extents.x, 0.4f,
+                                          0);
+                    
                 }
                 else
                 {
-                    SpherePosition1  =new Vector3(GetComponent<Collider>().bounds.extents.x, 0.3f,
+                    SpherePosition1  =transform.position + new Vector3(GetComponent<Collider>().bounds.extents.x, 0.4f,
                                 GetComponent<Collider>().bounds.extents.z);
-                    SpherePosition2=new Vector3(GetComponent<Collider>().bounds.extents.x, 0.3f,
+                    SpherePosition2=transform.position + new Vector3(GetComponent<Collider>().bounds.extents.x, 0.4f,
                                 -GetComponent<Collider>().bounds.extents.z);
+                    SpherePosition3 = transform.position + new Vector3(GetComponent<Collider>().bounds.extents.x, 0.4f,
+                                          0);
                 }
+                
                 
             }
             else
             {
                 if (playerDis.z < 0)
                 {
-                    SpherePosition1  =new Vector3(GetComponent<Collider>().bounds.extents.x, 0.3f,
+                    SpherePosition1  =transform.position + new Vector3(GetComponent<Collider>().bounds.extents.x, 0.4f,
                                 -GetComponent<Collider>().bounds.extents.z);
-                    SpherePosition2 =new Vector3(-GetComponent<Collider>().bounds.extents.x, 0.3f,
+                    SpherePosition2 =transform.position + new Vector3(-GetComponent<Collider>().bounds.extents.x, 0.4f,
                                 -GetComponent<Collider>().bounds.extents.z);
+                    SpherePosition3 = transform.position + new Vector3(0, 0.4f,
+                                          -GetComponent<Collider>().bounds.extents.z);
                 }
                 else
                 {
-                    SpherePosition1  =new Vector3(GetComponent<Collider>().bounds.extents.x, 0.3f,
+                    SpherePosition1  =transform.position + new Vector3(GetComponent<Collider>().bounds.extents.x, 0.4f,
                                 GetComponent<Collider>().bounds.extents.z);
-                    SpherePosition2 =new Vector3(-GetComponent<Collider>().bounds.extents.x, 0.3f,
+                    SpherePosition2 =transform.position + new Vector3(-GetComponent<Collider>().bounds.extents.x, 0.4f,
                                 GetComponent<Collider>().bounds.extents.z);
+                    SpherePosition3 = transform.position + new Vector3(0, 0.4f,
+                                          GetComponent<Collider>().bounds.extents.z);
                 }
                 
             }
+            Collider[] hitColliders1 = Physics.OverlapSphere(SpherePosition1, 0.3f,pushLayerMask);
+            Collider[] hitColliders2 = Physics.OverlapSphere(SpherePosition2, 0.3f,pushLayerMask);
+            Collider[] hitColliders3 = Physics.OverlapSphere(playerPos.position + new Vector3(0,1.2f,0), 1.0f,pushBackwardsLayerMask);
+            Collider[] hitColliders4 = Physics.OverlapSphere(SpherePosition3, 0.3f, pushLayerMask);
             RaycastHit forwardRayHit = new RaycastHit();
-            if (Physics.SphereCast(SpherePosition1, 0.3f, playerDis.normalized, out forwardRayHit, 10) || Physics.SphereCast(SpherePosition2, 0.3f, playerDis.normalized, out forwardRayHit, 10))
+            if (hitColliders1.Length> 0 || hitColliders2.Length > 0 || hitColliders4.Length> 0)
             {
 
                 isBlocked = true;
@@ -183,6 +205,15 @@ public class PushObj : MonoBehaviour
             else
             {
                 isBlocked = false;
+            }
+
+            if (hitColliders3.Length > 0)
+            {
+                isBlockedBackwards = true;
+            }
+            else
+            {
+                isBlockedBackwards = false;
             }
         }
         
@@ -242,6 +273,8 @@ public class PushObj : MonoBehaviour
     {
         // Draw a yellow sphere at the transform's position
         Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(transform.position, 1);
+        Gizmos.DrawSphere(SpherePosition1, 0.3f);
+        Gizmos.DrawSphere(SpherePosition2, 0.3f);
+        Gizmos.DrawSphere(playerPos.position + new Vector3(0,1.2f,0), 1.0f);
     }
 }

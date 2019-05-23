@@ -588,7 +588,7 @@ GameObject:
   - component: {fileID: 3655735722198500628}
   - component: {fileID: 3475549124067090368}
   - component: {fileID: 8603376171140681558}
-  m_Layer: 0
+  m_Layer: 24
   m_Name: push
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -632,6 +632,14 @@ MonoBehaviour:
   - {fileID: 3133188476632121778}
   - {fileID: 5618523017422665205}
   isFall: 0
+  isBlocked: 0
+  isBlockedBackwards: 0
+  pushLayerMask:
+    serializedVersion: 2
+    m_Bits: 15726359
+  pushBackwardsLayerMask:
+    serializedVersion: 2
+    m_Bits: 15726103
 --- !u!54 &3475549124067090368
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1279,6 +1287,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: 0
   eraseRenderer: 0
+  OnEnableOutline:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnDisableOutline:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   originalLayer: 0
   originalMaterials: []
 --- !u!1 &3255541151071212214
@@ -2024,6 +2042,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: 0
   eraseRenderer: 0
+  OnEnableOutline:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnDisableOutline:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   originalLayer: 0
   originalMaterials: []
 --- !u!1 &6029990266852352708

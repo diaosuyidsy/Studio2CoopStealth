@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Events;
 
 namespace Invector.vCharacterController.vActions
 {
@@ -74,6 +75,11 @@ namespace Invector.vCharacterController.vActions
                     if (!triggerActionOnce)
                     {
                         OnDoAction.Invoke(triggerAction);
+                        if (tpInput.playerId > 0)
+                        {
+                            EventManager.TriggerEvent("Player1InAbility");
+                        }
+                        
                         TriggerAnimation();                        
                     }                        
                 }
@@ -142,6 +148,7 @@ namespace Invector.vCharacterController.vActions
                 if (triggerAction.resetPlayerSettings && tpInput.cc.animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= triggerAction.endExitTimeAnimation)
                 {
                     if (debugMode) Debug.Log("Finish Animation");
+                    EventManager.TriggerEvent("Player"+tpInput.playerId+"Free");
                     // after playing the animation we reset some values
                     ResetPlayerSettings();
                 }

@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 
 
+
 namespace Invector.vCharacterController.vActions
 {
     [vClassHeader("Ladder Action", "Use the vTriggerLadderAction on your ladder mesh.", iconName = "ladderIcon")]
@@ -35,6 +36,7 @@ namespace Invector.vCharacterController.vActions
         protected bool triggerEnterOnce;
         protected bool triggerExitOnce;
         protected bool isTouchingPushObject;
+        private GameObject otherPlayer;
 
         #endregion
 
@@ -51,6 +53,7 @@ namespace Invector.vCharacterController.vActions
             horicallInput.playerID = tpInput.playerId;
             enterInput.playerID = tpInput.playerId;
             exitInput.playerID = tpInput.playerId;
+            otherPlayer = GameObject.FindGameObjectWithTag("Player2");
         }
 
         private void OnEnable()
@@ -101,9 +104,13 @@ namespace Invector.vCharacterController.vActions
         void EnterLadderInput()
         {
             if (ladderAction == null || tpInput.cc.customAction || tpInput.cc.isJumping || !tpInput.cc.isGrounded) return;
-           
+
             if (enterInput.GetButtonDown() && !isUsingLadder && !ladderAction.autoAction)
+            {
                 TriggerEnterLadder();
+                
+            }
+            
             
         } //****************************************************//
 
@@ -124,7 +131,10 @@ namespace Invector.vCharacterController.vActions
             ladderAction.OnDoAction.Invoke();
 
             ladderActionTemp = ladderAction;
-            
+            GetComponent<Ability_Assasination>().enabled = false;
+            GetComponent<Ability_Interact>().enabled = false;
+            GetComponent<Ability_ThrowTransmitter>().enabled = false;
+            otherPlayer.GetComponent<Ability_Swap>().enabled = false;
             if (!string.IsNullOrEmpty(ladderAction.playAnimation))
                 tpInput.cc.animator.CrossFadeInFixedTime(ladderAction.playAnimation, 0.1f);     // trigger the action animation clip                           
         }
@@ -149,6 +159,17 @@ namespace Invector.vCharacterController.vActions
             if (pushParent.GetComponent<PushObj>().isBlocked)
             {
                 if (speed < 0)
+                {
+                    tpInput.cc.animator.SetFloat("InputVertical", speed * pushSpeed, 0.25f, Time.deltaTime);
+                }
+                else
+                {
+                    tpInput.cc.animator.SetFloat("InputVertical", 0f, 0.25f, Time.deltaTime);
+                }
+            }
+            else if (pushParent.GetComponent<PushObj>().isBlockedBackwards)
+            {
+                if (speed > 0)
                 {
                     tpInput.cc.animator.SetFloat("InputVertical", speed * pushSpeed, 0.25f, Time.deltaTime);
                 }
@@ -262,7 +283,11 @@ namespace Invector.vCharacterController.vActions
                 tpInput.cc.enabled = true;
                 tpInput.enabled = true;
                 tpInput.cc.gameObject.transform.eulerAngles = new Vector3(0f, tpInput.cc.gameObject.transform.localEulerAngles.y, 0f);
+                otherPlayer.GetComponent<Ability_Swap>().enabled = true;
             }
+
+            
+            EventManager.TriggerEvent("Player0Free");
             
         }
 
