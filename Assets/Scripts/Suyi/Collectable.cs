@@ -57,7 +57,7 @@ public class Collectable : MonoBehaviour
 			case Abilities.Swap:
 				_player2.GetComponent<Ability_Swap>().enabled = true;
 				_player2.GetComponent<Ability_Swap>().SwapLine.SetActive(true);
-				_player2.GetComponent<vLadderAction>().isUnlockSwap= true;
+				_player2.GetComponent<vLadderAction>().isUnlockSwap = true;
 				break;
 
 			case Abilities.Teleport:
@@ -139,5 +139,11 @@ public class Collectable : MonoBehaviour
 			_rightPlayerEntered = false;
 			OnPlayerExit.Invoke();
 		}
+	}
+
+	public void TriggerExit()
+	{
+		_rightPlayerEntered = false;
+		OnPlayerExit.Invoke();
 	}
 }
